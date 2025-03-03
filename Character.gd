@@ -3,6 +3,9 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
+var jumpVelocity:float = 0.0
+var jumpTimer:float = 0.0
+var direction = 0.0
 
 
 func _physics_process(delta: float) -> void:
@@ -21,5 +24,18 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	if (Input.is_action_just_pressed("ui_up")):
+		jumpVelocity = -600 - abs(direction / 3)
+		
+	if (Input.is_action_pressed("ui_up") && jumpTimer < 0.25):
+		velocity.y = jumpVelocity
+		jumpTimer += delta
+	
+	if (!Input.is_action_pressed("ui_up") && is_on_floor()):
+		jumpTimer = 0.0
+		jumpVelocity = 0.0
+	
+	if (!is_on_floor()):
+		velocity.y += 40
 	move_and_slide()
