@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://rsat8le877xi"]
 
-[ext_resource type="Script" path="res://Character.gd" id="1_yge7i"]
+[ext_resource type="Script" uid="uid://ciq10vjbn85lf" path="res://Character.gd" id="1_yge7i"]
 [ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="2_fsk44"]
 [ext_resource type="TileSet" uid="uid://br8mdlo61rhb" path="res://assets/new_tile_set.tres" id="3_ns1xd"]
 
@@ -14,7 +14,9 @@ size = Vector2(32, 64)
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(368, 224)
 script = ExtResource("1_yge7i")
-jump_force = -500.0
+acceleration = 75.0
+jump_force = -400.0
+variable_jump_multiplier = 0.4
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
