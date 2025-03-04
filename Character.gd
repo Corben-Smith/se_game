@@ -1,68 +1,56 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const initalJumpForce = -150.0
-const jumpPower = -300.0
-const jumpTimerThreshold = 0.1
-const coyoteFrames = 6
+# Movement variables
+@export var acceleration: float = 50.0
+@export var deacceleration: float = 75.0
+@export var max_speed: float = 300.0
+@export var jump_force: float = -300.0
+@export var gravity: float = 800.0
+@export var coyote_time: float = 0.1
+@export var jump_buffer_time: float = 0.1
+@export var variable_jump_multiplier: float = 0.5  # For variable jump height
 
-var last_floor = false
-var jumping = false
-var coyote = false
-
-var jumpVelocity:float = 0.0
-var jumpTimer:float = 0.0
-
-func _ready() -> void:
-	$CoyoteTimer.wait_time = coyoteFrames / 60.0
-	print($CoyoteTimer.wait_time)
-
+# Internal variables
+var coyote_timer: float = 0.0
+var jump_buffer_timer: float = 0.0
+var is_jumping: bool = false
 
 func _physics_process(delta: float) -> void:
-	
+    # Apply gravity
+    if not is_on_floor():
+        velocity.y += gravity * delta
+    else:
+        velocity.y = 0  # Reset vertical velocity when on the floor
 
-	var direction := Input.get_axis("Left", "Right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED / 2)
+    # Handle horizontal movement
+    var direction := Input.get_axis("Left", "Right")
+    if direction != 0:
+        velocity.x = move_toward(velocity.x, direction * max_speed, acceleration)
+    else:
+        velocity.x = move_toward(velocity.x, 0, deacceleration)
 
-	if is_on_floor():
-		jumpTimer = 0.0
-		coyote = false
-		jumping = false
+    # Coyote time logic
+    if is_on_floor():
+        coyote_timer = coyote_time
+    else:
+        coyote_timer -= delta
 
-	if not is_on_floor() && !coyote:
-		velocity += get_gravity() * delta
+    # Jump buffering logic
+    if Input.is_action_just_pressed("Fire"):
+        jump_buffer_timer = jump_buffer_time
+    else:
+        jump_buffer_timer -= delta
 
-	if not is_on_floor() and last_floor and not jumping:
-		coyote = true
-		print("timer started")
-		$CoyoteTimer.start()	
+    # Handle jumping
+    if (is_on_floor() or coyote_timer > 0) and jump_buffer_timer > 0:
+        velocity.y = jump_force
+        is_jumping = true
+        jump_buffer_timer = 0  # Reset jump buffer
 
-	print("is on floor: %s" % is_on_floor())
-	if Input.is_action_just_pressed("Fire") and (is_on_floor() or coyote):
-		print("just jumped")
-		velocity.y = initalJumpForce - abs(direction / 3) 
-		jumpVelocity = jumpPower
-		jumping = true
-		coyote = false
+    # Variable jump height (cut jump short if button is released)
+    if Input.is_action_just_released("Fire") and velocity.y < 0:
+        velocity.y *= variable_jump_multiplier
+        is_jumping = false
 
-	if (Input.is_action_pressed("Fire") && jumping && jumpTimer < jumpTimerThreshold):
-		velocity.y = jumpVelocity
-		jumpTimer += delta
-	
-	if (!Input.is_action_pressed("Fire") && is_on_floor()):
-		jumpTimer = 0.0
-		jumpVelocity = 0.0
-
-
-	move_and_slide()
-	last_floor = is_on_floor()
-	print(coyote)
-
-
-
-func _on_coyote_timer_timeout() -> void:
-	print("timer ended")
-	coyote = false
+    # Move the character
+    move_and_slide()
