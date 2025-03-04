@@ -12,7 +12,7 @@ size = Vector2(32, 64)
 [node name="Meow" type="Node" parent="."]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(320, 192)
+position = Vector2(368, 224)
 script = ExtResource("1_yge7i")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
@@ -22,6 +22,8 @@ texture = ExtResource("2_fsk44")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 scale = Vector2(0.99, 0.99)
 shape = SubResource("RectangleShape2D_ksmjn")
+
+[node name="CoyoteTimer" type="Timer" parent="CharacterBody2D"]
 
 [node name="LayerHolder" type="Node2D" parent="."]
 
@@ -45,3 +47,5 @@ tile_map_data = PackedByteArray("AAANAAUAAQANAAEAAAAMAAUAAQAMAAEAAAALAAUAAQAMAAE
 tile_set = ExtResource("3_ns1xd")
 collision_enabled = false
 use_kinematic_bodies = true
+
+[connection signal="timeout" from="CharacterBody2D/CoyoteTimer" to="CharacterBody2D" method="_on_coyote_timer_timeout"]
