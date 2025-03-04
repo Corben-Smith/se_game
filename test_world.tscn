@@ -1,6 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://rsat8le877xi"]
 
 [ext_resource type="Script" uid="uid://ciq10vjbn85lf" path="res://Character.gd" id="1_yge7i"]
+
 [ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="2_fsk44"]
 [ext_resource type="TileSet" uid="uid://br8mdlo61rhb" path="res://assets/new_tile_set.tres" id="3_ns1xd"]
 
