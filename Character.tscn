@@ -9,9 +9,7 @@ size = Vector2(32, 64)
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_7ig0a")
 acceleration = 75.0
-jump_force = -400.0
-gravity = 1000.0
-variable_jump_multiplier = 0.4
+jump_force = -500.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -27,5 +25,8 @@ shape = SubResource("RectangleShape2D_ksmjn")
 offset = Vector2(0, -50)
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(0, -192)
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
