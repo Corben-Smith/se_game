@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var max_speed: float = 300.0
 @export var jump_force: float = -300.0
 @export var gravity: float = 800.0
+@export var falling_gravity: float = 800.0
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
 @export var variable_jump_multiplier: float = 0.5  # For variable jump height
@@ -21,6 +22,13 @@ func _physics_process(delta: float) -> void:
         velocity.y += gravity * delta
     else:
         velocity.y = 0  # Reset vertical velocity when on the floor
+
+    # if not is_on_floor() && velocity.y > 0:
+    #     velocity.y += falling_gravity * delta
+    # if not is_on_floor() && velocity.y <= 0:
+    #     velocity.y += gravity * delta
+    # else:
+    #     velocity.y = 0  # Reset vertical velocity when on the floor
 
     # Handle horizontal movement
     var direction := Input.get_axis("Left", "Right")
