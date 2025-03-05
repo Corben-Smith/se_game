@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://rsat8le877xi"]
 
-[ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://Character.tscn" id="1_gy3sr"]
+[ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_gy3sr"]
 [ext_resource type="TileSet" uid="uid://br8mdlo61rhb" path="res://assets/new_tile_set.tres" id="3_ns1xd"]
 
 [node name="TestWorld" type="Node2D"]
