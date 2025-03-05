@@ -23,17 +23,20 @@ var is_jumping: bool = false
 
 @onready var line: Line2D = $Line2D  # Reference to the Line2D node
 
-func _ready():
-	update_jump_arc()
-
-func update_jump_arc():
-	line.clear_points()  # Clear previous points
-
-
 func _physics_process(delta: float) -> void:
 	line.add_point(global_position)  # Add point to the line
+	if Input.is_action_just_pressed("Alt_Fire"):
+		line.clear_points()
 
-	print(is_on_floor())
+	apply_gravity(delta)
+	handle_horizontal_movement()
+	handle_jumping(delta)
+	apply_velocity()
+
+func apply_velocity():
+	move_and_slide()
+
+func apply_gravity(delta):
 	if not is_on_floor():
 		if velocity.y > 0:
 			velocity.y += falling_gravity * delta  # Stronger gravity when falling
@@ -42,11 +45,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0  # Reset vertical velocity when on the floor
 
-	# Handle horizontal movement
+func handle_horizontal_movement():
 	var direction := Input.get_axis("Left", "Right")
-
-	if Input.is_action_just_pressed("Alt_Fire"):
-		line.clear_points()
 
 	if is_on_floor():
 		if direction != 0:
@@ -59,30 +59,22 @@ func _physics_process(delta: float) -> void:
 		else:
 				velocity.x = move_toward(velocity.x, 0, in_air_deacceleration)
 
-
-
-	# Coyote time logic
+func handle_jumping(delta):
 	if is_on_floor():
 		coyote_timer = coyote_time
 	else:
 		coyote_timer -= delta
 
-	# Jump buffering logic
 	if Input.is_action_just_pressed("Fire"):
 		jump_buffer_timer = jump_buffer_time
 	else:
 		jump_buffer_timer -= delta
 
-	# Handle jumping
 	if (is_on_floor() or coyote_timer > 0) and jump_buffer_timer > 0:
 		velocity.y = jump_force
 		is_jumping = true
 		jump_buffer_timer = 0  # Reset jump buffer
 
-	# Variable jump height (cut jump short if button is released)
 	if Input.is_action_just_released("Fire") and velocity.y < 0:
 		velocity.y *= variable_jump_multiplier
 		is_jumping = false
-
-	# Move the character
-	move_and_slide()

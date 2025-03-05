@@ -22,7 +22,7 @@ shape = SubResource("RectangleShape2D_ksmjn")
 [node name="CoyoteTimer" type="Timer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -50)
+offset = Vector2(0, -40)
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 
