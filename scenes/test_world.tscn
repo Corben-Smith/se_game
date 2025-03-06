@@ -11,6 +11,7 @@
 position = Vector2(-8, 224)
 jump_force = -450.0
 falling_gravity = 2400.0
+variable_jump_multiplier = 0.45
 
 [node name="LayerHolder" type="Node2D" parent="."]
 
