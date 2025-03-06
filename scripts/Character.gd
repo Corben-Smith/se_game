@@ -6,9 +6,9 @@ extends CharacterBody2D
 @export var in_air_acceleration: float = 20.0
 @export var in_air_deacceleration: float = 20.0
 @export var max_speed: float = 300.0
-@export var jump_force: float = -300.0
-@export var gravity: float = 800.0
-@export var falling_gravity: float = 3000.0
+@export var jump_force: float = -450.0
+@export var gravity: float = 1000.0
+@export var falling_gravity: float = 2000.0
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
 @export var variable_jump_multiplier: float = 0.5  # For variable jump height
