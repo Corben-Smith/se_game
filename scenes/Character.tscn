@@ -17,6 +17,22 @@ acceleration = 75.0
 jump_force = -500.0
 state_machine = NodePath("StateMachine")
 
+[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(1, 0.72, 0.72, 1)
+z_index = 1
+position = Vector2(0, 32)
+emitting = false
+amount = 50
+lifetime = 0.1
+one_shot = true
+fixed_fps = 30
+draw_order = 1
+direction = Vector2(0, -1)
+spread = 87.92
+initial_velocity_max = 312.88
+angular_velocity_min = -180.0
+angular_velocity_max = -180.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_lcuhw")
@@ -36,9 +52,10 @@ position_smoothing_enabled = true
 visible = false
 position = Vector2(0, -192)
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state", "particle")]
 script = ExtResource("3_rguqb")
 inital_state = NodePath("Idle_State")
+particle = NodePath("../GPUParticles2D")
 metadata/_custom_type_script = "uid://c1fthtfbmc1rp"
 
 [node name="Idle_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
