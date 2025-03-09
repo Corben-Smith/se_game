@@ -1,39 +1,57 @@
 extends Node
 class_name StateMachine
 
-var state = null
+@export var inital_state: State = null
+
+@onready var current_state: State = (
+func get_inital_state() -> State:
+	return inital_state if inital_state != null else get_child(0)
+).call()
+
 var previous_state = null
+
 var states = {}
 
 @onready var parent = get_parent()
 
+func _ready():
+	for child in get_children():
+		if child is State:
+			states[child.name.to_lower()] = child
+			print(child.name)
+			child.transition.connect(on_child_transitioned)
+
+	if current_state:
+		current_state.enter("", {})
+
+
+
 func _physics_process(delta: float) -> void:
-    if state != null:
-        _state_logic(delta)
-        var transition = _get_transition(delta)
-        if transition != null:
-            set_state(transition)
-        
-func _state_logic(delta):
-    pass
+	if current_state:
+		current_state.physics_update(delta)
+		
+func handle_input(event: InputEvent) -> void:
+	print("handling input %s", event)
+	if current_state:
+		current_state.handle_input(event)
 
-func _get_transition(delta):
-    pass
+func _process(delta: float) -> void: 
+	if current_state:
+		current_state.update(delta)
 
-func _enter_state(new_state, old_state):
-    pass
+func on_child_transitioned(state, new_state_path, data = null):
+	print("transtioning %s %s", state, new_state_path)
+	if current_state != state:
+		print("trying to transition from a state you are not in")
+		return
 
-func _exit_state(old_state, new_state):
-    pass
+	var new_state = states.get(new_state_path.to_lower())
+	if !new_state:
+		print("unable to get new state %s", new_state)
+		return
 
-func set_state(new_state):
-    previous_state = state
-    state = new_state
-
-    if previous_state != null:
-        _exit_state(previous_state, state)
-
-    _enter_state(state, previous_state)
-
-func add_state(state_name):
-    states[state_name] = state.size()
+	if current_state:
+		current_state.exit()
+	
+	new_state.enter(state.name, data)
+	current_state = new_state
