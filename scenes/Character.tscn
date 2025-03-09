@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://cok6gvdxjgywq"]
+
+[ext_resource type="Script" path="res://scripts/Character.gd" id="1_7ig0a"]
+[ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="2_lcuhw"]
+[ext_resource type="Script" uid="uid://c1fthtfbmc1rp" path="res://scripts/StateMachine.gd" id="3_rguqb"]
+[ext_resource type="Script" uid="uid://b584csyxnnyk8" path="res://scripts/Idle_State.gd" id="4_fwsyb"]
+[ext_resource type="Script" uid="uid://dnvtpbhkddiyk" path="res://scripts/Running_State.gd" id="5_25pii"]
+[ext_resource type="Script" uid="uid://4g2vde2305m7" path="res://scripts/Jumping_State.gd" id="6_exdhi"]
+[ext_resource type="Script" uid="uid://cjyq8fcyxoh4v" path="res://scripts/Falling_State.gd" id="7_25pii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmjn"]
+size = Vector2(32, 64)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("state_machine")]
+script = ExtResource("1_7ig0a")
+acceleration = 75.0
+jump_force = -500.0
+state_machine = NodePath("StateMachine")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_lcuhw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.99, 0.99)
+shape = SubResource("RectangleShape2D_ksmjn")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -40)
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+position = Vector2(0, -192)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
+script = ExtResource("3_rguqb")
+inital_state = NodePath("Idle_State")
+metadata/_custom_type_script = "uid://c1fthtfbmc1rp"
+
+[node name="Idle_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("4_fwsyb")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://b584csyxnnyk8"
+
+[node name="Running_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("5_25pii")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://dnvtpbhkddiyk"
+
+[node name="Jumping_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("6_exdhi")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://4g2vde2305m7"
+
+[node name="Falling_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("7_25pii")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://cjyq8fcyxoh4v"
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
