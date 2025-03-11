@@ -52,10 +52,9 @@ position_smoothing_enabled = true
 visible = false
 position = Vector2(0, -192)
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state", "particle")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
 script = ExtResource("3_rguqb")
 inital_state = NodePath("Idle_State")
-particle = NodePath("../GPUParticles2D")
 metadata/_custom_type_script = "uid://c1fthtfbmc1rp"
 
 [node name="Idle_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
