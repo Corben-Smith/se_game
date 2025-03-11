@@ -18,7 +18,6 @@ func _ready():
     for child in get_children():
         if child is State:
             states[child.name.to_lower()] = child
-            print(child.name)
             child.transition.connect(on_child_transitioned)
 
     if current_state:
@@ -31,7 +30,6 @@ func _physics_process(delta: float) -> void:
         current_state.physics_update(delta)
         
 func handle_input(event: InputEvent) -> void:
-    print("handling input %s", event)
     if current_state:
         current_state.handle_input(event)
 
@@ -40,7 +38,6 @@ func _process(delta: float) -> void:
         current_state.update(delta)
 
 func on_child_transitioned(state, new_state_path, data = null):
-    print("transtioning %s %s", state, new_state_path)
     if current_state != state:
         print("trying to transition from a state you are not in")
         return

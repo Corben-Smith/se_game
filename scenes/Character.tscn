@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cok6gvdxjgywq"]
+[gd_scene load_steps=10 format=3 uid="uid://cok6gvdxjgywq"]
 
 [ext_resource type="Script" path="res://scripts/Character.gd" id="1_7ig0a"]
 [ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="2_lcuhw"]
@@ -7,15 +7,18 @@
 [ext_resource type="Script" uid="uid://dnvtpbhkddiyk" path="res://scripts/Running_State.gd" id="5_25pii"]
 [ext_resource type="Script" uid="uid://4g2vde2305m7" path="res://scripts/Jumping_State.gd" id="6_exdhi"]
 [ext_resource type="Script" uid="uid://cjyq8fcyxoh4v" path="res://scripts/Falling_State.gd" id="7_25pii"]
+[ext_resource type="Script" uid="uid://dp74djouk71ts" path="res://scripts/Status_Effect_Manager.gd" id="8_exdhi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmjn"]
 size = Vector2(32, 64)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("state_machine")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "status_manager")]
 script = ExtResource("1_7ig0a")
-acceleration = 75.0
-jump_force = -500.0
+acceleration = 300.0
+deacceleration = 300.0
+jump_force = -400.0
 state_machine = NodePath("StateMachine")
+status_manager = NodePath("StatusEffectManager")
 
 [node name="GPUParticles2D" type="CPUParticles2D" parent="."]
 modulate = Color(1, 0.72, 0.72, 1)
@@ -52,10 +55,9 @@ position_smoothing_enabled = true
 visible = false
 position = Vector2(0, -192)
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state", "particle")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
 script = ExtResource("3_rguqb")
 inital_state = NodePath("Idle_State")
-particle = NodePath("../GPUParticles2D")
 metadata/_custom_type_script = "uid://c1fthtfbmc1rp"
 
 [node name="Idle_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
@@ -77,5 +79,9 @@ metadata/_custom_type_script = "uid://4g2vde2305m7"
 script = ExtResource("7_25pii")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://cjyq8fcyxoh4v"
+
+[node name="StatusEffectManager" type="Node" parent="."]
+script = ExtResource("8_exdhi")
+metadata/_custom_type_script = "uid://dp74djouk71ts"
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
