@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/Character.gd" id="1_7ig0a"]
 [ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="2_lcuhw"]
-[ext_resource type="Script" uid="uid://c1fthtfbmc1rp" path="res://scripts/StateMachine.gd" id="3_rguqb"]
-[ext_resource type="Script" uid="uid://b584csyxnnyk8" path="res://scripts/Idle_State.gd" id="4_fwsyb"]
-[ext_resource type="Script" uid="uid://dnvtpbhkddiyk" path="res://scripts/Running_State.gd" id="5_25pii"]
-[ext_resource type="Script" uid="uid://4g2vde2305m7" path="res://scripts/Jumping_State.gd" id="6_exdhi"]
-[ext_resource type="Script" uid="uid://cjyq8fcyxoh4v" path="res://scripts/Falling_State.gd" id="7_25pii"]
-[ext_resource type="Script" uid="uid://dp74djouk71ts" path="res://scripts/Status_Effect_Manager.gd" id="8_exdhi"]
+[ext_resource type="Script" uid="uid://c1fthtfbmc1rp" path="res://scripts/States/StateMachine.gd" id="3_rguqb"]
+[ext_resource type="Script" uid="uid://b584csyxnnyk8" path="res://scripts/States/Idle_State.gd" id="4_fwsyb"]
+[ext_resource type="Script" uid="uid://dnvtpbhkddiyk" path="res://scripts/States/Running_State.gd" id="5_25pii"]
+[ext_resource type="Script" uid="uid://4g2vde2305m7" path="res://scripts/States/Jumping_State.gd" id="6_exdhi"]
+[ext_resource type="Script" uid="uid://cjyq8fcyxoh4v" path="res://scripts/States/Falling_State.gd" id="7_25pii"]
+[ext_resource type="Script" uid="uid://dp74djouk71ts" path="res://scripts/StatusEffects/Status_Effect_Manager.gd" id="8_exdhi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmjn"]
 size = Vector2(32, 64)
