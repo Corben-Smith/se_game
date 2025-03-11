@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-# Movement variables
+# Movement variables tet
 @export var acceleration: float = 50.0
 @export var deacceleration: float = 100.0
 @export var max_speed: float = 300.0
