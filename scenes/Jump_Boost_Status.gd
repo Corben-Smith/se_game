@@ -8,11 +8,11 @@ var original_jump_height: float
 
 # Called when the effect is applied
 func on_apply(target: Node) -> void:
-	original_jump_height = target.jump_force
-	target.jump_force = original_jump_height * jump_multiplier
-	super(target)
+    original_jump_height = target.jump_force
+    target.jump_force = original_jump_height * jump_multiplier
+    super(target)
 
 # Called when the effect is removed
 func remove_effect(target: Node) -> void:
-	target.jump_force = original_jump_height
-	super(target)  # Call parent method to clean up
+    target.jump_force = original_jump_height
+    super(target)  # Call parent method to clean up

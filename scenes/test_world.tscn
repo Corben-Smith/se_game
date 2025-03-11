@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=4 uid="uid://rsat8le877xi"]
+
+[ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
+[ext_resource type="TileSet" uid="uid://br8mdlo61rhb" path="res://assets/new_tile_set.tres" id="2_3263u"]
+[ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/collectable.tscn" id="3_umbte"]
+[ext_resource type="Script" uid="uid://ba3whgs6gctxp" path="res://scripts/Status_Collectable.gd" id="4_dvny0"]
+[ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
+[ext_resource type="Script" uid="uid://dkcgh1igopx83" path="res://scenes/Jump_Boost_Status.gd" id="6_xwrkq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvny0"]
+size = Vector2(128, 128)
+
+[node name="TestWorld" type="Node2D"]
+
+[node name="Meow" type="Node" parent="."]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_amxg5")]
+position = Vector2(-8, 224)
+
+[node name="LayerHolder" type="Node2D" parent="."]
+
+[node name="ForegroundLayer" type="TileMapLayer" parent="LayerHolder"]
+modulate = Color(1, 0.56, 0.56, 1)
+z_index = 1
+tile_set = ExtResource("2_3263u")
+collision_enabled = false
+
+[node name="GroundLayer" type="TileMapLayer" parent="LayerHolder"]
+position = Vector2(1, 0)
+tile_map_data = PackedByteArray("AAAOAAkAAQANAAMAAAAOAAgAAQANAAEAAAANAAkAAQAMAAMAAAANAAgAAQAMAAEAAAAMAAkAAQAMAAMAAAAMAAgAAQAMAAEAAAALAAkAAQAMAAMAAAALAAgAAQAMAAEAAAAKAAkAAQAMAAMAAAAKAAgAAQAMAAEAAAAJAAkAAQAMAAMAAAAJAAgAAQAMAAEAAAAIAAkAAQAMAAMAAAAIAAgAAQAMAAEAAAAHAAkAAQAMAAMAAAAHAAgAAQAMAAEAAAAGAAkAAQAMAAMAAAAGAAgAAQAMAAEAAAAFAAkAAQAMAAMAAAAFAAgAAQAMAAEAAAAEAAkAAQAMAAMAAAAEAAgAAQAMAAEAAAADAAkAAQAMAAMAAAADAAgAAQAMAAEAAAACAAkAAQAMAAMAAAACAAgAAQAMAAEAAAABAAkAAQAMAAMAAAABAAgAAQAMAAEAAAAAAAkAAQAMAAMAAAAAAAgAAQAMAAEAAAD//wkAAQAMAAMAAAD//wgAAQAMAAEAAAD+/wkAAQAMAAMAAAD+/wgAAQAMAAEAAAD9/wkAAQAMAAMAAAD9/wgAAQAMAAEAAAD8/wkAAQAMAAMAAAD8/wgAAQAMAAEAAAD7/wkAAQAMAAMAAAD7/wgAAQAMAAEAAAD6/wkAAQAMAAMAAAD6/wgAAQAMAAEAAAD5/wkAAQAMAAMAAAD5/wgAAQAMAAEAAAD4/wkAAQAMAAMAAAD4/wgAAQAMAAEAAAD3/wkAAQAMAAMAAAD3/wgAAQAMAAEAAAD2/wkAAQAMAAMAAAD2/wgAAQAMAAEAAAD1/wkAAQAMAAMAAAD1/wgAAQAMAAEAAAD0/wkAAQAMAAMAAAD0/wgAAQAMAAEAAADz/wkAAQAMAAMAAADz/wgAAQAMAAEAAADy/wkAAQAMAAMAAADy/wgAAQAMAAEAAADx/wkAAQAMAAMAAADx/wgAAQAMAAEAAADw/wkAAQAMAAMAAADw/wgAAQAMAAEAAADv/wkAAQALAAMAAADv/wgAAQALAAEAAAAUAAgAAQALAAEAAAAUAAkAAQALAAMAAAAVAAkAAQANAAMAAAAVAAgAAQANAAEAAAARAAgAAQALAAEAAAARAAkAAQALAAMAAAASAAgAAQANAAEAAAASAAkAAQANAAMAAAAXAAgAAQALAAEAAAAXAAkAAQALAAMAAAAYAAgAAQANAAEAAAAYAAkAAQANAAMAAAAaAAcAAQALAAEAAAAaAAgAAQALAAMAAAAbAAcAAQANAAEAAAAbAAgAAQANAAMAAAAdAAYAAQALAAEAAAAdAAcAAQALAAMAAAAeAAYAAQANAAEAAAAeAAcAAQANAAMAAAAgAAUAAQALAAEAAAAgAAYAAQALAAMAAAAhAAUAAQANAAEAAAAhAAYAAQANAAMAAAAjAAQAAQALAAEAAAAjAAUAAQALAAMAAAAkAAQAAQANAAEAAAAkAAUAAQANAAMAAAAeAAEAAQALAAEAAAAeAAIAAQALAAMAAAAfAAEAAQANAAEAAAAfAAIAAQANAAMAAAAmAAIAAQALAAEAAAAmAAMAAQALAAMAAAAnAAIAAQANAAEAAAAnAAMAAQANAAMAAAAhAAAAAQALAAEAAAAhAAEAAQALAAMAAAAiAAAAAQANAAEAAAAiAAEAAQANAAMAAAAaAP//AQALAAEAAAAaAAAAAQALAAMAAAAbAP//AQANAAEAAAAbAAAAAQANAAMAAAA=")
+tile_set = ExtResource("2_3263u")
+use_kinematic_bodies = true
+
+[node name="BackgroundLayer" type="TileMapLayer" parent="LayerHolder"]
+modulate = Color(0.187176, 0.187176, 0.187176, 1)
+z_index = -1
+tile_set = ExtResource("2_3263u")
+collision_enabled = false
+
+[node name="Status_Collectable" parent="." node_paths=PackedStringArray("status") instance=ExtResource("3_umbte")]
+position = Vector2(224, 224)
+scale = Vector2(0.25, 0.25)
+script = ExtResource("4_dvny0")
+status = NodePath("JumpBoostStatus")
+
+[node name="Sprite2D" parent="Status_Collectable" index="0"]
+texture = ExtResource("4_ynswa")
+hframes = 13
+vframes = 14
+
+[node name="CollisionShape2D" parent="Status_Collectable" index="1"]
+shape = SubResource("RectangleShape2D_dvny0")
+
+[node name="JumpBoostStatus" type="Node" parent="Status_Collectable"]
+script = ExtResource("6_xwrkq")
+
+[editable path="Status_Collectable"]
