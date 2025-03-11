@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=8 format=4 uid="uid://rsat8le877xi"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
 [ext_resource type="TileSet" uid="uid://br8mdlo61rhb" path="res://assets/new_tile_set.tres" id="2_3263u"]
+[ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/collectable.tscn" id="3_umbte"]
+[ext_resource type="Script" uid="uid://ba3whgs6gctxp" path="res://scripts/Status_Collectable.gd" id="4_dvny0"]
+[ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
+[ext_resource type="Script" uid="uid://dkcgh1igopx83" path="res://scenes/Jump_Boost_Status.gd" id="6_xwrkq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvny0"]
+size = Vector2(128, 128)
 
 [node name="TestWorld" type="Node2D"]
 
@@ -9,9 +16,6 @@
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_amxg5")]
 position = Vector2(-8, 224)
-acceleration = 300.0
-deacceleration = 300.0
-jump_force = -400.0
 
 [node name="LayerHolder" type="Node2D" parent="."]
 
@@ -32,3 +36,22 @@ modulate = Color(0.187176, 0.187176, 0.187176, 1)
 z_index = -1
 tile_set = ExtResource("2_3263u")
 collision_enabled = false
+
+[node name="Status_Collectable" parent="." node_paths=PackedStringArray("status") instance=ExtResource("3_umbte")]
+position = Vector2(224, 224)
+scale = Vector2(0.25, 0.25)
+script = ExtResource("4_dvny0")
+status = NodePath("JumpBoostStatus")
+
+[node name="Sprite2D" parent="Status_Collectable" index="0"]
+texture = ExtResource("4_ynswa")
+hframes = 13
+vframes = 14
+
+[node name="CollisionShape2D" parent="Status_Collectable" index="1"]
+shape = SubResource("RectangleShape2D_dvny0")
+
+[node name="JumpBoostStatus" type="Node" parent="Status_Collectable"]
+script = ExtResource("6_xwrkq")
+
+[editable path="Status_Collectable"]
