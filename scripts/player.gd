@@ -11,8 +11,8 @@ var weapon_equip: bool
 var gravity = 900
 
 func _ready():
-	
 	current_attack = false
+
 func _physics_process(delta):
 	weapon_equip = Global.playerWeaponEquip
 	
@@ -43,6 +43,7 @@ func _physics_process(delta):
 			handle_attack_animation(attack_type)
 	move_and_slide()
 	handle_movement_animation(direction)
+
 func handle_movement_animation(dir):
 	if !weapon_equip:
 		if is_on_floor():
@@ -104,6 +105,7 @@ func set_damage(attack_type):
 	elif attack_type == "air":
 		current_damage_to_deal = 20
 	Global.playerDamageAmount = current_damage_to_deal
+
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):  # Press "Enter" to take damage
 		$health.take_damage(10)  # Reduce health by 10
