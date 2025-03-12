@@ -13,7 +13,7 @@ class_name Player
 @export var falling_gravity: float = 2000.0
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
-@export var variable_jump_multiplier: float = 0.5  # For variable jump height
+@export var variable_jump_multiplier: float = 0.5
 
 # Internal variables
 var coyote_timer: float = 0.0
@@ -22,12 +22,15 @@ var is_jumping: bool = false
 
 @export var state_machine: StateMachine = null
 @export var status_manager: StatusEffectManager = null
+@export var health_component: HealthComponent = null
 
 func _ready() -> void:
     if !state_machine:
         state_machine = $StateMachine
     if !status_manager:
         status_manager = $StatusEffectManager
+    if !health_component:
+        health_component = $HealthComponent
 
 func _physics_process(delta: float) -> void:
     if is_on_floor():

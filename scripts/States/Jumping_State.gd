@@ -22,14 +22,7 @@ func physics_update(delta: float) -> void:
     else:
         player.velocity.y += player.gravity * delta
 
-    # Handle horizontal movement
-    var direction := Input.get_axis("Left", "Right")
-    if direction != 0:
-        player.velocity.x = move_toward(player.velocity.x, direction * player.max_speed, player.in_air_acceleration)
-    else:
-        player.velocity.x = move_toward(player.velocity.x, 0, player.in_air_deacceleration)
 
-    # Transition to Falling_State if falling
     if player.velocity.y > 0:
         emit_signal("transition", self, "Falling_State", {})
 

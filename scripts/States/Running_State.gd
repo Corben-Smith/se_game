@@ -19,6 +19,9 @@ func physics_update(_delta: float) -> void:
     if not player.is_on_floor():
         emit_signal("transition", self, "Falling_State", {})
 
+    if player.velocity.x == 0:
+        emit_signal("transition", self, "Idle_State", {})
+
 
 func enter(previous_state_path: String, data := {}) -> void:
     pass
