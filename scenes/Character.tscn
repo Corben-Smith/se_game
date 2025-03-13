@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cok6gvdxjgywq"]
+[gd_scene load_steps=12 format=3 uid="uid://cok6gvdxjgywq"]
 
 [ext_resource type="Script" path="res://scripts/Character.gd" id="1_7ig0a"]
 [ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="2_lcuhw"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cjyq8fcyxoh4v" path="res://scripts/States/Falling_State.gd" id="7_25pii"]
 [ext_resource type="Script" uid="uid://dp74djouk71ts" path="res://scripts/StatusEffects/Status_Effect_Manager.gd" id="8_exdhi"]
 [ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="9_r87yu"]
+[ext_resource type="Script" uid="uid://e8v47raymkjd" path="res://scripts/EdgeCorrector.gd" id="10_dfeyu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmjn"]
 size = Vector2(24, 56)
@@ -39,7 +40,7 @@ angular_velocity_min = -180.0
 angular_velocity_max = -180.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
+texture_filter = 5
 texture = ExtResource("2_lcuhw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -85,12 +86,32 @@ metadata/_custom_type_script = "uid://dp74djouk71ts"
 [node name="Health" type="Node" parent="."]
 script = ExtResource("9_r87yu")
 
-[node name="Left Outer" type="RayCast2D" parent="."]
+[node name="EdgeCorrector" type="Node2D" parent="." node_paths=PackedStringArray("left_inner", "left_outer", "right_inner", "right_outer", "actor")]
+script = ExtResource("10_dfeyu")
+left_inner = NodePath("Left Inner")
+left_outer = NodePath("Left Outer")
+right_inner = NodePath("Right Inner")
+right_outer = NodePath("Right Outer")
+actor = NodePath("..")
+
+[node name="Left Outer" type="RayCast2D" parent="EdgeCorrector"]
 position = Vector2(-12, -24)
 rotation = 3.14159
+target_position = Vector2(0, 2)
 
-[node name="Left Inner" type="RayCast2D" parent="."]
+[node name="Left Inner" type="RayCast2D" parent="EdgeCorrector"]
 position = Vector2(-8, -24)
 rotation = 3.14159
+target_position = Vector2(0, 2)
+
+[node name="Right Inner" type="RayCast2D" parent="EdgeCorrector"]
+position = Vector2(8, -24)
+rotation = 3.14159
+target_position = Vector2(0, 2)
+
+[node name="Right Outer" type="RayCast2D" parent="EdgeCorrector"]
+position = Vector2(12, -24)
+rotation = 3.14159
+target_position = Vector2(0, 2)
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
