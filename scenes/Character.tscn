@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cjyq8fcyxoh4v" path="res://scripts/States/Falling_State.gd" id="7_25pii"]
 [ext_resource type="Script" uid="uid://dp74djouk71ts" path="res://scripts/StatusEffects/Status_Effect_Manager.gd" id="8_exdhi"]
 [ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="9_r87yu"]
-[ext_resource type="Script" uid="uid://e8v47raymkjd" path="res://scripts/EdgeCorrector.gd" id="10_dfeyu"]
+[ext_resource type="Script" path="res://scripts/EdgeCorrector.gd" id="10_dfeyu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmjn"]
 size = Vector2(24, 56)
