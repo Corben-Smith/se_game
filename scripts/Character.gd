@@ -27,7 +27,6 @@ func _physics_process(delta: float) -> void:
         coyote_timer = stats["coyote_time"]
     else:
         coyote_timer -= delta
-    print(state_machine.current_state)
     move_and_slide()
 
 

@@ -39,12 +39,12 @@ func _process(delta: float) -> void:
 
 func on_child_transitioned(state, new_state_path, data = null):
     if current_state != state:
-        print("trying to transition from a state you are not in")
+        push_error("trying to transition from a state you are not in")
         return
 
     var new_state = states.get(new_state_path.to_lower())
     if !new_state:
-        print("unable to get new state %s", new_state)
+        push_error("unable to get new state %s", new_state)
         return
 
     if current_state:

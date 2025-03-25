@@ -5,7 +5,6 @@ var active_effects: Dictionary = {}
 
 func apply_effect(effect: StatusEffect, target) -> void:
 	if not active_effects.has(effect) && effect is ModifierStatusEffect:
-		print("attempting to apply effect ", effect.resource_name, target.name)
 		var new_target
 
 		if !target.stats:

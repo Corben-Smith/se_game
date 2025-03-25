@@ -7,7 +7,6 @@ var time_remaining: float = duration
 signal timeout(sender: StatusEffect)
 
 func apply_effect(target, delta: float) -> void:
-	print("applying, ")
 	time_remaining -= delta
 	if time_remaining <= 0:
 		emit_signal("timeout", self)

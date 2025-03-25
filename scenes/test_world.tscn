@@ -1,38 +1,52 @@
-[gd_scene load_steps=14 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=16 format=4 uid="uid://rsat8le877xi"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
+[ext_resource type="Script" uid="uid://b6t4wmcedebjp" path="res://scripts/Attributes/Stat.gd" id="2_7448y"]
+[ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_ar7ra"]
 [ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/collectable.tscn" id="3_umbte"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="3_xwrkq"]
 [ext_resource type="Script" uid="uid://ba3whgs6gctxp" path="res://scripts/Collectables/Status_Collectable.gd" id="4_dvny0"]
 [ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
-[ext_resource type="Resource" uid="uid://cobuv6b4fshpf" path="res://scenes/SpeedBoost.tres" id="5_nrstc"]
-[ext_resource type="Script" uid="uid://bdi5its2t413o" path="res://scripts/Attributes/Modifier.gd" id="5_xwrkq"]
-[ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="7_nrstc"]
+[ext_resource type="Script" uid="uid://cuw8fedllxgs4" path="res://scripts/StatusEffects/Status_Effect.gd" id="5_xwrkq"]
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvny0"]
-size = Vector2(128, 128)
+[sub_resource type="Resource" id="Resource_ixgyf"]
+script = ExtResource("2_7448y")
+base_value = 0.8
+modifiers = []
+metadata/_custom_type_script = "uid://b6t4wmcedebjp"
 
-[sub_resource type="Resource" id="Resource_7448y"]
-script = ExtResource("5_xwrkq")
-type = 1
-value = -2.0
-metadata/_custom_type_script = "uid://bdi5its2t413o"
+[sub_resource type="Resource" id="Resource_8hcw6"]
+script = ExtResource("3_ar7ra")
+_variable_jump_multiplier = SubResource("Resource_ixgyf")
+metadata/_custom_type_script = "uid://byikc5yvpboxi"
 
-[sub_resource type="Resource" id="Resource_ar7ra"]
-script = ExtResource("7_nrstc")
-stat_name = "jump_force"
-modifier = SubResource("Resource_7448y")
-metadata/_custom_type_script = "uid://cuntujpetedjt"
+[sub_resource type="Resource" id="Resource_nrstc"]
+script = ExtResource("7_xwrkq")
+modifier_type = 1
+modifer_value = 2.0
+stat_name = "max_speed"
+duration = 15.0
+metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [sub_resource type="Resource" id="Resource_xwrkq"]
 script = ExtResource("7_xwrkq")
-modifier_entries = Array[ExtResource("7_nrstc")]([SubResource("Resource_ar7ra")])
+modifier_type = 1
+modifer_value = 2.0
+stat_name = "acceleration"
+duration = 15.0
+metadata/_custom_type_script = "uid://de7t5vkp8wkks"
+
+[sub_resource type="Resource" id="Resource_7448y"]
+script = ExtResource("7_xwrkq")
 modifier_type = 0
 modifer_value = 0.0
 stat_name = ""
 duration = 5.0
 metadata/_custom_type_script = "uid://de7t5vkp8wkks"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvny0"]
+size = Vector2(128, 128)
 
 [node name="TestWorld" type="Node2D"]
 
@@ -40,6 +54,7 @@ metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_amxg5")]
 position = Vector2(-7, 224)
+stats = SubResource("Resource_8hcw6")
 
 [node name="LayerHolder" type="Node2D" parent="."]
 
@@ -63,7 +78,7 @@ collision_enabled = false
 position = Vector2(224, 224)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("4_dvny0")
-status = ExtResource("5_nrstc")
+statuses = Array[ExtResource("5_xwrkq")]([SubResource("Resource_nrstc"), SubResource("Resource_xwrkq"), SubResource("Resource_7448y")])
 
 [node name="Sprite2D" parent="Status_Collectable" index="0"]
 texture = ExtResource("4_ynswa")
@@ -74,10 +89,9 @@ vframes = 14
 shape = SubResource("RectangleShape2D_dvny0")
 
 [node name="Status_Collectable2" type="Area2D" parent="."]
-position = Vector2(-184, 224)
+position = Vector2(-183, 224)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("4_dvny0")
-status = SubResource("Resource_xwrkq")
 metadata/_custom_type_script = "uid://ba3whgs6gctxp"
 
 [node name="Sprite2D" type="Sprite2D" parent="Status_Collectable2"]
