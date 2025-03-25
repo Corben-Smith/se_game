@@ -18,7 +18,7 @@ func physics_update(delta: float) -> void:
 	player.handle_horizontal_movement()
 	if player.is_on_floor():
 		emit_signal("transition", self, "Idle_State", {})
-	player.velocity.y += player.falling_gravity * delta  # Stronger gravity when falling
+	player.velocity.y += player.stats["falling_gravity"] * delta  # Stronger gravity when fallingfallingD
 
 
 func enter(previous_state_path: String, data := {}) -> void:

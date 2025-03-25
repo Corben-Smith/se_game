@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cok6gvdxjgywq"]
+[gd_scene load_steps=13 format=3 uid="uid://cok6gvdxjgywq"]
 
 [ext_resource type="Script" path="res://scripts/Character.gd" id="1_7ig0a"]
+[ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="2_dfeyu"]
 [ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="2_lcuhw"]
 [ext_resource type="Script" uid="uid://c1fthtfbmc1rp" path="res://scripts/States/StateMachine.gd" id="3_rguqb"]
 [ext_resource type="Script" uid="uid://b584csyxnnyk8" path="res://scripts/States/Idle_State.gd" id="4_fwsyb"]
@@ -10,14 +11,16 @@
 [ext_resource type="Script" uid="uid://dp74djouk71ts" path="res://scripts/StatusEffects/Status_Effect_Manager.gd" id="8_exdhi"]
 [ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="9_r87yu"]
 
+[sub_resource type="Resource" id="Resource_r68wp"]
+script = ExtResource("2_dfeyu")
+metadata/_custom_type_script = "uid://byikc5yvpboxi"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmjn"]
 size = Vector2(24, 56)
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "status_manager", "health_component")]
 script = ExtResource("1_7ig0a")
-acceleration = 300.0
-deacceleration = 300.0
-jump_force = -400.0
+stats = SubResource("Resource_r68wp")
 state_machine = NodePath("StateMachine")
 status_manager = NodePath("StatusEffectManager")
 health_component = NodePath("Health")

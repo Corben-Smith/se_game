@@ -1,29 +1,51 @@
-[gd_scene load_steps=9 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=14 format=4 uid="uid://rsat8le877xi"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
-[ext_resource type="TileSet" path="res://assets/new_tile_set.tres" id="2_3263u"]
 [ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/collectable.tscn" id="3_umbte"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="3_xwrkq"]
 [ext_resource type="Script" uid="uid://ba3whgs6gctxp" path="res://scripts/Collectables/Status_Collectable.gd" id="4_dvny0"]
 [ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
-[ext_resource type="Script" uid="uid://dkcgh1igopx83" path="res://scripts/StatusEffects/Jump_Boost_Status.gd" id="6_xwrkq"]
+[ext_resource type="Resource" uid="uid://cobuv6b4fshpf" path="res://scenes/SpeedBoost.tres" id="5_nrstc"]
+[ext_resource type="Script" uid="uid://bdi5its2t413o" path="res://scripts/Attributes/Modifier.gd" id="5_xwrkq"]
+[ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="7_nrstc"]
+[ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dvny0"]
 size = Vector2(128, 128)
+
+[sub_resource type="Resource" id="Resource_7448y"]
+script = ExtResource("5_xwrkq")
+type = 1
+value = -2.0
+metadata/_custom_type_script = "uid://bdi5its2t413o"
+
+[sub_resource type="Resource" id="Resource_ar7ra"]
+script = ExtResource("7_nrstc")
+stat_name = "jump_force"
+modifier = SubResource("Resource_7448y")
+metadata/_custom_type_script = "uid://cuntujpetedjt"
+
+[sub_resource type="Resource" id="Resource_xwrkq"]
+script = ExtResource("7_xwrkq")
+modifier_entries = Array[ExtResource("7_nrstc")]([SubResource("Resource_ar7ra")])
+modifier_type = 0
+modifer_value = 0.0
+stat_name = ""
+duration = 5.0
+metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [node name="TestWorld" type="Node2D"]
 
 [node name="Meow" type="Node" parent="."]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_amxg5")]
-position = Vector2(-8, 224)
+position = Vector2(-7, 224)
 
 [node name="LayerHolder" type="Node2D" parent="."]
 
 [node name="ForegroundLayer" type="TileMapLayer" parent="LayerHolder"]
 modulate = Color(1, 0.56, 0.56, 1)
 z_index = 1
-tile_set = ExtResource("2_3263u")
 collision_enabled = false
 
 [node name="GroundLayer" type="TileMapLayer" parent="LayerHolder"]
@@ -35,14 +57,13 @@ use_kinematic_bodies = true
 [node name="BackgroundLayer" type="TileMapLayer" parent="LayerHolder"]
 modulate = Color(0.187176, 0.187176, 0.187176, 1)
 z_index = -1
-tile_set = ExtResource("2_3263u")
 collision_enabled = false
 
-[node name="Status_Collectable" parent="." node_paths=PackedStringArray("status") instance=ExtResource("3_umbte")]
+[node name="Status_Collectable" parent="." instance=ExtResource("3_umbte")]
 position = Vector2(224, 224)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("4_dvny0")
-status = NodePath("JumpBoostStatus")
+status = ExtResource("5_nrstc")
 
 [node name="Sprite2D" parent="Status_Collectable" index="0"]
 texture = ExtResource("4_ynswa")
@@ -52,7 +73,20 @@ vframes = 14
 [node name="CollisionShape2D" parent="Status_Collectable" index="1"]
 shape = SubResource("RectangleShape2D_dvny0")
 
-[node name="JumpBoostStatus" type="Node" parent="Status_Collectable"]
-script = ExtResource("6_xwrkq")
+[node name="Status_Collectable2" type="Area2D" parent="."]
+position = Vector2(-184, 224)
+scale = Vector2(0.25, 0.25)
+script = ExtResource("4_dvny0")
+status = SubResource("Resource_xwrkq")
+metadata/_custom_type_script = "uid://ba3whgs6gctxp"
+
+[node name="Sprite2D" type="Sprite2D" parent="Status_Collectable2"]
+texture = ExtResource("4_ynswa")
+hframes = 13
+vframes = 14
+frame = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Status_Collectable2"]
+shape = SubResource("RectangleShape2D_dvny0")
 
 [editable path="Status_Collectable"]
