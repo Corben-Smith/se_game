@@ -27,7 +27,7 @@ func physics_update(delta: float) -> void:
 		emit_signal("transition", self, "Falling_State", {})
 
 	if player.velocity.x != 0 && !first_frame:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.deacceleration)
+		player.velocity.x = move_toward(player.velocity.x, 0, player.stats["deacceleration"])
 	first_frame = false
 
 func enter(previous_state_path: String, data := {}) -> void:
