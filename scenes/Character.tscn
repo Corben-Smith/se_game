@@ -49,8 +49,6 @@ texture = ExtResource("2_lcuhw")
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_ksmjn")
 
-[node name="CoyoteTimer" type="Timer" parent="."]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -40)
 zoom = Vector2(1.5, 1.5)
@@ -95,5 +93,3 @@ rotation = 3.14159
 [node name="Left Inner" type="RayCast2D" parent="."]
 position = Vector2(-8, -24)
 rotation = 3.14159
-
-[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

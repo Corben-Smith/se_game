@@ -11,7 +11,7 @@ class_name PlayerStats
 @export var _falling_gravity: Stat = Stat.new(2000.0)
 @export var _coyote_time: Stat = Stat.new(0.1)
 @export var _jump_buffer_time: Stat = Stat.new(0.1)
-@export var _variable_jump_multiplier: Stat = Stat.new(0.8)
+@export var _variable_jump_multiplier: Stat = Stat.new(0.5)
 
 func _init() -> void:
     # Initialize the stats dictionary

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=18 format=4 uid="uid://rsat8le877xi"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
 [ext_resource type="Script" uid="uid://b6t4wmcedebjp" path="res://scripts/Attributes/Stat.gd" id="2_7448y"]
@@ -9,10 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
 [ext_resource type="Script" uid="uid://cuw8fedllxgs4" path="res://scripts/StatusEffects/Status_Effect.gd" id="5_xwrkq"]
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
+[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="10_ar7ra"]
 
 [sub_resource type="Resource" id="Resource_ixgyf"]
 script = ExtResource("2_7448y")
-base_value = 0.8
+base_value = 0.5
 modifiers = []
 metadata/_custom_type_script = "uid://b6t4wmcedebjp"
 
@@ -48,9 +49,9 @@ metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dvny0"]
 size = Vector2(128, 128)
 
-[node name="TestWorld" type="Node2D"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ixgyf"]
 
-[node name="Meow" type="Node" parent="."]
+[node name="TestWorld" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_amxg5")]
 position = Vector2(-7, 224)
@@ -102,5 +103,16 @@ frame = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Status_Collectable2"]
 shape = SubResource("RectangleShape2D_dvny0")
+
+[node name="FallZone" type="Area2D" parent="."]
+position = Vector2(0, 512)
+scale = Vector2(176.68, -1.94997)
+script = ExtResource("10_ar7ra")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallZone"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_ixgyf")
+
+[connection signal="body_entered" from="FallZone" to="FallZone" method="_on_body_entered"]
 
 [editable path="Status_Collectable"]
