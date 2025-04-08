@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
 [ext_resource type="Script" uid="uid://cuw8fedllxgs4" path="res://scripts/StatusEffects/Status_Effect.gd" id="5_xwrkq"]
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
-[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="10_ar7ra"]
+[ext_resource type="Script" path="res://scenes/FallZone.gd" id="10_ar7ra"]
 
 [sub_resource type="Resource" id="Resource_ixgyf"]
 script = ExtResource("2_7448y")
