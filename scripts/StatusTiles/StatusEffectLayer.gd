@@ -1,25 +1,25 @@
 extends TileMapLayer
-class_name StatusEffectLayer
+class_name ModifierLayer
 
-@export var modifier_type: Modifier.Type
-@export var modifier_value: float
-@export var stat_name = ""
+@export var modifier_entries: Array[ModifierEntry]
 @export var collision_margin := 2.0  # Extra margin for collision detection
 
-var modifier: Modifier = null
 
 # Dictionary to track which tiles have active areas
 var _tile_areas := {}
 
 func _ready() -> void:
+	for m in modifier_entries:
+		var mx = m.get_modifier()
+		print(m.stat_name)
+		print(m.modifier_type)
+		print(mx.type)
+		print(m.modifier_value)
+		print(mx.value)
 
-
-	if stat_name == "":
-		push_error("ModiferLayer: SET STATNAME")
-		return
-	modifier = Modifier.new(modifier_type, modifier_value)
-	
 	_create_collision_areas()
+
+
 
 func _create_collision_areas() -> void:
 	for cell in get_used_cells():
@@ -55,7 +55,6 @@ func _create_tile_area(cell_pos: Vector2i) -> void:
 	_tile_areas[cell_pos] = area
 
 func _get_tile_size(cell_pos: Vector2i) -> Vector2:
-	var tile_data := get_cell_tile_data(cell_pos)
 	return tile_set.tile_size
 		
 
@@ -66,13 +65,12 @@ func _on_tilemap_changed() -> void:
 	_tile_areas.clear()
 	_create_collision_areas()
 
-var _players_in_area := []
-
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		body.stats.add_modifier(stat_name, modifier)
+		for entry in modifier_entries:
+			body.stats.add_modifier(entry.stat_name, entry.get_modifier())
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		var player: Player = body 
-		player.stats.remove_modifier(stat_name, modifier)
+		for entry in modifier_entries:
+			body.stats.remove_modifier(entry.stat_name, entry.get_modifier())

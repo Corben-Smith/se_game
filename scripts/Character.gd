@@ -28,6 +28,13 @@ func _physics_process(delta: float) -> void:
         coyote_timer = stats["coyote_time"]
     else:
         coyote_timer -= delta
+
+    if velocity.x < 0:
+        $Sprite2D.flip_h = true
+    elif velocity.x > 0:
+        $Sprite2D.flip_h = false
+
+
     move_and_slide()
 
 
