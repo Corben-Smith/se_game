@@ -13,6 +13,8 @@ var is_jumping: bool = false
 @export var health_component: HealthComponent = null
 
 func _ready() -> void:
+	
+	add_to_group("player")
 	if !stats:
 		push_error("please specify a player stats obj in the inspector")
 	if !state_machine:

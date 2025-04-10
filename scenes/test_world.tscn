@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=19 format=4 uid="uid://rsat8le877xi"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
 [ext_resource type="Script" uid="uid://b6t4wmcedebjp" path="res://scripts/Attributes/Stat.gd" id="2_7448y"]
@@ -9,7 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
 [ext_resource type="Script" uid="uid://cuw8fedllxgs4" path="res://scripts/StatusEffects/Status_Effect.gd" id="5_xwrkq"]
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
-[ext_resource type="Script" path="res://scenes/FallZone.gd" id="10_ar7ra"]
+[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="10_ar7ra"]
+[ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/bug_guy.tscn" id="11_ixgyf"]
 
 [sub_resource type="Resource" id="Resource_ixgyf"]
 script = ExtResource("2_7448y")
@@ -109,6 +110,13 @@ script = ExtResource("10_ar7ra")
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_ixgyf")
 
+[node name="BugGuy" parent="." instance=ExtResource("11_ixgyf")]
+position = Vector2(438, 232)
+
+[node name="AnimatedSprite2D" parent="BugGuy" index="0"]
+frame_progress = 0.322562
+
 [connection signal="body_entered" from="FallZone" to="FallZone" method="_on_body_entered"]
 
 [editable path="Status_Collectable"]
+[editable path="BugGuy"]
