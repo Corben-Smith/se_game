@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=20 format=4 uid="uid://rsat8le877xi"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
+[ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://pause_menu.tscn" id="1_ar7ra"]
 [ext_resource type="Script" uid="uid://b6t4wmcedebjp" path="res://scripts/Attributes/Stat.gd" id="2_7448y"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_ar7ra"]
 [ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/collectable.tscn" id="3_umbte"]
@@ -8,8 +9,9 @@
 [ext_resource type="Script" uid="uid://ba3whgs6gctxp" path="res://scripts/Collectables/Status_Collectable.gd" id="4_dvny0"]
 [ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
 [ext_resource type="Script" uid="uid://cuw8fedllxgs4" path="res://scripts/StatusEffects/Status_Effect.gd" id="5_xwrkq"]
+[ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_8hcw6"]
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
-[ext_resource type="Script" path="res://scenes/FallZone.gd" id="10_ar7ra"]
+[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="10_ar7ra"]
 
 [sub_resource type="Resource" id="Resource_ixgyf"]
 script = ExtResource("2_7448y")
@@ -40,9 +42,9 @@ metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [sub_resource type="Resource" id="Resource_7448y"]
 script = ExtResource("7_xwrkq")
-modifier_type = 0
-modifer_value = 0.0
-stat_name = ""
+modifier_type = 1
+modifer_value = 2.0
+stat_name = "gravity"
 duration = 5.0
 metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
@@ -57,6 +59,8 @@ size = Vector2(128, 128)
 position = Vector2(-7, 224)
 stats = SubResource("Resource_8hcw6")
 
+[node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("1_ar7ra")]
+
 [node name="LayerHolder" type="Node2D" parent="."]
 
 [node name="GroundLayer" type="TileMapLayer" parent="LayerHolder"]
@@ -65,11 +69,15 @@ tile_map_data = PackedByteArray("AAAOAAkAAQANAAMAAAAOAAgAAQANAAEAAAANAAkAAQAMAAM
 tile_set = ExtResource("3_xwrkq")
 use_kinematic_bodies = true
 
-[node name="SpeedLayer" type="TileMapLayer" parent="LayerHolder"]
-position = Vector2(1, 0)
-tile_map_data = PackedByteArray("AAAOAAkAAQANAAMAAAAOAAgAAQANAAEAAAANAAkAAQAMAAMAAAANAAgAAQAMAAEAAAAMAAkAAQAMAAMAAAAMAAgAAQAMAAEAAAALAAkAAQAMAAMAAAALAAgAAQAMAAEAAAAKAAkAAQAMAAMAAAAKAAgAAQAMAAEAAAAJAAkAAQAMAAMAAAAJAAgAAQAMAAEAAAAIAAkAAQAMAAMAAAAIAAgAAQAMAAEAAAAHAAkAAQAMAAMAAAAHAAgAAQAMAAEAAAAGAAkAAQAMAAMAAAAGAAgAAQAMAAEAAAAFAAkAAQAMAAMAAAAFAAgAAQAMAAEAAAAEAAkAAQAMAAMAAAAEAAgAAQAMAAEAAAADAAkAAQAMAAMAAAADAAgAAQAMAAEAAAACAAkAAQAMAAMAAAACAAgAAQAMAAEAAAABAAkAAQAMAAMAAAABAAgAAQAMAAEAAAAAAAkAAQAMAAMAAAAAAAgAAQAMAAEAAAD//wkAAQAMAAMAAAD//wgAAQAMAAEAAAD+/wkAAQAMAAMAAAD+/wgAAQAMAAEAAAD9/wkAAQAMAAMAAAD9/wgAAQAMAAEAAAD8/wkAAQAMAAMAAAD8/wgAAQAMAAEAAAD7/wkAAQAMAAMAAAD7/wgAAQAMAAEAAAD6/wkAAQAMAAMAAAD6/wgAAQAMAAEAAAD5/wkAAQAMAAMAAAD5/wgAAQAMAAEAAAD4/wkAAQAMAAMAAAD4/wgAAQAMAAEAAAD3/wkAAQAMAAMAAAD3/wgAAQAMAAEAAAD2/wkAAQAMAAMAAAD2/wgAAQAMAAEAAAD1/wkAAQAMAAMAAAD1/wgAAQAMAAEAAAD0/wkAAQAMAAMAAAD0/wgAAQAMAAEAAADz/wkAAQAMAAMAAADz/wgAAQAMAAEAAADy/wkAAQAMAAMAAADy/wgAAQAMAAEAAADx/wkAAQAMAAMAAADx/wgAAQAMAAEAAADw/wkAAQAMAAMAAADw/wgAAQAMAAEAAADv/wkAAQALAAMAAADv/wgAAQALAAEAAAAUAAgAAQALAAEAAAAUAAkAAQALAAMAAAAVAAkAAQANAAMAAAAVAAgAAQANAAEAAAARAAgAAQALAAEAAAARAAkAAQALAAMAAAASAAgAAQANAAEAAAASAAkAAQANAAMAAAAXAAgAAQALAAEAAAAXAAkAAQALAAMAAAAYAAgAAQANAAEAAAAYAAkAAQANAAMAAAAaAAcAAQALAAEAAAAaAAgAAQALAAMAAAAbAAcAAQANAAEAAAAbAAgAAQANAAMAAAAdAAYAAQALAAEAAAAdAAcAAQALAAMAAAAeAAYAAQANAAEAAAAeAAcAAQANAAMAAAAgAAUAAQALAAEAAAAgAAYAAQALAAMAAAAhAAUAAQANAAEAAAAhAAYAAQANAAMAAAAjAAQAAQALAAEAAAAjAAUAAQALAAMAAAAkAAQAAQANAAEAAAAkAAUAAQANAAMAAAAeAAEAAQALAAEAAAAeAAIAAQALAAMAAAAfAAEAAQANAAEAAAAfAAIAAQANAAMAAAAmAAIAAQALAAEAAAAmAAMAAQALAAMAAAAnAAIAAQANAAEAAAAnAAMAAQANAAMAAAAhAAAAAQALAAEAAAAhAAEAAQALAAMAAAAiAAAAAQANAAEAAAAiAAEAAQANAAMAAAAaAP//AQALAAEAAAAaAAAAAQALAAMAAAAbAP//AQANAAEAAAAbAAAAAQANAAMAAAA=")
+[node name="StatusEffectLayer" type="TileMapLayer" parent="LayerHolder"]
+modulate = Color(0, 0.649514, 0.0936414, 1)
+tile_map_data = PackedByteArray("AAD2/wcAAQALAAEAAAD3/wcAAQAGAAYAAAD3/wYAAQALAAEAAAD4/wYAAQAMAAEAAAD5/wYAAQANAAEAAAD5/wcAAQAFAAYAAAD6/wcAAQANAAEAAAD4/wcAAQAMAAIAAAAEAAcAAQADAAEAAAD1/wgAAQACAAMAAAD0/wgAAQACAAMAAADz/wgAAQACAAMAAADy/wgAAQACAAMAAADx/wgAAQACAAMAAADw/wgAAQACAAMAAADv/wgAAQABAAMAAAD2/wgAAQAWAAIAAAD3/wgAAQAMAAMAAAD4/wgAAQAMAAMAAAD5/wgAAQAMAAMAAAD6/wgAAQAVAAIAAAD7/wgAAQADAAMAAAA=")
 tile_set = ExtResource("3_xwrkq")
-use_kinematic_bodies = true
+script = ExtResource("6_8hcw6")
+modifier_type = 1
+modifier_value = 0.2
+stat_name = "acceleration"
+metadata/_custom_type_script = "uid://blvvq3mqfjsmr"
 
 [node name="Status_Collectable" parent="." instance=ExtResource("3_umbte")]
 position = Vector2(224, 224)
@@ -83,21 +91,6 @@ hframes = 13
 vframes = 14
 
 [node name="CollisionShape2D" parent="Status_Collectable" index="1"]
-shape = SubResource("RectangleShape2D_dvny0")
-
-[node name="Status_Collectable2" type="Area2D" parent="."]
-position = Vector2(-183, 224)
-scale = Vector2(0.25, 0.25)
-script = ExtResource("4_dvny0")
-metadata/_custom_type_script = "uid://ba3whgs6gctxp"
-
-[node name="Sprite2D" type="Sprite2D" parent="Status_Collectable2"]
-texture = ExtResource("4_ynswa")
-hframes = 13
-vframes = 14
-frame = 15
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Status_Collectable2"]
 shape = SubResource("RectangleShape2D_dvny0")
 
 [node name="FallZone" type="Area2D" parent="."]
