@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=22 format=4 uid="uid://rsat8le877xi"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
 [ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://pause_menu.tscn" id="1_ar7ra"]
@@ -19,7 +19,7 @@ _acceleration = 50.0
 _deacceleration = 100.0
 max_speed = 300.0
 in_air_acceleration = 20.0
-in_air_deacceleration = 20.0
+in_air_deacceleration = 10.0
 jump_force = -500.0
 _gravity = 1000.0
 falling_gravity = 2000.0
@@ -42,28 +42,30 @@ modifier_type = 1
 modifier_value = 0.1
 metadata/_custom_type_script = "uid://cuntujpetedjt"
 
+[sub_resource type="Resource" id="Resource_dv75v"]
+script = ExtResource("8_x05cw")
+stat_name = "acceleration"
+modifier_type = 1
+modifier_value = 10.0
+metadata/_custom_type_script = "uid://cuntujpetedjt"
+
 [sub_resource type="Resource" id="Resource_nrstc"]
 script = ExtResource("7_xwrkq")
-modifier_type = 1
-modifer_value = 2.0
+modifier_entry = SubResource("Resource_dv75v")
+duration = 15.0
+metadata/_custom_type_script = "uid://de7t5vkp8wkks"
+
+[sub_resource type="Resource" id="Resource_x05cw"]
+script = ExtResource("8_x05cw")
 stat_name = "max_speed"
-duration = 15.0
-metadata/_custom_type_script = "uid://de7t5vkp8wkks"
-
-[sub_resource type="Resource" id="Resource_xwrkq"]
-script = ExtResource("7_xwrkq")
 modifier_type = 1
-modifer_value = 2.0
-stat_name = "acceleration"
-duration = 15.0
-metadata/_custom_type_script = "uid://de7t5vkp8wkks"
+modifier_value = 10.0
+metadata/_custom_type_script = "uid://cuntujpetedjt"
 
-[sub_resource type="Resource" id="Resource_7448y"]
+[sub_resource type="Resource" id="Resource_bn472"]
 script = ExtResource("7_xwrkq")
-modifier_type = 1
-modifer_value = 2.0
-stat_name = "gravity"
-duration = 5.0
+modifier_entry = SubResource("Resource_x05cw")
+duration = 15.0
 metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dvny0"]
@@ -83,14 +85,14 @@ stats = SubResource("Resource_8hcw6")
 
 [node name="GroundLayer" type="TileMapLayer" parent="LayerHolder"]
 position = Vector2(1, 0)
-tile_map_data = PackedByteArray("AAAOAAgAAQADAAMAAAANAAgAAQACAAMAAAAMAAgAAQACAAMAAAALAAgAAQACAAMAAAAKAAgAAQACAAMAAAAJAAgAAQACAAMAAAAIAAgAAQACAAMAAAAHAAgAAQACAAMAAAAGAAgAAQACAAMAAAAFAAgAAQACAAMAAAAEAAgAAQACAAMAAAADAAgAAQACAAMAAAACAAgAAQACAAMAAAABAAgAAQACAAMAAAAAAAgAAQACAAMAAAD//wgAAQACAAMAAAD+/wgAAQACAAMAAAD9/wgAAQACAAMAAAD8/wgAAQACAAMAAAD7/wgAAQACAAMAAAD6/wgAAQACAAMAAAD5/wgAAQACAAMAAAD4/wgAAQACAAMAAAD3/wgAAQACAAMAAAD2/wgAAQACAAMAAAD1/wgAAQACAAMAAAD0/wgAAQACAAMAAADz/wgAAQACAAMAAADy/wgAAQACAAMAAADx/wgAAQACAAMAAADw/wgAAQACAAMAAADv/wgAAQABAAMAAAAUAAgAAQABAAMAAAAVAAgAAQADAAMAAAARAAgAAQABAAMAAAASAAgAAQADAAMAAAAXAAgAAQABAAMAAAAYAAgAAQADAAMAAAAaAAcAAQABAAMAAAAbAAcAAQADAAMAAAAdAAYAAQABAAMAAAAeAAYAAQADAAMAAAAgAAUAAQALAAEAAAAgAAYAAQALAAMAAAAhAAUAAQANAAEAAAAhAAYAAQANAAMAAAAjAAQAAQALAAEAAAAjAAUAAQALAAMAAAAkAAQAAQANAAEAAAAkAAUAAQANAAMAAAAeAAEAAQALAAEAAAAeAAIAAQALAAMAAAAfAAEAAQANAAEAAAAfAAIAAQANAAMAAAAmAAIAAQALAAEAAAAmAAMAAQALAAMAAAAnAAIAAQANAAEAAAAnAAMAAQANAAMAAAAhAAAAAQALAAEAAAAhAAEAAQALAAMAAAAiAAAAAQANAAEAAAAiAAEAAQANAAMAAAAaAP//AQALAAEAAAAaAAAAAQALAAMAAAAbAP//AQANAAEAAAAbAAAAAQANAAMAAAA=")
+tile_map_data = PackedByteArray("AAAOAAgAAQADAAMAAAANAAgAAQACAAMAAAAMAAgAAQACAAMAAAALAAgAAQACAAMAAAAKAAgAAQACAAMAAAAJAAgAAQACAAMAAAAIAAgAAQACAAMAAAAHAAgAAQACAAMAAAAGAAgAAQACAAMAAAAFAAgAAQACAAMAAAAEAAgAAQACAAMAAAADAAgAAQACAAMAAAACAAgAAQACAAMAAAABAAgAAQACAAMAAAAAAAgAAQACAAMAAAD//wgAAQACAAMAAAD+/wgAAQACAAMAAAD9/wgAAQACAAMAAAD8/wgAAQACAAMAAAD7/wgAAQACAAMAAAD6/wgAAQACAAMAAAD5/wgAAQACAAMAAAD4/wgAAQACAAMAAAD3/wgAAQACAAMAAAD2/wgAAQACAAMAAAD1/wgAAQACAAMAAAD0/wgAAQACAAMAAADz/wgAAQACAAMAAADy/wgAAQACAAMAAADx/wgAAQACAAMAAADw/wgAAQACAAMAAADv/wgAAQABAAMAAAAUAAgAAQABAAMAAAAVAAgAAQADAAMAAAARAAgAAQABAAMAAAASAAgAAQADAAMAAAAXAAgAAQABAAMAAAAYAAgAAQADAAMAAAAaAAcAAQABAAMAAAAbAAcAAQADAAMAAAAdAAYAAQABAAMAAAAeAAYAAQADAAMAAAAgAAUAAQABAAMAAAAhAAUAAQADAAMAAAAjAAQAAQABAAMAAAAkAAQAAQADAAMAAAAeAAEAAQABAAMAAAAfAAEAAQADAAMAAAAmAAIAAQABAAMAAAAnAAIAAQADAAMAAAAhAAAAAQABAAMAAAAiAAAAAQADAAMAAAAaAP//AQABAAMAAAAbAP//AQADAAMAAAA=")
 tile_set = ExtResource("3_xwrkq")
 use_kinematic_bodies = true
 
 [node name="StatusEffectLayer" type="TileMapLayer" parent="LayerHolder"]
 modulate = Color(1.05888e-06, 0.598696, 0.701699, 1)
 position = Vector2(1, 0)
-tile_map_data = PackedByteArray("AAD2/wcAAQALAAEAAAD3/wcAAQAGAAYAAAD3/wYAAQALAAEAAAD4/wYAAQAMAAEAAAD5/wYAAQANAAEAAAD5/wcAAQAFAAYAAAD6/wcAAQANAAEAAAD4/wcAAQAMAAIAAAAEAAcAAQADAAEAAAD1/wgAAQACAAMAAAD0/wgAAQACAAMAAADz/wgAAQACAAMAAADy/wgAAQACAAMAAADx/wgAAQACAAMAAADw/wgAAQACAAMAAADv/wgAAQACAAMAAAD2/wgAAQAWAAIAAAD3/wgAAQAMAAMAAAD4/wgAAQAMAAMAAAD5/wgAAQAMAAMAAAD6/wgAAQAVAAIAAAD7/wgAAQADAAMAAADk/wgAAQABAAMAAADl/wgAAQADAAMAAADu/wgAAQABAAMAAADo/wYAAQABAAMAAADp/wYAAQACAAMAAADq/wYAAQACAAMAAADr/wYAAQACAAMAAADs/wYAAQACAAMAAADt/wYAAQADAAMAAADg/wcAAQABAAMAAADh/wcAAQACAAMAAADi/wcAAQADAAMAAAA=")
+tile_map_data = PackedByteArray("AAD1/wgAAQACAAMAAAD0/wgAAQACAAMAAADz/wgAAQACAAMAAADy/wgAAQACAAMAAADx/wgAAQACAAMAAADw/wgAAQACAAMAAADv/wgAAQACAAMAAAD2/wgAAQACAAMAAAD3/wgAAQACAAMAAAD4/wgAAQACAAMAAAD5/wgAAQACAAMAAAD6/wgAAQACAAMAAAD7/wgAAQADAAMAAADk/wgAAQABAAMAAADl/wgAAQADAAMAAADu/wgAAQABAAMAAADo/wYAAQABAAMAAADp/wYAAQACAAMAAADq/wYAAQACAAMAAADr/wYAAQACAAMAAADs/wYAAQACAAMAAADt/wYAAQADAAMAAADg/wcAAQABAAMAAADh/wcAAQACAAMAAADi/wcAAQADAAMAAADe/wgAAQADAAMAAADd/wgAAQACAAMAAADc/wgAAQACAAMAAADb/wgAAQACAAMAAADa/wgAAQACAAMAAADZ/wgAAQACAAMAAADY/wgAAQACAAMAAADX/wgAAQACAAMAAADW/wgAAQACAAMAAADV/wgAAQACAAMAAADU/wgAAQACAAMAAADT/wgAAQACAAMAAADS/wgAAQACAAMAAADR/wgAAQACAAMAAADQ/wgAAQABAAMAAADU/wUAAQABAAMAAADV/wUAAQACAAMAAADW/wUAAQACAAMAAADX/wUAAQADAAMAAADY/wQAAQABAAMAAADZ/wQAAQACAAMAAADa/wQAAQACAAMAAADb/wQAAQADAAMAAAA=")
 tile_set = ExtResource("3_xwrkq")
 script = ExtResource("6_8hcw6")
 modifier_entries = Array[ExtResource("8_x05cw")]([SubResource("Resource_3xk6l"), SubResource("Resource_mjm4b")])
@@ -100,7 +102,7 @@ metadata/_custom_type_script = "uid://blvvq3mqfjsmr"
 position = Vector2(224, 224)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("4_dvny0")
-statuses = Array[ExtResource("5_xwrkq")]([SubResource("Resource_nrstc"), SubResource("Resource_xwrkq"), SubResource("Resource_7448y")])
+statuses = Array[ExtResource("5_xwrkq")]([SubResource("Resource_nrstc"), SubResource("Resource_bn472")])
 
 [node name="Sprite2D" parent="Status_Collectable" index="0"]
 texture = ExtResource("4_ynswa")
