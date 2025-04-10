@@ -4,7 +4,7 @@ class_name Status_Collectable
 @export var statuses: Array[StatusEffect] = [] 
 
 func _ready():
-	if !statuses or len(statuses):
+	if !statuses:
 		push_error("provide a status effect resource")
 
 	connect("body_entered", _on_body_entered)
