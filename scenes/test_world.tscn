@@ -12,6 +12,13 @@
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="8_x05cw"]
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="10_ar7ra"]
+[ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/bug_guy.tscn" id="11_ixgyf"]
+
+[sub_resource type="Resource" id="Resource_ixgyf"]
+script = ExtResource("2_7448y")
+base_value = 0.5
+modifiers = []
+metadata/_custom_type_script = "uid://b6t4wmcedebjp"
 
 [sub_resource type="Resource" id="Resource_8hcw6"]
 script = ExtResource("3_ar7ra")
@@ -121,6 +128,13 @@ script = ExtResource("10_ar7ra")
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_ixgyf")
 
+[node name="BugGuy" parent="." instance=ExtResource("11_ixgyf")]
+position = Vector2(438, 232)
+
+[node name="AnimatedSprite2D" parent="BugGuy" index="0"]
+frame_progress = 0.322562
+
 [connection signal="body_entered" from="FallZone" to="FallZone" method="_on_body_entered"]
 
 [editable path="Status_Collectable"]
+[editable path="BugGuy"]

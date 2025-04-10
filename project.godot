@@ -24,6 +24,12 @@ settings/physics_interpolation/enable_warnings=false
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[file_customization]
+
+folder_colors={
+"res://assets/sprites/": "pink"
+}
+
 [input]
 
 right={
