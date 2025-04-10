@@ -10,7 +10,8 @@ func _ready() -> void:
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Fire"):
 		emit_signal("transition", self, "Jumping_State", {})
-
+	elif event.is_action_pressed("Attack"):
+		emit_signal("transition", self, "Attack_State", {})
 func update(delta: float) -> void:
 	pass
 
