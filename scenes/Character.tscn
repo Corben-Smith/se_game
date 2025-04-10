@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cok6gvdxjgywq"]
+[gd_scene load_steps=15 format=3 uid="uid://cok6gvdxjgywq"]
 
 [ext_resource type="Script" path="res://scripts/Character.gd" id="1_7ig0a"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="2_dfeyu"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://4g2vde2305m7" path="res://scripts/States/Jumping_State.gd" id="6_exdhi"]
 [ext_resource type="Script" uid="uid://cjyq8fcyxoh4v" path="res://scripts/States/Falling_State.gd" id="7_25pii"]
 [ext_resource type="Script" uid="uid://dp74djouk71ts" path="res://scripts/StatusEffects/Status_Effect_Manager.gd" id="8_exdhi"]
+[ext_resource type="Script" uid="uid://bqsmytqu18wwi" path="res://scripts/States/Attack_Script.gd" id="9_r68wp"]
 [ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="9_r87yu"]
 
 [sub_resource type="Resource" id="Resource_r68wp"]
@@ -17,6 +18,9 @@ metadata/_custom_type_script = "uid://byikc5yvpboxi"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmjn"]
 size = Vector2(24, 56)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dfeyu"]
+radius = 16.1245
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "status_manager", "health_component")]
 script = ExtResource("1_7ig0a")
@@ -81,6 +85,9 @@ script = ExtResource("7_25pii")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://cjyq8fcyxoh4v"
 
+[node name="Attack_State" type="Node" parent="StateMachine"]
+script = ExtResource("9_r68wp")
+
 [node name="StatusEffectManager" type="Node" parent="."]
 script = ExtResource("8_exdhi")
 metadata/_custom_type_script = "uid://dp74djouk71ts"
@@ -95,5 +102,11 @@ rotation = 3.14159
 [node name="Left Inner" type="RayCast2D" parent="."]
 position = Vector2(-8, -24)
 rotation = 3.14159
+
+[node name="DealDamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DealDamageArea"]
+position = Vector2(32, 0)
+shape = SubResource("CircleShape2D_dfeyu")
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=17 format=4 uid="uid://rsat8le877xi"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
 [ext_resource type="Script" uid="uid://b6t4wmcedebjp" path="res://scripts/Attributes/Stat.gd" id="2_7448y"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
 [ext_resource type="Script" uid="uid://cuw8fedllxgs4" path="res://scripts/StatusEffects/Status_Effect.gd" id="5_xwrkq"]
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
+[ext_resource type="PackedScene" uid="uid://bex7ip53di46k" path="res://damagebox.tscn" id="10_ar7ra"]
 
 [sub_resource type="Resource" id="Resource_ixgyf"]
 script = ExtResource("2_7448y")
@@ -102,5 +103,8 @@ frame = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Status_Collectable2"]
 shape = SubResource("RectangleShape2D_dvny0")
+
+[node name="damagebox" parent="." instance=ExtResource("10_ar7ra")]
+position = Vector2(-310, 239)
 
 [editable path="Status_Collectable"]
