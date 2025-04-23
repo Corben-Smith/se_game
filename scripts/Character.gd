@@ -16,15 +16,15 @@ var is_attacking: bool = false
 @export var attack_damage: int = 10
 
 func _ready() -> void:
-    add_to_group("player")
-    if !stats:
-        push_error("please specify a player stats obj in the inspector")
-    if !state_machine:
-        state_machine = $StateMachine
-    if !status_manager:
-        status_manager = $StatusEffectManager
-    if !health_component:
-        health_component = $HealthComponent
+	add_to_group("player")
+	if !stats:
+		push_error("please specify a player stats obj in the inspector")
+	if !state_machine:
+		state_machine = $StateMachine
+	if !status_manager:
+		status_manager = $StatusEffectManager
+	if !health_component:
+		health_component = $HealthComponent
 	# Disable damage area at the start
 	deal_damage_area.monitoring = false
 	$DealDamageArea/CollisionShape2D.disabled = true
@@ -33,18 +33,18 @@ func _ready() -> void:
 	deal_damage_area.connect("body_entered", _on_deal_damage_area_body_entered)
 
 func _physics_process(delta: float) -> void:
-    if is_on_floor():
-        coyote_timer = stats["coyote_time"]
-    else:
-        coyote_timer -= delta
+	if is_on_floor():
+		coyote_timer = stats["coyote_time"]
+	else:
+		coyote_timer -= delta
 
-    if velocity.x < 0:
-        $Sprite2D.flip_h = true
-    elif velocity.x > 0:
-        $Sprite2D.flip_h = false
+	if velocity.x < 0:
+		$Sprite2D.flip_h = true
+	elif velocity.x > 0:
+		$Sprite2D.flip_h = false
 
 
-    move_and_slide()
+	move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	state_machine.handle_input(event)
@@ -90,9 +90,9 @@ func handle_jumping(delta):
 		is_jumping = true
 		jump_buffer_timer = 0
 
-    if Input.is_action_just_released("Fire") and velocity.y < 0:
-        velocity.y *= stats["variable_jump_multiplier"]
-        is_jumping = false
+	if Input.is_action_just_released("Fire") and velocity.y < 0:
+		velocity.y *= stats["variable_jump_multiplier"]
+		is_jumping = false
 
 func toggle_flip_damage(dir):
 	if dir == 1:

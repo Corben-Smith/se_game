@@ -34,6 +34,7 @@ size = Vector2(24, 56)
 radius = 16.1245
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "status_manager", "health_component")]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_7ig0a")
 stats = SubResource("Resource_r68wp")
 state_machine = NodePath("StateMachine")
@@ -66,7 +67,7 @@ shape = SubResource("RectangleShape2D_ksmjn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -40)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
