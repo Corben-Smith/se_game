@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cok6gvdxjgywq"]
 
-[ext_resource type="Script" path="res://scripts/Character.gd" id="1_7ig0a"]
+[ext_resource type="Script" uid="uid://bfu4xs3tyne55" path="res://scripts/Character.gd" id="1_7ig0a"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="2_dfeyu"]
 [ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="2_lcuhw"]
 [ext_resource type="Script" uid="uid://c1fthtfbmc1rp" path="res://scripts/States/StateMachine.gd" id="3_rguqb"]
@@ -111,10 +111,9 @@ rotation = 3.14159
 [node name="Left Inner" type="RayCast2D" parent="."]
 position = Vector2(-8, -24)
 rotation = 3.14159
+
 [node name="DealDamageArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DealDamageArea"]
 position = Vector2(32, 0)
 shape = SubResource("CircleShape2D_dfeyu")
-
-[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
