@@ -1,19 +1,18 @@
 extends StatusEffect
 class_name ModifierStatusEffect
 
-@export var modifier_type: Modifier.Type
-@export var modifer_value: float
-@export var stat_name: String
+@export var modifier_entry: ModifierEntry
 
 var modifier: Modifier = null
 
 func on_apply(target) -> void:
-	modifier = Modifier.new(modifier_type, modifer_value)
+	modifier = modifier_entry.get_modifier()
 	if target.has_method("add_modifier"):
-		target.add_modifier(stat_name, modifier)
+		target.add_modifier(modifier_entry.stat_name, modifier)
+	print("applying")
 		
 
 # Override remove_effect to remove modifiers from the target
 func remove_effect(target) -> void:
 	if target.has_method("remove_modifier"):
-		target.remove_modifier(stat_name, modifier)
+		target.remove_modifier(modifier_entry.stat_name, modifier)
