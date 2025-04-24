@@ -15,6 +15,10 @@ run/main_scene="res://scenes/test_world.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+ShopManager="*res://scripts/ShopManager.gd"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
