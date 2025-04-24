@@ -59,6 +59,9 @@ func apply_gravity(delta):
 			velocity.y += stats["falling_gravity"] * delta
 		else:
 			velocity.y += stats["gravity"] * delta
+		
+		# Limit maximum falling speed
+		velocity.y = min(velocity.y, stats["max_falling_speed"])
 	else:
 		velocity.y = 0
 

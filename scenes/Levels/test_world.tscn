@@ -1,8 +1,6 @@
-[gd_scene load_steps=21 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=19 format=4 uid="uid://rsat8le877xi"]
 
-[ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
-[ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://pause_menu.tscn" id="1_ar7ra"]
-[ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_ar7ra"]
+[ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_emc6x"]
 [ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/collectable.tscn" id="3_umbte"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="3_xwrkq"]
 [ext_resource type="Script" uid="uid://ba3whgs6gctxp" path="res://scripts/Collectables/Status_Collectable.gd" id="4_dvny0"]
@@ -12,21 +10,7 @@
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="8_x05cw"]
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="10_ar7ra"]
-
-[sub_resource type="Resource" id="Resource_8hcw6"]
-script = ExtResource("3_ar7ra")
-_acceleration = 50.0
-_deacceleration = 100.0
-max_speed = 300.0
-in_air_acceleration = 20.0
-in_air_deacceleration = 20.0
-jump_force = -500.0
-_gravity = 1000.0
-falling_gravity = 2000.0
-coyote_time = 0.1
-jump_buffer_time = 0.1
-variable_jump_multiplier = 0.5
-metadata/_custom_type_script = "uid://byikc5yvpboxi"
+[ext_resource type="Script" uid="uid://cupackbgbenrr" path="res://camera_manager.gd" id="11_mittc"]
 
 [sub_resource type="Resource" id="Resource_3xk6l"]
 script = ExtResource("8_x05cw")
@@ -44,17 +28,14 @@ metadata/_custom_type_script = "uid://cuntujpetedjt"
 
 [sub_resource type="Resource" id="Resource_nrstc"]
 script = ExtResource("7_xwrkq")
-duration = 15.0
 metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [sub_resource type="Resource" id="Resource_xwrkq"]
 script = ExtResource("7_xwrkq")
-duration = 15.0
 metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [sub_resource type="Resource" id="Resource_7448y"]
 script = ExtResource("7_xwrkq")
-duration = 5.0
 metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dvny0"]
@@ -62,13 +43,9 @@ size = Vector2(128, 128)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ixgyf"]
 
-[node name="TestWorld" type="Node2D"]
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_amxg5")]
-position = Vector2(-7, 224)
-stats = SubResource("Resource_8hcw6")
-
-[node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("1_ar7ra")]
+[node name="TestWorld" type="Node2D" node_paths=PackedStringArray("spawn_point")]
+script = ExtResource("1_emc6x")
+spawn_point = NodePath("SpawnPoint")
 
 [node name="LayerHolder" type="Node2D" parent="."]
 
@@ -109,6 +86,12 @@ script = ExtResource("10_ar7ra")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallZone"]
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_ixgyf")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+
+[node name="CameraManager" type="Node2D" parent="."]
+script = ExtResource("11_mittc")
+metadata/_custom_type_script = "uid://cupackbgbenrr"
 
 [connection signal="body_entered" from="FallZone" to="FallZone" method="_on_body_entered"]
 

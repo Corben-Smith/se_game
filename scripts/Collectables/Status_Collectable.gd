@@ -20,6 +20,7 @@
 #         for status in statuses:
 #             var new_status = status.duplicate_deep()
 #             player.status_manager.apply_effect(new_status, player)
+
 extends Collectable
 class_name Status_Collectable
 

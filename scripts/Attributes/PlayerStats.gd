@@ -12,6 +12,7 @@ class_name PlayerStats
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
 @export var variable_jump_multiplier: float = 0.5
+@export var max_falling_speed: float = 50
 
 func _init() -> void:
     # Initialize the stats dictionary with Stat objects created from the exported float values
@@ -26,5 +27,6 @@ func _init() -> void:
         "falling_gravity": Stat.new(falling_gravity),
         "coyote_time": Stat.new(coyote_time),
         "jump_buffer_time": Stat.new(jump_buffer_time),
-        "variable_jump_multiplier": Stat.new(variable_jump_multiplier)
+        "variable_jump_multiplier": Stat.new(variable_jump_multiplier),
+        "max_falling_speed": Stat.new(max_falling_speed)
     }

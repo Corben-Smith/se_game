@@ -1,8 +1,8 @@
-extends Node2D
+extends CharacterBody2D
 
-const SPEED = 100
+@export var SPEED = 1200 
 
-var direction = -1
+@export var direction = -1
 
 @onready var ray_cast_dl = $RayCastDownLeft
 @onready var ray_cast_dr = $RayCastDownRight
@@ -12,22 +12,24 @@ var direction = -1
 
 
 func _process(delta):
-	
-	if ray_cast_left.is_colliding() and !ray_cast_left.get_collider().is_in_group("player"):
-		direction = 1
-		animated_sprite.flip_h = true
-		
-	if ray_cast_right.is_colliding() and !ray_cast_right.get_collider().is_in_group("player"):
-		direction = -1
-		animated_sprite.flip_h = false
-		
-	if not ray_cast_dl.is_colliding():
-		direction = 1
-		animated_sprite.flip_h = true
-	
-	if not ray_cast_dr.is_colliding():
-		direction = -1
-		animated_sprite.flip_h = false
+    
+    if ray_cast_left.is_colliding() and !ray_cast_left.get_collider().is_in_group("player"):
+        direction = 1
+        animated_sprite.flip_h = true
+        
+    if ray_cast_right.is_colliding() and !ray_cast_right.get_collider().is_in_group("player"):
+        direction = -1
+        animated_sprite.flip_h = false
+        
+    if not ray_cast_dl.is_colliding():
+        direction = 1
+        animated_sprite.flip_h = true
+    
+    if not ray_cast_dr.is_colliding():
+        direction = -1
+        animated_sprite.flip_h = false
 
-	position.x += direction * SPEED * delta
-	
+    velocity.x = direction * SPEED * delta
+    if !is_on_floor():
+        velocity.y = 100
+    move_and_slide()

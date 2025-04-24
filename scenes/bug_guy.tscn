@@ -43,7 +43,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kos47"]
 size = Vector2(56, 31.1891)
 
-[node name="BugGuy" type="Node2D"]
+[node name="BugGuy" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_gd7oa")
 
@@ -67,11 +67,13 @@ position = Vector2(64, 0)
 target_position = Vector2(0, 64)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-64, 0)
+position = Vector2(-64, -12)
+scale = Vector2(1, 5)
 target_position = Vector2(-16, 0)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(48, 0)
+position = Vector2(48, -12)
+scale = Vector2(1, 5)
 target_position = Vector2(16, 0)
 
 [node name="HealthComponent" type="Node" parent="."]

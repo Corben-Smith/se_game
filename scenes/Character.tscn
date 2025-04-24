@@ -25,6 +25,7 @@ falling_gravity = 2000.0
 coyote_time = 0.1
 jump_buffer_time = 0.1
 variable_jump_multiplier = 0.5
+max_falling_speed = 50.0
 metadata/_custom_type_script = "uid://byikc5yvpboxi"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmjn"]
@@ -64,11 +65,6 @@ texture = ExtResource("2_lcuhw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_ksmjn")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -40)
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
 script = ExtResource("3_rguqb")
