@@ -1,7 +1,8 @@
 extends Node2D
 class_name CameraManager
 
-@export var follow_speed: float = 50.0
+@export var follow_speed_y: float = 3.0
+@export var follow_speed_x: float = 10.0
 @export var player: Player = null
 
 @onready var camera: Camera2D = $Camera2D
@@ -60,10 +61,10 @@ func smooth_follow(target_position: Vector2, delta: float):
 	var camera_pos = camera.position
 
 	# Snap to X quickly
-	var new_x = lerp(camera_pos.x, target_position.x, 10 * delta)
+	var new_x = lerp(camera_pos.x, target_position.x, follow_speed_x * delta)
 
 	# Smooth/damped Y
-	var new_y = lerp(camera_pos.y, target_position.y, 3 * delta)
+	var new_y = lerp(camera_pos.y, target_position.y, follow_speed_y * delta)
 
 	camera.position = Vector2(new_x, new_y)
 # func smooth_follow(target_position: Vector2, delta: float):
@@ -73,7 +74,7 @@ func smooth_follow(target_position: Vector2, delta: float):
 #     camera.position = Vector2(target_x, target_y)
 	
 func smooth_refollow(target_position: Vector2, delta):
-	camera.position = camera.position.lerp(target_position, follow_speed * delta)
+	camera.position = camera.position.lerp(target_position, follow_speed_x * delta)
 
 
 func set_camera(pos: Vector2, set_zoom: Vector2):
@@ -91,4 +92,3 @@ func reset_camera():
 
 	tween.tween_method(camera.set_zoom, camera.zoom, zoom, 0.75)
 	tween.finished.connect(_on_exit_tween_finished)
-

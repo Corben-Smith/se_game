@@ -90,8 +90,7 @@ shape = SubResource("WorldBoundaryShape2D_ixgyf")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 
-[node name="CameraManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_mittc")]
-player = NodePath("")
+[node name="CameraManager" parent="." instance=ExtResource("11_mittc")]
 
 [connection signal="body_entered" from="FallZone" to="FallZone" method="_on_body_entered"]
 
