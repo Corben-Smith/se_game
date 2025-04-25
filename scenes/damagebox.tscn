@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bex7ip53di46k"]
 
 [ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="1_larhb"]
-[ext_resource type="Script" uid="uid://bdsmgwukjlowh" path="res://damagebox.gd" id="1_tg1kk"]
+[ext_resource type="Script" uid="uid://bdsmgwukjlowh" path="res://scripts/Character/damagebox.gd" id="1_tg1kk"]
 [ext_resource type="Texture2D" uid="uid://xv2ifribnfub" path="res://assets/DamageBox.png" id="2_tg1kk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tg1kk"]

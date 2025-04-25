@@ -74,3 +74,21 @@ func smooth_follow(target_position: Vector2, delta: float):
 	
 func smooth_refollow(target_position: Vector2, delta):
 	camera.position = camera.position.lerp(target_position, follow_speed * delta)
+
+
+func set_camera(pos: Vector2, set_zoom: Vector2):
+	following_player = false
+
+	var tween := create_tween()
+	# tween.set_trans(Tween.TRANS_SINE)
+	
+	tween.tween_method(camera.set_zoom, camera.zoom, set_zoom, 0.75) # Smoothly move the camera to the zone's position
+	tween.parallel().tween_property(camera, "position", pos, 1.0)
+
+func reset_camera():
+	following_player = true 
+	var tween = self.create_tween()
+
+	tween.tween_method(camera.set_zoom, camera.zoom, zoom, 0.75)
+	tween.finished.connect(_on_exit_tween_finished)
+

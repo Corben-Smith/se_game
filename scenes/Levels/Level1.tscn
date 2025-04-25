@@ -1,22 +1,27 @@
-[gd_scene load_steps=28 format=4 uid="uid://bw0nsbupggafc"]
+[gd_scene load_steps=37 format=4 uid="uid://bw0nsbupggafc"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_jkyfg"]
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_n31k3"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="2_4h7ej"]
-[ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://pause_menu.tscn" id="3_8nqap"]
-[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="4_u4ox6"]
+[ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://scenes/pause_menu.tscn" id="3_8nqap"]
+[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scripts/Objects/FallZone.gd" id="4_u4ox6"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="5_o8yur"]
 [ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_nu2g1"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="7_5mhgh"]
-[ext_resource type="PackedScene" uid="uid://rd8jyvx57o3u" path="res://scenes/boost_object.tscn" id="8_4h7ej"]
+[ext_resource type="PackedScene" uid="uid://rd8jyvx57o3u" path="res://scenes/Objects/boost_object.tscn" id="8_4h7ej"]
 [ext_resource type="PackedScene" uid="uid://d38y2f0y6dpwn" path="res://scenes/one_way_platform.tscn" id="8_nu2g1"]
 [ext_resource type="Script" uid="uid://c47kx8ckq6sc8" path="res://scripts/StatusEffects/Levitate_effect.gd" id="9_8nqap"]
-[ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/bug_guy.tscn" id="10_u4ox6"]
-[ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/camera_manager.tscn" id="12_nu2g1"]
-[ext_resource type="PackedScene" uid="uid://b6ybupb06dlsw" path="res://camera_zone.tscn" id="13_5mhgh"]
+[ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/Enemies/bug_guy.tscn" id="10_u4ox6"]
+[ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="12_nu2g1"]
+[ext_resource type="PackedScene" uid="uid://b6ybupb06dlsw" path="res://scenes/Camera/camera_zone.tscn" id="13_5mhgh"]
 [ext_resource type="Texture2D" uid="uid://dn5r4c70p8odj" path="res://assets/sprites/BG_GreenHill_Before.jpg" id="15_jng41"]
-[ext_resource type="Script" uid="uid://capu3jb6wgtpd" path="res://scripts/Elevator.gd" id="16_yclo3"]
+[ext_resource type="Script" uid="uid://capu3jb6wgtpd" path="res://scripts/Objects/Elevator.gd" id="16_yclo3"]
 [ext_resource type="PackedScene" uid="uid://rsat8le877xi" path="res://scenes/Levels/test_world.tscn" id="17_84hcr"]
+[ext_resource type="Texture2D" uid="uid://cwktmp0nqs867" path="res://assets/sprites/Elevator.png" id="18_84hcr"]
+[ext_resource type="PackedScene" uid="uid://4wdajkbawuj7" path="res://scenes/NPC/npc.tscn" id="19_sq7sj"]
+[ext_resource type="Script" uid="uid://d1wqqcb5sju38" path="res://scripts/NPC/LineEntry.gd" id="20_7886b"]
+[ext_resource type="Shader" uid="uid://ye4utbyoye7n" path="res://scripts/Outline.gdshader" id="20_coqn3"]
+[ext_resource type="Texture2D" uid="uid://2xi7n5glsxfv" path="res://assets/sprites/cat.png" id="20_tf0rn"]
 
 [sub_resource type="Resource" id="Resource_dfih8"]
 script = ExtResource("2_4h7ej")
@@ -74,7 +79,29 @@ metadata/_custom_type_script = "uid://c47kx8ckq6sc8"
 size = Vector2(512, 384)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sq7sj"]
-size = Vector2(128, 128)
+size = Vector2(64, 96)
+
+[sub_resource type="Resource" id="Resource_sfku4"]
+script = ExtResource("20_7886b")
+lines = Array[String](["HI :333", "Im a damn cat"])
+metadata/_custom_type_script = "uid://d1wqqcb5sju38"
+
+[sub_resource type="Resource" id="Resource_kjfgi"]
+script = ExtResource("20_7886b")
+lines = Array[String](["Scram you filthy animal :3"])
+metadata/_custom_type_script = "uid://d1wqqcb5sju38"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7886b"]
+shader = ExtResource("20_coqn3")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/show_outline = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coqn3"]
+size = Vector2(160, 80)
 
 [node name="Level1" type="Node2D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_n31k3")
@@ -216,15 +243,39 @@ position = Vector2(2576, -1872)
 texture = ExtResource("15_jng41")
 
 [node name="Elevator" type="Area2D" parent="."]
-position = Vector2(3520, -1776)
+position = Vector2(3616, -1728)
 script = ExtResource("16_yclo3")
 target_scene_path = ExtResource("17_84hcr")
 character_scene_path = ExtResource("1_jkyfg")
 metadata/_custom_type_script = "uid://capu3jb6wgtpd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Elevator"]
-position = Vector2(128, 48)
+position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_sq7sj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Elevator"]
+texture_filter = 1
+texture = ExtResource("18_84hcr")
+
+[node name="NPC" parent="." node_paths=PackedStringArray("camera_manager") instance=ExtResource("19_sq7sj")]
+position = Vector2(-128, 208)
+camera_manager = NodePath("../CameraManager")
+zoom = Vector2(2.5, 2.5)
+lines = Array[ExtResource("20_7886b")]([SubResource("Resource_sfku4"), SubResource("Resource_kjfgi")])
+
+[node name="Sprite2D" parent="NPC" index="0"]
+material = SubResource("ShaderMaterial_7886b")
+texture = ExtResource("20_tf0rn")
+
+[node name="CollisionShape2D" parent="NPC" index="1"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_coqn3")
+
+[node name="DialogueBox" parent="NPC" index="2"]
+offset_left = -32.0
+offset_top = -80.0
+offset_right = -32.0
+offset_bottom = -80.0
 
 [connection signal="body_entered" from="FallZone" to="FallZone" method="_on_body_entered"]
 [connection signal="body_entered" from="Elevator" to="Elevator" method="_on_body_entered"]
@@ -233,3 +284,4 @@ shape = SubResource("RectangleShape2D_sq7sj")
 [editable path="LayerHolder/OneWayPlatform2"]
 [editable path="CameraManager"]
 [editable path="CameraManager/Areas/CameraZone"]
+[editable path="NPC"]
