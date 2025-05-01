@@ -9,8 +9,6 @@ func _ready():
 
 func _on_body_entered(body):
     if body.is_in_group("player"):
-        print("enter")
-        print(body.velocity.y)
         var velocity = body.velocity
         if velocity.y > break_speed_threshold:
             break_platform()

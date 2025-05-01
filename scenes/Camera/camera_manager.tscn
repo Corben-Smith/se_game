@@ -4,7 +4,12 @@
 
 [node name="CameraManager" type="Node2D"]
 script = ExtResource("1_obm8q")
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Areas" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Bounds" type="Node2D" parent="."]
+metadata/_edit_lock_ = true

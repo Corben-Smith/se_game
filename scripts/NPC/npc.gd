@@ -3,8 +3,9 @@ class_name NPC
 
 @onready var box: DialogueBox = $DialogueBox
 @onready var shader_mat = $Sprite2D.material
-@export var camera_manager: CameraManager
 
+@export var move_cam: bool = true
+@export var camera_manager: CameraManager
 @export var zoom: Vector2 = Vector2(2.0, 2.0)
 
 var interactable: bool = true
@@ -31,7 +32,8 @@ func _handle_dialogue_end():
 		interactable = false
 
 	interaction_timeout = true
-	camera_manager.reset_camera()
+	if move_cam:
+		camera_manager.reset_camera()
 	_reset_outline()
 
 func _on_player_entered():
@@ -45,7 +47,8 @@ func _on_player_exited():
 	interaction_timeout = false 
 
 	_reset_outline()
-	camera_manager.reset_camera()
+	if move_cam:
+		camera_manager.reset_camera()
 	box.reset_dialogue()
 
 func _interact():
@@ -53,7 +56,8 @@ func _interact():
 	if !box.is_active && interactable && !interaction_timeout:
 		box.visible = true
 
-		camera_manager.set_camera(self.position, zoom)
+		if move_cam:
+			camera_manager.set_camera(self.position, zoom)
 
 		box.start_dialogue(lines[current_verse_index].lines, "Old Man")
 

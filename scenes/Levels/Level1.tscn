@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://bw0nsbupggafc"]
+[gd_scene load_steps=46 format=4 uid="uid://bw0nsbupggafc"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_jkyfg"]
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_n31k3"]
@@ -14,9 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/Enemies/bug_guy.tscn" id="10_u4ox6"]
 [ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="12_nu2g1"]
 [ext_resource type="PackedScene" uid="uid://b6ybupb06dlsw" path="res://scenes/Camera/camera_zone.tscn" id="13_5mhgh"]
+[ext_resource type="PackedScene" uid="uid://dhlgbofoyjhpw" path="res://scenes/Levels/level_2.tscn" id="14_kjfgi"]
 [ext_resource type="Texture2D" uid="uid://dn5r4c70p8odj" path="res://assets/sprites/BG_GreenHill_Before.jpg" id="15_jng41"]
 [ext_resource type="Script" uid="uid://capu3jb6wgtpd" path="res://scripts/Objects/Elevator.gd" id="16_yclo3"]
-[ext_resource type="PackedScene" uid="uid://rsat8le877xi" path="res://scenes/Levels/test_world.tscn" id="17_84hcr"]
 [ext_resource type="Texture2D" uid="uid://cwktmp0nqs867" path="res://assets/sprites/Elevator.png" id="18_84hcr"]
 [ext_resource type="PackedScene" uid="uid://4wdajkbawuj7" path="res://scenes/NPC/npc.tscn" id="19_sq7sj"]
 [ext_resource type="Script" uid="uid://d1wqqcb5sju38" path="res://scripts/NPC/LineEntry.gd" id="20_7886b"]
@@ -89,6 +89,9 @@ size = Vector2(64, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jng41"]
 size = Vector2(512, 384)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k70aa"]
+size = Vector2(480, 304)
+
 [sub_resource type="Resource" id="Resource_k70aa"]
 script = ExtResource("20_7886b")
 lines = Array[String](["Okay billy badass", "Go back out there and jump on those damn arrows again"])
@@ -131,12 +134,13 @@ script = ExtResource("20_7886b")
 lines = Array[String](["Animal with the eyes like shotguns and razor wire"])
 metadata/_custom_type_script = "uid://d1wqqcb5sju38"
 
-[node name="Level1" type="Node2D" node_paths=PackedStringArray("spawn_point")]
+[node name="Level1" type="Node2D" node_paths=PackedStringArray("spawn_point", "camera_manager")]
 script = ExtResource("1_n31k3")
 spawn_point = NodePath("SpawnPoint")
+camera_manager = NodePath("CameraManager")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_jkyfg")]
-position = Vector2(1856, -192)
+position = Vector2(1616, -1728)
 stats = SubResource("Resource_dfih8")
 
 [node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("3_8nqap")]
@@ -250,7 +254,7 @@ shape = SubResource("RectangleShape2D_kjfgi")
 [node name="Elevator" type="Area2D" parent="Objects"]
 position = Vector2(3616, -1728)
 script = ExtResource("16_yclo3")
-target_scene_path = ExtResource("17_84hcr")
+target_scene_path = ExtResource("14_kjfgi")
 character_scene_path = ExtResource("1_jkyfg")
 metadata/_custom_type_script = "uid://capu3jb6wgtpd"
 
@@ -264,8 +268,12 @@ texture = ExtResource("18_84hcr")
 
 [node name="BgGreenHillBefore" type="Sprite2D" parent="Objects"]
 z_index = -5
-position = Vector2(2576, -1872)
+texture_repeat = 2
+position = Vector2(2608, -1904)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("15_jng41")
+region_enabled = true
+region_rect = Rect2(-2461.55, 0, 5040.52, 1004)
 
 [node name="FallZone" type="Area2D" parent="Objects"]
 position = Vector2(-183, 3185)
@@ -294,18 +302,12 @@ SPEED = 10000
 follow_speed_y = 10.0
 player = NodePath("../CharacterBody2D")
 zoom = Vector2(2, 2)
-metadata/_edit_lock_ = true
 
 [node name="Camera2D" parent="CameraManager" index="0"]
 offset = Vector2(0, -65)
 
-[node name="Areas" parent="CameraManager" index="1"]
-metadata/_edit_lock_ = true
-
 [node name="CameraZone" parent="CameraManager/Areas" index="0" instance=ExtResource("13_5mhgh")]
-position = Vector2(2576, -2000)
-zoom_x = 0.82
-zoom_y = 0.82
+position = Vector2(2576, -2016)
 
 [node name="CollisionShape2D" parent="CameraManager/Areas/CameraZone" index="0"]
 position = Vector2(16, 144)
@@ -313,6 +315,19 @@ shape = SubResource("RectangleShape2D_jng41")
 
 [node name="CameraPosition" parent="CameraManager/Areas/CameraZone" index="1"]
 position = Vector2(0, 112)
+
+[node name="CameraZone2" parent="CameraManager/Areas" index="1" node_paths=PackedStringArray("pos") instance=ExtResource("13_5mhgh")]
+position = Vector2(1344, -1792)
+pos = NodePath("CameraPosition")
+zoom_x = 3.0
+zoom_y = 3.0
+
+[node name="CollisionShape2D" parent="CameraManager/Areas/CameraZone2" index="0"]
+position = Vector2(16, -16)
+shape = SubResource("RectangleShape2D_k70aa")
+
+[node name="CameraPosition" parent="CameraManager/Areas/CameraZone2" index="1"]
+position = Vector2(16, 48)
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(-768, 256)
@@ -341,6 +356,7 @@ offset_bottom = -80.0
 [node name="NPC2" parent="." node_paths=PackedStringArray("camera_manager") instance=ExtResource("19_sq7sj")]
 light_mask = 524288
 position = Vector2(1296, -1712)
+move_cam = false
 camera_manager = NodePath("../CameraManager")
 zoom = Vector2(2.5, 2.5)
 lines = Array[ExtResource("20_7886b")]([SubResource("Resource_sfku4"), SubResource("Resource_kjfgi")])
@@ -367,5 +383,6 @@ offset_bottom = -80.0
 [editable path="Objects/FallablePlatform"]
 [editable path="CameraManager"]
 [editable path="CameraManager/Areas/CameraZone"]
+[editable path="CameraManager/Areas/CameraZone2"]
 [editable path="NPC"]
 [editable path="NPC2"]
