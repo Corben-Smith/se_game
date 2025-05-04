@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://dxs5wr0c5t6t7"]
 
-[ext_resource type="Script" uid="uid://m5a3vsvyjtyy" path="res://scripts/shop.gd" id="1_lx5au"]
+[ext_resource type="Script" uid="uid://m5a3vsvyjtyy" path="res://scripts/Shop/shop.gd" id="1_lx5au"]
 [ext_resource type="Texture2D" uid="uid://doh6ipc6su173" path="res://assets/shopBackgroundSprite.png" id="2_1l46r"]
 [ext_resource type="Texture2D" uid="uid://b0ovfif1lo2wd" path="res://assets/healingItemSprite2d.png" id="2_xfvoa"]
-[ext_resource type="Texture2D" uid="uid://dm0u4iiwc1dl1" path="res://assets/goatShopKeeperCutiePatootie.png" id="4_032fp"]
+[ext_resource type="Texture2D" uid="uid://bttd5he2mox5m" path="res://assets/shopKeepInitialSprite.png" id="4_032fp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l46r"]
 border_width_left = 8
@@ -137,11 +137,24 @@ autowrap_mode = 3
 [node name="Des" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 368.0
-offset_top = 360.0
+offset_top = 352.0
 offset_right = 784.0
-offset_bottom = 448.0
+offset_bottom = 456.0
 theme_override_font_sizes/font_size = 20
 text = "Description asdsadada"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="KeeperName" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 352.0
+offset_right = 320.0
+offset_bottom = 380.0
+theme_override_colors/font_color = Color(1, 0.780392, 0.917647, 1)
+theme_override_font_sizes/font_size = 15
+text = "Goat (Shopkeeper)"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -174,8 +187,8 @@ theme_override_font_sizes/font_size = 24
 text = "Purchase"
 
 [node name="ShopKeeperSprite2d" type="Sprite2D" parent="Control"]
-position = Vector2(232, 264)
-scale = Vector2(0.169922, 0.175781)
+position = Vector2(232, 256)
+scale = Vector2(0.42059, 0.435092)
 texture = ExtResource("4_032fp")
 
 [node name="Gold" type="Label" parent="."]
