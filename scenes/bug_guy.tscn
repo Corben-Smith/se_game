@@ -1,4 +1,3 @@
-[gd_scene load_steps=10 format=3 uid="uid://b67fcta555xpq"]
 [gd_scene load_steps=13 format=3 uid="uid://b67fcta555xpq"]
 
 [ext_resource type="Script" uid="uid://64vs17cy3mk0" path="res://scripts/bug_guy.gd" id="1_gd7oa"]
@@ -45,7 +44,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kos47"]
 size = Vector2(56, 31.1891)
 
-[node name="BugGuy" type="CharacterBody2D"]
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48etn"]
 size = Vector2(134, 68.2261)
 
@@ -76,14 +74,10 @@ position = Vector2(64, 0)
 target_position = Vector2(0, 64)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-64, -12)
-scale = Vector2(1, 5)
 position = Vector2(-64, 0)
 target_position = Vector2(-16, 0)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(48, -12)
-scale = Vector2(1, 5)
 position = Vector2(48, 0)
 target_position = Vector2(16, 0)
 
