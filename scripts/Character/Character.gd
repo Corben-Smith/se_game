@@ -13,7 +13,8 @@ var is_attacking: bool = false
 @export var state_machine: StateMachine = null
 @export var status_manager: StatusEffectManager = null
 @export var health_component: HealthComponent = null
-@export var attack_damage: int = 25
+@export var attack_damage: int = 10
+@onready var label: Label = $Label
 
 func _ready() -> void:
 	add_to_group("player")
@@ -33,6 +34,7 @@ func _ready() -> void:
 	deal_damage_area.connect("body_entered", _on_deal_damage_area_body_entered)
 
 func _physics_process(delta: float) -> void:
+	label.text = state_machine.current_state.name
 	if is_on_floor():
 		coyote_timer = stats["coyote_time"]
 	else:

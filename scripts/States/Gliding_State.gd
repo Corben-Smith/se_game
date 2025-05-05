@@ -1,19 +1,25 @@
 extends State
-class_name Jumping_State
+class_name Gliding_State
 
 @export var player: CharacterBody2D
 var gliding: bool = false
 
+var fly_timer = 0.0
+@export var max_fly_timer = 500000.0
+
 func _ready() -> void:
+    fly_timer = max_fly_timer
     if !player:
         player = get_parent().get_parent()
 
 
 func handle_input(event: InputEvent) -> void:
-    if event.is_action_pressed("Fire"):
+    if !event.is_action_pressed("Fire"):
+        gliding = false 
+
+    elif event.is_action_pressed("Fire") && fly_timer > 0.0:
         gliding = true
-    if event.is_action_released("Fire") and player.velocity.y < 0:
-        player.velocity.y *= player.stats["variable_jump_multiplier"]
+
     elif event.is_action_pressed("Attack"):
         emit_signal("transition", self, "Attack_State", {})
 
@@ -22,18 +28,15 @@ func update(delta: float) -> void:
 
 func physics_update(delta: float) -> void:
     handle_horizontal_movement()
-    if player.velocity.y > 0:
-        player.velocity.y += player.stats["falling_gravity"] * delta
-    else:
-        player.velocity.y += player.stats["gravity"] * delta
+    fly_timer -= delta
 
+    player.velocity.y = 30
 
-    if player.velocity.y > 0 && !gliding:
+    if fly_timer < 0.0:
+        gliding = false
+        
+    if !gliding:
         emit_signal("transition", self, "Falling_State", {})
-
-    if player.velocity.y > 0 && gliding:
-        print("trans to glide")
-        emit_signal("transition", self, "Gliding_State", {})
 
 func handle_horizontal_movement():
     var direction := Input.get_axis("Left", "Right")
@@ -44,7 +47,9 @@ func handle_horizontal_movement():
             player.velocity.x = move_toward(player.velocity.x, 0, player.stats["in_air_deacceleration"])
 
 func enter(previous_state_path: String, data := {}) -> void:
-    player.velocity.y = player.stats["jump_force"]
+    print("Enter glide")
+    fly_timer = max_fly_timer
+    gliding = true
 
 func exit() -> void:
     pass

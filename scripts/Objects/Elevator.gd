@@ -14,10 +14,13 @@ func _on_body_entered(body):
 			var player = character_scene_path.instantiate()
 			get_tree().root.add_child(player)
 
-
 			var point: Node2D = new_scene.get_spawn_point()
 			if point:
 				player.global_position = point.global_position
+			
+			var camera_manager = new_scene.get_camera_manager()
+			if camera_manager:
+				camera_manager.player = player
 
 			get_tree().current_scene.queue_free()
 			get_tree().current_scene = new_scene

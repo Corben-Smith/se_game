@@ -1,0 +1,198 @@
+[gd_scene load_steps=28 format=3 uid="uid://dhlgbofoyjhpw"]
+
+[ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_rbuvs"]
+[ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="2_452xl"]
+[ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_f2tki"]
+[ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://scenes/pause_menu.tscn" id="4_ki2ik"]
+[ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="5_u84qy"]
+[ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_godws"]
+[ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="7_5crkq"]
+[ext_resource type="Script" uid="uid://capu3jb6wgtpd" path="res://scripts/Objects/Elevator.gd" id="13_04xhx"]
+[ext_resource type="PackedScene" uid="uid://rsat8le877xi" path="res://scenes/Levels/test_world.tscn" id="14_y6tmf"]
+[ext_resource type="Texture2D" uid="uid://cwktmp0nqs867" path="res://assets/sprites/Elevator.png" id="15_r0w8p"]
+[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scripts/Objects/FallZone.gd" id="17_gv2sh"]
+[ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="19_40h3w"]
+[ext_resource type="PackedScene" uid="uid://4wdajkbawuj7" path="res://scenes/NPC/npc.tscn" id="20_yd0ew"]
+[ext_resource type="Script" uid="uid://d1wqqcb5sju38" path="res://scripts/NPC/LineEntry.gd" id="21_tbcna"]
+[ext_resource type="Shader" uid="uid://ye4utbyoye7n" path="res://scripts/Outline.gdshader" id="22_pv7xf"]
+[ext_resource type="Texture2D" uid="uid://2xi7n5glsxfv" path="res://assets/sprites/cat.png" id="23_n24u3"]
+
+[sub_resource type="Resource" id="Resource_b5w1l"]
+script = ExtResource("3_f2tki")
+_acceleration = 50.0
+_deacceleration = 100.0
+max_speed = 300.0
+in_air_acceleration = 20.0
+in_air_deacceleration = 20.0
+jump_force = -500.0
+_gravity = 1000.0
+falling_gravity = 2000.0
+coyote_time = 0.1
+jump_buffer_time = 0.1
+variable_jump_multiplier = 0.5
+max_falling_speed = 50.0
+metadata/_custom_type_script = "uid://byikc5yvpboxi"
+
+[sub_resource type="Resource" id="Resource_3xk6l"]
+script = ExtResource("7_5crkq")
+stat_name = "acceleration"
+modifier_type = 1
+modifier_value = 0.5
+metadata/_custom_type_script = "uid://cuntujpetedjt"
+
+[sub_resource type="Resource" id="Resource_mjm4b"]
+script = ExtResource("7_5crkq")
+stat_name = "deacceleration"
+modifier_type = 1
+modifier_value = 0.05
+metadata/_custom_type_script = "uid://cuntujpetedjt"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kow50"]
+size = Vector2(64, 96)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mxjqm"]
+
+[sub_resource type="Resource" id="Resource_k70aa"]
+script = ExtResource("21_tbcna")
+lines = Array[String](["Okay billy badass", "Go back out there and jump on those damn arrows again"])
+metadata/_custom_type_script = "uid://d1wqqcb5sju38"
+
+[sub_resource type="Resource" id="Resource_emles"]
+script = ExtResource("21_tbcna")
+lines = Array[String](["Scram"])
+metadata/_custom_type_script = "uid://d1wqqcb5sju38"
+
+[sub_resource type="Resource" id="Resource_4eo3q"]
+script = ExtResource("21_tbcna")
+lines = Array[String](["Shoo"])
+metadata/_custom_type_script = "uid://d1wqqcb5sju38"
+
+[sub_resource type="Resource" id="Resource_wo821"]
+script = ExtResource("21_tbcna")
+lines = Array[String](["..."])
+metadata/_custom_type_script = "uid://d1wqqcb5sju38"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4x7gr"]
+shader = ExtResource("22_pv7xf")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/show_outline = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlxpm"]
+size = Vector2(160, 80)
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_rbuvs")
+metadata/_custom_type_script = "uid://dndkk0j5v0b4h"
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_452xl")]
+position = Vector2(1616, -1728)
+stats = SubResource("Resource_b5w1l")
+
+[node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("4_ki2ik")]
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CharacterBody2D"]
+offset_left = -21.3335
+offset_top = -64.0
+offset_right = 18.6665
+offset_bottom = -41.0
+metadata/_edit_use_anchors_ = true
+
+[node name="LayerHolder" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="GroundLayer" type="TileMapLayer" parent="LayerHolder"]
+tile_set = ExtResource("5_u84qy")
+use_kinematic_bodies = true
+
+[node name="Foreground" type="TileMapLayer" parent="LayerHolder"]
+tile_set = ExtResource("5_u84qy")
+collision_enabled = false
+
+[node name="IceLayer" type="TileMapLayer" parent="LayerHolder"]
+modulate = Color(1.05888e-06, 0.598696, 0.701699, 1)
+tile_set = ExtResource("5_u84qy")
+script = ExtResource("6_godws")
+modifier_entries = Array[ExtResource("7_5crkq")]([SubResource("Resource_3xk6l"), SubResource("Resource_mjm4b")])
+metadata/_custom_type_script = "uid://blvvq3mqfjsmr"
+
+[node name="DebugText" type="Node2D" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DebugText"]
+offset_left = -800.0
+offset_top = 176.0
+offset_right = -760.0
+offset_bottom = 245.0
+text = "Entrance Elevator
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Elevator" type="Area2D" parent="Objects"]
+position = Vector2(3616, -1728)
+script = ExtResource("13_04xhx")
+target_scene_path = ExtResource("14_y6tmf")
+character_scene_path = ExtResource("2_452xl")
+metadata/_custom_type_script = "uid://capu3jb6wgtpd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Elevator"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_kow50")
+
+[node name="Sprite2D" type="Sprite2D" parent="Objects/Elevator"]
+texture_filter = 1
+texture = ExtResource("15_r0w8p")
+
+[node name="FallZone" type="Area2D" parent="Objects"]
+position = Vector2(-183, 3185)
+scale = Vector2(176.68, -1.94997)
+script = ExtResource("17_gv2sh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/FallZone"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_mxjqm")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="CameraManager" parent="." instance=ExtResource("19_40h3w")]
+follow_speed_y = 10.0
+zoom = Vector2(2, 2)
+
+[node name="Camera2D" parent="CameraManager" index="0"]
+offset = Vector2(0, -65)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(-768, 256)
+
+[node name="NPC" parent="." instance=ExtResource("20_yd0ew")]
+light_mask = 524288
+position = Vector2(3168, -560)
+zoom = Vector2(2.5, 2.5)
+lines = Array[ExtResource("21_tbcna")]([SubResource("Resource_k70aa"), SubResource("Resource_emles"), SubResource("Resource_4eo3q"), SubResource("Resource_wo821")])
+
+[node name="Sprite2D" parent="NPC" index="0"]
+material = SubResource("ShaderMaterial_4x7gr")
+texture = ExtResource("23_n24u3")
+
+[node name="CollisionShape2D" parent="NPC" index="1"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_xlxpm")
+
+[node name="DialogueBox" parent="NPC" index="2"]
+offset_left = -32.0
+offset_top = -80.0
+offset_right = -32.0
+offset_bottom = -80.0
+
+[connection signal="body_entered" from="Objects/Elevator" to="Objects/Elevator" method="_on_body_entered"]
+[connection signal="body_entered" from="Objects/FallZone" to="Objects/FallZone" method="_on_body_entered"]
+
+[editable path="CameraManager"]
+[editable path="NPC"]
