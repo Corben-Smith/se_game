@@ -144,6 +144,13 @@ position = Vector2(3472, -1792)
 stats = SubResource("Resource_dfih8")
 
 [node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("3_8nqap")]
+[node name="Label" type="Label" parent="CharacterBody2D"]
+offset_left = -21.3335
+offset_top = -64.0
+offset_right = 18.6665
+offset_bottom = -41.0
+
+[node name="PauseMenu2" parent="CharacterBody2D" instance=ExtResource("4_kjfgi")]
 
 [node name="LayerHolder" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -282,15 +289,12 @@ shape = SubResource("WorldBoundaryShape2D_n31k3")
 
 [node name="BugGuy" parent="Enemies" instance=ExtResource("10_u4ox6")]
 position = Vector2(1104, 864)
-SPEED = 10000
 
 [node name="BugGuy2" parent="Enemies" instance=ExtResource("10_u4ox6")]
 position = Vector2(3776, 368)
-SPEED = 10000
 
 [node name="BugGuy3" parent="Enemies" instance=ExtResource("10_u4ox6")]
 position = Vector2(3744, 64)
-SPEED = 10000
 
 [node name="CameraManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("12_nu2g1")]
 follow_speed_y = 10.0

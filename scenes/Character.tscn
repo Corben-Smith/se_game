@@ -60,7 +60,8 @@ gravity = Vector3(0, 98, 0)
 scale_min = 0.05
 scale_max = 0.05
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "status_manager", "health_component")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "status_manager", "health_component") groups=["player"]]
+scale = Vector2(0.75, 0.75)
 light_mask = 524288
 script = ExtResource("1_7ig0a")
 stats = SubResource("Resource_r68wp")
@@ -80,6 +81,11 @@ duration = 2.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_ksmjn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -40)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
 script = ExtResource("3_rguqb")
@@ -122,6 +128,7 @@ metadata/_custom_type_script = "uid://dp74djouk71ts"
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("9_r87yu")
+max_health = 3
 
 [node name="Left Outer" type="RayCast2D" parent="."]
 position = Vector2(-12, -24)
@@ -131,7 +138,7 @@ rotation = 3.14159
 position = Vector2(-8, -24)
 rotation = 3.14159
 
-[node name="DealDamageArea" type="Area2D" parent="."]
+[node name="DealDamageArea" type="Area2D" parent="." groups=["player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DealDamageArea"]
 position = Vector2(32, 0)
