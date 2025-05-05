@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=4 uid="uid://by32pmgg5ihv6"]
 
-[ext_resource type="Script" path="res://script/Character.gd" id="1_yge7i"]
+[ext_resource type="Script" uid="uid://bfu4xs3tyne55" path="res://scripts/Character.gd" id="1_yge7i"]
 [ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="2_fsk44"]
 [ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="3_cnaw2"]
-[ext_resource type="TileSet" uid="uid://br8mdlo61rhb" path="res://assets/new_tile_set.tres" id="3_ns1xd"]
+[ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="3_ns1xd"]
 [ext_resource type="PackedScene" uid="uid://c6mossxsl0anr" path="res://scenes/player.tscn" id="4_dsnr4"]
-[ext_resource type="Script" path="res://healthbar.gd" id="5_cnaw2"]
+[ext_resource type="Script" uid="uid://cp6641qybnicx" path="res://scripts/Health/healthbar.gd" id="5_cnaw2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmjn"]
 size = Vector2(32, 64)

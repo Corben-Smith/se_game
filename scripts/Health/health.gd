@@ -8,16 +8,16 @@ signal health_depleted
 var current_health: int = 100
 
 func take_damage(amount: int):
-    current_health -= amount
-    health_changed.emit(current_health)
+	current_health -= amount
+	health_changed.emit(current_health)
 
-    if current_health <= 0:
-        current_health = 0
-        health_depleted.emit()
+	if current_health <= 0:
+		current_health = 0
+		health_depleted.emit()
 
 func add_health(amount: int):
-    current_health += amount
-    pass
+	current_health += amount
+	pass
 
 func get_health() -> int:
-    return current_health
+	return current_health
