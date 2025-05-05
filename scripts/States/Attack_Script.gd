@@ -16,10 +16,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 	await get_tree().create_timer(attack_duration).timeout
 
-	# Clean up after attack
 	player.deal_damage_area.monitoring = false
 	player.get_node("DealDamageArea/CollisionShape2D").disabled = true
 	player.is_attacking = false
 
-	# Return to idle state
+	# Go back to idle
 	emit_signal("transition", self, "Idle_State", {})

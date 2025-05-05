@@ -9,9 +9,7 @@ func _on_body_exited(body: Node2D):
 	pass
 
 func _on_body_entered(body: Node2D):
-	if body is Player:
-		_collect(body)
-		queue_free()
+	pass
 
 func _collect(player: Player):
 	pass

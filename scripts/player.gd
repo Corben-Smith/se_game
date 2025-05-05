@@ -14,7 +14,7 @@ func _ready():
 	current_attack = false
 
 func _physics_process(delta):
-	#weapon_equip = Global.playerWeaponEquip
+	weapon_equip = Global.playerWeaponEquip
 	
 	
 	if not is_on_floor():
@@ -104,8 +104,8 @@ func set_damage(attack_type):
 		current_damage_to_deal = 16
 	elif attack_type == "air":
 		current_damage_to_deal = 20
-	#Global.playerDamageAmount = current_damage_to_deal
+	Global.playerDamageAmount = current_damage_to_deal
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):  # Press "Enter" to take damage
-		$health.take_damage(1)  # Reduce health by 10
+		$health.take_damage(10)  # Reduce health by 10

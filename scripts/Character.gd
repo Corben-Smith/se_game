@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @onready var deal_damage_area = $DealDamageArea
-@onready var sprite = $Sprite2D #this ill be used for making character flash red
+
 # Internal variables
 var coyote_timer: float = 0.0
 var jump_buffer_timer: float = 0.0
@@ -13,7 +13,7 @@ var is_attacking: bool = false
 @export var state_machine: StateMachine = null
 @export var status_manager: StatusEffectManager = null
 @export var health_component: HealthComponent = null
-@export var attack_damage: int = 25
+@export var attack_damage: int = 10
 
 func _ready() -> void:
 	add_to_group("player")
@@ -48,8 +48,6 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	state_machine.handle_input(event)
-	if event.is_action_pressed("test_damage"):
-		take_damage()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -106,31 +104,5 @@ func toggle_flip_damage(dir):
 		deal_damage_area.scale.x = -1
 
 func _on_deal_damage_area_body_entered(body):
-	print("👀 Entered DealDamageArea. Collided with: ", body.name)
-
-	if is_attacking:
-		print("✅ Player is attacking.")
-
-	if body.is_in_group("enemy"):
-		print("🎯 Body is in enemy group.")
-
-	if body.has_method("take_damage"):
-		print("🛠️ Body has take_damage method.")
-
-	if is_attacking and body.is_in_group("enemy") and body.has_method("take_damage"):
-		print("🗡️ Hit enemy!")
+	if is_attacking and body.has_method("take_damage"):
 		body.take_damage(attack_damage)
-
-func take_damage(amount: int = 1):
-	print("🩸 Player take_damage() called with amount:", amount)
-	if health_component:
-		print("✅ health_component exists. Calling take_damage...")
-		health_component.take_damage(amount)
-		flash_red()
-	else:
-		print("❌ health_component is null")
-
-func flash_red():
-	sprite.modulate = Color(1, 0, 0)
-	await get_tree().create_timer(0.1).timeout
-	sprite.modulate = Color(1, 1, 1)
