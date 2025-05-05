@@ -22,12 +22,12 @@ func get_bounds_rect() -> Rect2:
 		return Rect2()
 		
 	var rect_shape: RectangleShape2D = shape.shape as RectangleShape2D
-	var bounds_pos = global_position
+	var bounds_pos = shape.global_position
 	var bounds_extents = rect_shape.size / 2  # RectangleShape2D.size is already the extents (half-size)
 	
 	return Rect2(
-		shape.global_transform.origin.x - bounds_extents.x,
-		shape.global_transform.origin.y - bounds_extents.y,
+		shape.global_position.x - bounds_extents.x,
+		shape.global_position.y - bounds_extents.y,
 		bounds_extents.x * 2,
 		bounds_extents.y * 2
 	)

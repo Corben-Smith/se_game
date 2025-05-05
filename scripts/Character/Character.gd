@@ -34,7 +34,8 @@ func _ready() -> void:
 	deal_damage_area.connect("body_entered", _on_deal_damage_area_body_entered)
 
 func _physics_process(delta: float) -> void:
-	label.text = state_machine.current_state.name
+	if label:
+		label.text = state_machine.current_state.name
 	if is_on_floor():
 		coyote_timer = stats["coyote_time"]
 	else:

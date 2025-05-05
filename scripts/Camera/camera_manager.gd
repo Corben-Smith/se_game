@@ -16,6 +16,8 @@ var areas: Array[CameraZone] = []
 var following_player: bool = true
 var active_bounds: CameraBounds = null
 
+@export var offset: Vector2 = Vector2(0, -50)
+
 @export var zoom: Vector2 = Vector2(1.5, 1.5)
 var tween: Tween
 
@@ -81,11 +83,15 @@ func set_camera_bounds(bounds: CameraBounds) -> void:
 		
 	active_bounds = bounds
 	var rect = bounds.get_bounds_rect()
-	
-	camera.limit_left = rect.position.x
-	camera.limit_right = rect.position.x + rect.size.x
-	camera.limit_top = rect.position.y
-	camera.limit_bottom = rect.position.y + rect.size.y
+
+	# camera.limit_left = rect.position.x
+	# camera.limit_right = rect.position.x + rect.size.x
+	# camera.limit_top = rect.position.y
+	# camera.limit_bottom = rect.position.y + rect.size.y
+	limit_left = rect.position.x
+	limit_right = rect.position.x + rect.size.x
+	limit_top = rect.position.y
+	limit_bottom = rect.position.y + rect.size.y
 
 # Clear camera bounds
 func clear_camera_bounds() -> void:
@@ -93,6 +99,11 @@ func clear_camera_bounds() -> void:
 	camera.limit_right = 10000000
 	camera.limit_top = -10000000
 	camera.limit_bottom = 10000000
+
+	limit_left = -10000000
+	limit_right = 10000000
+	limit_top = -10000000
+	limit_bottom = 10000000
 	active_bounds = null
 
 # # Function to bound a position within the camera limits
@@ -105,6 +116,11 @@ func clear_camera_bounds() -> void:
 #
 #     return Vector2(bounded_x, bounded_y)
 
+var limit_left = -10000000
+var limit_right = 10000000
+var limit_top = -10000000
+var limit_bottom = 10000000
+
 func bound_position(target_position: Vector2) -> Vector2:
 	# Calculate the visible area in world space
 	var viewport_size = get_viewport_rect().size
@@ -112,19 +128,19 @@ func bound_position(target_position: Vector2) -> Vector2:
 	var half_height = viewport_size.y / (2 * camera.zoom.y)
 	
 	# Adjust bounds to account for screen size and zoom
-	var min_x = camera.limit_left + half_width
-	var max_x = camera.limit_right - half_width
-	var min_y = camera.limit_top + half_height
-	var max_y = camera.limit_bottom - half_height
+	var min_x = limit_left + half_width
+	var max_x = limit_right - half_width
+	var min_y = limit_top + half_height
+	var max_y = limit_bottom - half_height
 	
-	# If the camera area is smaller than the viewable area, center the camera
+	# If the area is smaller than the viewable area, center the camera
 	if min_x > max_x:
-		var center_x = (camera.limit_left + camera.limit_right) / 2
+		var center_x = (limit_left + camera.limit_right) / 2
 		min_x = center_x
 		max_x = center_x
 	
 	if min_y > max_y:
-		var center_y = (camera.limit_top + camera.limit_bottom) / 2
+		var center_y = (limit_top + camera.limit_bottom) / 2
 		min_y = center_y
 		max_y = center_y
 	
@@ -137,7 +153,7 @@ func smooth_follow(target_position: Vector2, delta: float):
 	var camera_pos = camera.position
 
 	# Get the bounded target position
-	var bounded_target = bound_position(target_position)
+	var bounded_target = bound_position(target_position + offset)
 
 	# Snap to X quickly
 	var new_x = lerp(camera_pos.x, bounded_target.x, follow_speed_x * delta)
@@ -147,10 +163,6 @@ func smooth_follow(target_position: Vector2, delta: float):
 
 	camera.position = Vector2(new_x, new_y)
 	
-func smooth_refollow(target_position: Vector2, delta):
-	var bounded_target = bound_position(target_position)
-	camera.position = camera.position.lerp(bounded_target, follow_speed_x * delta)
-
 func set_camera(pos: Vector2, set_zoom: Vector2):
 	following_player = false
 
@@ -183,3 +195,18 @@ func _on_player_exited_bounds(bounds: CameraBounds) -> void:
 			set_camera_bounds(default_bounds)
 		else:
 			clear_camera_bounds()
+
+
+
+func adjust_zoom_to_bounds():
+	var viewport_size = get_viewport_rect().size
+	var bounds_width = limit_right - limit_left
+	var bounds_height = limit_bottom - limit_top
+
+	# Calculate minimum zoom so nothing outside bounds is visible
+	var zoom_x = viewport_size.x / bounds_width
+	var zoom_y = viewport_size.y / bounds_height
+
+	# Use the smaller zoom to ensure both dimensions fit
+	var min_zoom = 1.0 / max(zoom_x, zoom_y)
+	camera.zoom = Vector2(min_zoom, min_zoom)
