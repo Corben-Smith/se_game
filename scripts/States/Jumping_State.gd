@@ -12,8 +12,6 @@ func _ready() -> void:
 
 
 func handle_input(event: InputEvent) -> void:
-	if event.is_action_pressed("Fire"):
-		gliding = true
 	if event.is_action_released("Fire") and player.velocity.y < 0:
 		player.velocity.y *= player.stats["variable_jump_multiplier"]
 	elif event.is_action_pressed("Attack"):
@@ -29,6 +27,9 @@ func physics_update(delta: float) -> void:
 	else:
 		player.velocity.y += player.stats["gravity"] * delta
 
+	gliding = false
+	if Input.is_action_pressed("Fire"):
+		gliding = true
 
 	if player.velocity.y > 0 && !gliding:
 		emit_signal("transition", self, "Falling_State", {})

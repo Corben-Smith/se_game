@@ -46,7 +46,6 @@ func _physics_process(delta: float) -> void:
 	elif velocity.x > 0:
 		$Sprite2D.flip_h = false
 
-
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:

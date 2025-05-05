@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_jkyfg"]
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_n31k3"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="2_4h7ej"]
-[ext_resource type="PackedScene" path="res://scenes/pause_menu.tscn" id="3_8nqap"]
+[ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://scenes/pause_menu.tscn" id="3_8nqap"]
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scripts/Objects/FallZone.gd" id="4_u4ox6"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="5_o8yur"]
 [ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_nu2g1"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cwktmp0nqs867" path="res://assets/sprites/Elevator.png" id="18_84hcr"]
 [ext_resource type="PackedScene" uid="uid://4wdajkbawuj7" path="res://scenes/NPC/npc.tscn" id="19_sq7sj"]
 [ext_resource type="Script" uid="uid://d1wqqcb5sju38" path="res://scripts/NPC/LineEntry.gd" id="20_7886b"]
-[ext_resource type="Shader" path="res://scripts/Outline.gdshader" id="20_coqn3"]
+[ext_resource type="Shader" uid="uid://ye4utbyoye7n" path="res://scripts/Outline.gdshader" id="20_coqn3"]
 [ext_resource type="Texture2D" uid="uid://2xi7n5glsxfv" path="res://assets/sprites/cat.png" id="20_tf0rn"]
 [ext_resource type="PackedScene" uid="uid://by4e4tb625yge" path="res://scenes/Objects/fallable_platform.tscn" id="23_kjfgi"]
 [ext_resource type="Texture2D" uid="uid://bcp1f3nodbqyl" path="res://assets/sprites/break.png" id="24_k70aa"]
@@ -142,15 +142,15 @@ camera_manager = NodePath("CameraManager")
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_jkyfg")]
 position = Vector2(3472, -1792)
 stats = SubResource("Resource_dfih8")
+attack_damage = 50
 
 [node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("3_8nqap")]
-[node name="Label" type="Label" parent="CharacterBody2D"]
+
+[node name="Label2" type="Label" parent="CharacterBody2D"]
 offset_left = -21.3335
 offset_top = -64.0
 offset_right = 18.6665
 offset_bottom = -41.0
-
-[node name="PauseMenu2" parent="CharacterBody2D" instance=ExtResource("4_kjfgi")]
 
 [node name="LayerHolder" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

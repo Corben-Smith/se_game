@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://by4e4tb625yge"]
 
-[ext_resource type="Script" path="res://fallable_platform.gd" id="1_gmjtc"]
+[ext_resource type="Script" uid="uid://c2s6wlw07sslt" path="res://fallable_platform.gd" id="1_gmjtc"]
 
 [node name="FallablePlatform" type="Area2D"]
 script = ExtResource("1_gmjtc")
