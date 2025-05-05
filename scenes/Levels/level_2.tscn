@@ -161,9 +161,8 @@ shape = SubResource("WorldBoundaryShape2D_mxjqm")
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="CameraManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("19_40h3w")]
+[node name="CameraManager" parent="." instance=ExtResource("19_40h3w")]
 follow_speed_y = 10.0
-player = NodePath("")
 zoom = Vector2(2, 2)
 
 [node name="Camera2D" parent="CameraManager" index="0"]
@@ -172,10 +171,9 @@ offset = Vector2(0, -65)
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(-768, 256)
 
-[node name="NPC" parent="." node_paths=PackedStringArray("camera_manager") instance=ExtResource("20_yd0ew")]
+[node name="NPC" parent="." instance=ExtResource("20_yd0ew")]
 light_mask = 524288
 position = Vector2(3168, -560)
-camera_manager = NodePath("")
 zoom = Vector2(2.5, 2.5)
 lines = Array[ExtResource("21_tbcna")]([SubResource("Resource_k70aa"), SubResource("Resource_emles"), SubResource("Resource_4eo3q"), SubResource("Resource_wo821")])
 
