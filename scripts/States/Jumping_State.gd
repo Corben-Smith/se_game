@@ -2,6 +2,9 @@ extends State
 class_name Jumping_State
 
 @export var player: CharacterBody2D
+var gliding: bool = false
+
+@export var particles: GPUParticles2D = null
 
 func _ready() -> void:
 	if !player:
@@ -9,6 +12,8 @@ func _ready() -> void:
 
 
 func handle_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Fire"):
+		gliding = true
 	if event.is_action_released("Fire") and player.velocity.y < 0:
 		player.velocity.y *= player.stats["variable_jump_multiplier"]
 	elif event.is_action_pressed("Attack"):
@@ -25,8 +30,12 @@ func physics_update(delta: float) -> void:
 		player.velocity.y += player.stats["gravity"] * delta
 
 
-	if player.velocity.y > 0:
+	if player.velocity.y > 0 && !gliding:
 		emit_signal("transition", self, "Falling_State", {})
+
+	if player.velocity.y > 0 && gliding:
+		print("trans to glide")
+		emit_signal("transition", self, "Gliding_State", {})
 
 func handle_horizontal_movement():
 	var direction := Input.get_axis("Left", "Right")
@@ -38,6 +47,7 @@ func handle_horizontal_movement():
 
 func enter(previous_state_path: String, data := {}) -> void:
 	player.velocity.y = player.stats["jump_force"]
+	particles.restart()
 
 func exit() -> void:
 	pass

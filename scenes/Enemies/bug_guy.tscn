@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://b67fcta555xpq"]
+
+[ext_resource type="Script" uid="uid://64vs17cy3mk0" path="res://scripts/Enemies/bug_guy.gd" id="1_gd7oa"]
+[ext_resource type="Texture2D" uid="uid://br5ubtrgbtww7" path="res://assets/sprites/Spritesheet.png" id="1_v6hos"]
+[ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="3_48etn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd7oa"]
+atlas = ExtResource("1_v6hos")
+region = Rect2(159, 0, 159, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48etn"]
+atlas = ExtResource("1_v6hos")
+region = Rect2(318, 0, 159, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chcdh"]
+atlas = ExtResource("1_v6hos")
+region = Rect2(0, 93, 159, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eodsp"]
+atlas = ExtResource("1_v6hos")
+region = Rect2(159, 93, 159, 93)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lwnnh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd7oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48etn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chcdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eodsp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kos47"]
+size = Vector2(56, 31.1891)
+
+[node name="BugGuy" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_gd7oa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1, 1.026)
+sprite_frames = SubResource("SpriteFrames_lwnnh")
+autoplay = "default"
+frame_progress = 0.437212
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 16)
+scale = Vector2(2, 2.052)
+shape = SubResource("RectangleShape2D_kos47")
+
+[node name="RayCastDownLeft" type="RayCast2D" parent="."]
+position = Vector2(-80, 0)
+target_position = Vector2(0, 64)
+
+[node name="RayCastDownRight" type="RayCast2D" parent="."]
+position = Vector2(64, 0)
+target_position = Vector2(0, 64)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-64, -12)
+scale = Vector2(1, 5)
+target_position = Vector2(-16, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(48, -12)
+scale = Vector2(1, 5)
+target_position = Vector2(16, 0)
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_48etn")
+metadata/_custom_type_script = "uid://lbreutrqdu6t"
