@@ -7,7 +7,7 @@
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="5_o8yur"]
 [ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_nu2g1"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="7_5mhgh"]
-[ext_resource type="PackedScene" path="res://scenes/boost_object.tscn" id="8_4h7ej"]
+[ext_resource type="PackedScene" uid="uid://rd8jyvx57o3u" path="res://scenes/boost_object.tscn" id="8_4h7ej"]
 [ext_resource type="Script" uid="uid://c47kx8ckq6sc8" path="res://scripts/StatusEffects/Levitate_effect.gd" id="9_8nqap"]
 
 [sub_resource type="Resource" id="Resource_dfih8"]

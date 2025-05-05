@@ -13,8 +13,8 @@
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="8_x05cw"]
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="10_ar7ra"]
 [ext_resource type="Script" uid="uid://0l1jqwbysrm2" path="res://scenes/ui.gd" id="13_dv75v"]
-[ext_resource type="PackedScene" path="res://heart.tscn" id="13_mjm4b"]
-[ext_resource type="PackedScene" path="res://health_collectable.tscn" id="15_x05cw"]
+[ext_resource type="PackedScene" uid="uid://bm8w2bh468hgy" path="res://heart.tscn" id="13_mjm4b"]
+[ext_resource type="PackedScene" uid="uid://dshfr8k7r2766" path="res://health_collectable.tscn" id="15_x05cw"]
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/bug_guy.tscn" id="16_bn472"]
 
 [sub_resource type="Resource" id="Resource_8hcw6"]
