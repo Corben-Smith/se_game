@@ -1,7 +1,7 @@
-[gd_scene load_steps=25 format=4 uid="uid://cld08lmch05yw"]
+[gd_scene load_steps=24 format=4 uid="uid://cld08lmch05yw"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
-[ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://scenes/pause_menu.tscn" id="1_ar7ra"]
+[ext_resource type="PackedScene" path="res://scenes/pause_menu.tscn" id="1_ar7ra"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_ar7ra"]
 [ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/Collectable/collectable.tscn" id="3_umbte"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="3_xwrkq"]
@@ -12,9 +12,8 @@
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="8_x05cw"]
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scripts/Objects/FallZone.gd" id="10_ar7ra"]
-[ext_resource type="Script" uid="uid://0l1jqwbysrm2" path="res://scenes/ui.gd" id="13_dv75v"]
-[ext_resource type="PackedScene" uid="uid://bm8w2bh468hgy" path="res://heart.tscn" id="13_mjm4b"]
-[ext_resource type="PackedScene" uid="uid://dshfr8k7r2766" path="res://health_collectable.tscn" id="15_x05cw"]
+[ext_resource type="Script" path="res://scenes/ui.gd" id="13_dv75v"]
+[ext_resource type="PackedScene" uid="uid://dnh30xww7d5nr" path="res://health_collectable.tscn" id="15_x05cw"]
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/Enemies/bug_guy.tscn" id="16_bn472"]
 
 [sub_resource type="Resource" id="Resource_8hcw6"]
@@ -24,7 +23,7 @@ _deacceleration = 100.0
 max_speed = 300.0
 in_air_acceleration = 20.0
 in_air_deacceleration = 20.0
-jump_force = -500.0
+jump_force = -450.0
 _gravity = 1000.0
 falling_gravity = 2000.0
 coyote_time = 0.1
@@ -36,15 +35,15 @@ metadata/_custom_type_script = "uid://byikc5yvpboxi"
 [sub_resource type="Resource" id="Resource_3xk6l"]
 script = ExtResource("8_x05cw")
 stat_name = "acceleration"
-modifier_type = 1
-modifier_value = 0.5
+modifier_type = 0
+modifier_value = 0.0
 metadata/_custom_type_script = "uid://cuntujpetedjt"
 
 [sub_resource type="Resource" id="Resource_mjm4b"]
 script = ExtResource("8_x05cw")
 stat_name = "deacceleration"
-modifier_type = 1
-modifier_value = 0.1
+modifier_type = 0
+modifier_value = 0.0
 metadata/_custom_type_script = "uid://cuntujpetedjt"
 
 [sub_resource type="Resource" id="Resource_nrstc"]
@@ -73,22 +72,9 @@ stats = SubResource("Resource_8hcw6")
 
 [node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("1_ar7ra")]
 
-[node name="UI" type="CanvasLayer" parent="CharacterBody2D" node_paths=PackedStringArray("player")]
+[node name="UI2" type="CanvasLayer" parent="CharacterBody2D" node_paths=PackedStringArray("player")]
 script = ExtResource("13_dv75v")
 player = NodePath("..")
-
-[node name="Hearts" type="HBoxContainer" parent="CharacterBody2D/UI"]
-offset_left = 1.0
-offset_right = 41.0
-offset_bottom = 40.0
-
-[node name="Heart" parent="CharacterBody2D/UI/Hearts" instance=ExtResource("13_mjm4b")]
-
-[node name="Heart2" parent="CharacterBody2D/UI/Hearts" instance=ExtResource("13_mjm4b")]
-position = Vector2(41, 0)
-
-[node name="Heart3" parent="CharacterBody2D/UI/Hearts" instance=ExtResource("13_mjm4b")]
-position = Vector2(82, 0)
 
 [node name="LayerHolder" type="Node2D" parent="."]
 position = Vector2(6, 0)

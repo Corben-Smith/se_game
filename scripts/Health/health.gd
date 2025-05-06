@@ -15,8 +15,10 @@ func take_damage(amount: int):
 	health_changed.emit(current_health)
 
 	if current_health <= 0:
+		print("diedie")
 		current_health = 0
 		health_depleted.emit()
+		print("die")
 	print("💔 Took damage! Current health: ", current_health, "/", max_health)
 
 

@@ -26,12 +26,17 @@ func _ready() -> void:
 		status_manager = $StatusEffectManager
 	if !health_component:
 		health_component = $HealthComponent
+		health_component.health_depleted.connect(_die)
+		
 	# Disable damage area at the start
 	deal_damage_area.monitoring = false
 	$DealDamageArea/CollisionShape2D.disabled = true
 	
 	# Connect damage signal
 	deal_damage_area.connect("body_entered", _on_deal_damage_area_body_entered)
+
+func _die():
+	pass
 
 func _physics_process(delta: float) -> void:
 	if label:

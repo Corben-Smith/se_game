@@ -1,10 +1,9 @@
-extends ProgressBar
+extends CanvasLayer
 @export var health_component: Node  # Assign this in Inspector (for Player, Enemy, etc.)
 
 func _ready():
 	if health_component:
 		health_component.health_changed.connect(update_health)
-		health_component.died.connect(hide_health_bar)  # Hide bar on death
 		update_health(health_component.current_health)  # Initialize bar
 
 func update_health(new_health):

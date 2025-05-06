@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbuat5athyyak"]
+[gd_scene load_steps=3 format=3 uid="uid://ch2tb12765uav"]
 
-[ext_resource type="Script" uid="uid://0l1jqwbysrm2" path="res://scenes/ui.gd" id="1_u7us0"]
+[ext_resource type="Script" path="res://scenes/ui.gd" id="1_u7us0"]
 [ext_resource type="PackedScene" uid="uid://bm8w2bh468hgy" path="res://heart.tscn" id="2_myxc3"]
 
 [node name="UI" type="CanvasLayer"]

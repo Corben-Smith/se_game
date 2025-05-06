@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dshfr8k7r2766"]
+[gd_scene load_steps=14 format=3 uid="uid://dnh30xww7d5nr"]
 
 [ext_resource type="Script" uid="uid://dagfe2xw7uw24" path="res://scripts/Health/health_collectable.gd" id="1_j1438"]
 [ext_resource type="Texture2D" uid="uid://cnt6ismjwxk64" path="res://assets/PinkHeartSprite.png" id="2_j1438"]
@@ -89,6 +89,8 @@ script = ExtResource("1_j1438")
 scale = Vector2(0.298077, 0.286408)
 sprite_frames = SubResource("SpriteFrames_8ry2w")
 animation = &"Item"
+autoplay = "Item"
+frame_progress = 0.312938
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_t0wvl")

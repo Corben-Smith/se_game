@@ -1,9 +1,9 @@
-[gd_scene load_steps=49 format=4 uid="uid://boqw4pqjdolkc"]
+[gd_scene load_steps=50 format=4 uid="uid://boqw4pqjdolkc"]
 
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_811s2"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="2_4xsrm"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_hc568"]
-[ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://scenes/pause_menu.tscn" id="4_0r5j3"]
+[ext_resource type="PackedScene" path="res://scenes/pause_menu.tscn" id="4_0r5j3"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="5_d0wj5"]
 [ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_1n1l4"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="7_yhe24"]
@@ -15,17 +15,18 @@
 [ext_resource type="PackedScene" uid="uid://rd8jyvx57o3u" path="res://scenes/Objects/boost_object.tscn" id="12_4xsrm"]
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/Enemies/bug_guy.tscn" id="12_xf47x"]
 [ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="13_6vd05"]
-[ext_resource type="Script" uid="uid://c47kx8ckq6sc8" path="res://scripts/StatusEffects/Levitate_effect.gd" id="13_hc568"]
-[ext_resource type="PackedScene" uid="uid://d38y2f0y6dpwn" path="res://scenes/one_way_platform.tscn" id="14_0r5j3"]
+[ext_resource type="Script" path="res://scripts/StatusEffects/Levitate_effect.gd" id="13_hc568"]
+[ext_resource type="PackedScene" path="res://scenes/one_way_platform.tscn" id="14_0r5j3"]
 [ext_resource type="PackedScene" uid="uid://dafm2cr8rs7ts" path="res://scenes/Camera/camera_bounds.tscn" id="14_t6mv3"]
 [ext_resource type="PackedScene" uid="uid://4wdajkbawuj7" path="res://scenes/NPC/npc.tscn" id="15_jxar1"]
 [ext_resource type="Script" uid="uid://d1wqqcb5sju38" path="res://scripts/NPC/LineEntry.gd" id="16_uticb"]
 [ext_resource type="PackedScene" uid="uid://b6ybupb06dlsw" path="res://scenes/Camera/camera_zone.tscn" id="17_d0wj5"]
-[ext_resource type="Shader" uid="uid://ye4utbyoye7n" path="res://scripts/Outline.gdshader" id="17_pc6eh"]
+[ext_resource type="Shader" path="res://scripts/Outline.gdshader" id="17_pc6eh"]
 [ext_resource type="Texture2D" uid="uid://2xi7n5glsxfv" path="res://assets/sprites/cat.png" id="18_dqd8o"]
 [ext_resource type="Texture2D" uid="uid://cvedbwidwdwl6" path="res://assets/sprites/really_cool_fire.png" id="19_33a1b"]
-[ext_resource type="PackedScene" uid="uid://dshfr8k7r2766" path="res://health_collectable.tscn" id="20_lypfi"]
+[ext_resource type="PackedScene" uid="uid://dnh30xww7d5nr" path="res://health_collectable.tscn" id="20_lypfi"]
 [ext_resource type="PackedScene" uid="uid://dq6m2ny6y3bnf" path="res://scenes/Inventory.tscn" id="26_yhe24"]
+[ext_resource type="PackedScene" path="res://scenes/shop_area_2d.tscn" id="27_x5rd6"]
 
 [sub_resource type="Resource" id="Resource_b5w1l"]
 script = ExtResource("3_hc568")
@@ -46,15 +47,15 @@ metadata/_custom_type_script = "uid://byikc5yvpboxi"
 [sub_resource type="Resource" id="Resource_3xk6l"]
 script = ExtResource("7_yhe24")
 stat_name = "acceleration"
-modifier_type = 1
-modifier_value = 0.5
+modifier_type = 0
+modifier_value = 0.0
 metadata/_custom_type_script = "uid://cuntujpetedjt"
 
 [sub_resource type="Resource" id="Resource_mjm4b"]
 script = ExtResource("7_yhe24")
 stat_name = "deacceleration"
-modifier_type = 1
-modifier_value = 0.05
+modifier_type = 0
+modifier_value = 0.0
 metadata/_custom_type_script = "uid://cuntujpetedjt"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kow50"]
@@ -134,8 +135,12 @@ camera_manager = NodePath("CameraManager")
 metadata/_custom_type_script = "uid://dndkk0j5v0b4h"
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_4xsrm")]
-position = Vector2(-2272, 0)
+position = Vector2(-2272, -48)
 stats = SubResource("Resource_b5w1l")
+attack_damage = 100
+
+[node name="UI" parent="CharacterBody2D" index="12" node_paths=PackedStringArray("player")]
+player = NodePath("..")
 
 [node name="Inventory" parent="CharacterBody2D" instance=ExtResource("26_yhe24")]
 
@@ -151,6 +156,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="CharacterBody2D/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PauseMenu" parent="CharacterBody2D/CanvasLayer/Panel" instance=ExtResource("4_0r5j3")]
 texture_filter = 1
@@ -378,13 +390,34 @@ position = Vector2(64, 32)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("19_33a1b")
 
+[node name="HealthCollectable3" parent="." instance=ExtResource("20_lypfi")]
+position = Vector2(2272, 144)
+scale = Vector2(2, 2)
+
+[node name="HealthCollectable4" parent="." instance=ExtResource("20_lypfi")]
+position = Vector2(2352, -560)
+scale = Vector2(2, 2)
+
+[node name="HealthCollectable5" parent="." instance=ExtResource("20_lypfi")]
+position = Vector2(937, -192)
+scale = Vector2(2, 2)
+
+[node name="HealthCollectable2" parent="." instance=ExtResource("20_lypfi")]
+position = Vector2(-976, 912)
+scale = Vector2(4, 4)
+
 [node name="HealthCollectable" parent="." instance=ExtResource("20_lypfi")]
-position = Vector2(1297, -514)
+position = Vector2(1296, -480)
+scale = Vector2(2, 2)
+
+[node name="ShopArea2D" parent="." instance=ExtResource("27_x5rd6")]
+position = Vector2(2624, 1008)
 
 [connection signal="body_entered" from="Objects/Elevator" to="Objects/Elevator" method="_on_body_entered"]
 [connection signal="body_entered" from="Objects/FallZone" to="Objects/FallZone" method="_on_body_entered"]
 [connection signal="body_entered" from="Objects/FallZone2" to="Objects/FallZone2" method="_on_body_entered"]
 
+[editable path="CharacterBody2D"]
 [editable path="Objects/OneWayPlatform"]
 [editable path="CameraManager"]
 [editable path="CameraManager/Areas/CameraZone"]
