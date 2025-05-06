@@ -72,8 +72,7 @@ func apply_gravity(delta):
 func handle_horizontal_movement():
 	var direction := Input.get_axis("Left", "Right")
 
-	if direction != 0:
-		toggle_flip_damage(direction)
+	toggle_flip_damage(direction)
 
 	if is_on_floor():
 		if direction != 0:

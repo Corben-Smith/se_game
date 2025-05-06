@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4f1ms2kagji"]
+[gd_scene load_steps=11 format=3 uid="uid://dq6m2ny6y3bnf"]
 
 [ext_resource type="Script" uid="uid://ctoqrynafuafi" path="res://scripts/Inventory/inventory.gd" id="1_elp5n"]
 [ext_resource type="Texture2D" uid="uid://ttgelhmqn57h" path="res://assets/inventoryBackgroundSprite.png" id="2_elp5n"]
 [ext_resource type="Script" uid="uid://mfl0b1gblw0s" path="res://scripts/Inventory/invContainer.gd" id="3_brmsw"]
-[ext_resource type="PackedScene" uid="uid://xxt0ky2rli02" path="res://scenes/ItemInfo.tscn" id="4_njucy"]
+[ext_resource type="PackedScene" path="res://scenes/ItemInfo.tscn" id="4_njucy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elp5n"]
 bg_color = Color(0.164706, 0.176471, 0.196078, 1)

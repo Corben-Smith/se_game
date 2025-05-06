@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cok6gvdxjgywq"]
+[gd_scene load_steps=22 format=3 uid="uid://cok6gvdxjgywq"]
 
 [ext_resource type="Script" uid="uid://bfu4xs3tyne55" path="res://scripts/Character/Character.gd" id="1_7ig0a"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="2_dfeyu"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://c3bek453g0h67" path="res://scripts/States/Gliding_State.gd" id="10_lkiy7"]
 [ext_resource type="Texture2D" uid="uid://be4vuo0hak4m" path="res://assets/placeholder128.png" id="14_4yo34"]
 [ext_resource type="Texture2D" uid="uid://d1bsqlqgynylv" path="res://assets/pixie_dust.png" id="14_ftwfq"]
+[ext_resource type="PackedScene" uid="uid://bbuat5athyyak" path="res://scenes/Healthbar.tscn" id="16_smtlo"]
 
 [sub_resource type="Resource" id="Resource_r68wp"]
 script = ExtResource("2_dfeyu")
@@ -23,7 +24,7 @@ _deacceleration = 100.0
 max_speed = 300.0
 in_air_acceleration = 20.0
 in_air_deacceleration = 20.0
-jump_force = -450.0
+jump_force = -480.0
 _gravity = 1000.0
 falling_gravity = 2000.0
 coyote_time = 0.1
@@ -36,7 +37,7 @@ metadata/_custom_type_script = "uid://byikc5yvpboxi"
 size = Vector2(24, 56)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dfeyu"]
-radius = 16.1245
+radius = 32.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q6urs"]
 particle_flag_disable_z = true
@@ -68,6 +69,7 @@ stats = SubResource("Resource_r68wp")
 state_machine = NodePath("StateMachine")
 status_manager = NodePath("StatusEffectManager")
 health_component = NodePath("Health")
+attack_damage = 80
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 524288
@@ -112,13 +114,13 @@ metadata/_custom_type_script = "uid://cjyq8fcyxoh4v"
 [node name="Attack_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "debug")]
 script = ExtResource("9_r68wp")
 player = NodePath("../..")
-debug = NodePath("../../DealDamageArea/Sprite2D")
+debug = NodePath("../../DealDamageArea/Sprite2D2")
 
 [node name="Gliding_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "particles")]
 script = ExtResource("10_lkiy7")
 player = NodePath("../..")
 particles = NodePath("../../GlideParticles")
-max_fly_timer = 3.0
+max_fly_timer = 1.0
 
 [node name="StatusEffectManager" type="Node" parent="."]
 script = ExtResource("8_exdhi")
@@ -142,7 +144,7 @@ rotation = 3.14159
 position = Vector2(32, 0)
 shape = SubResource("CircleShape2D_dfeyu")
 
-[node name="Sprite2D" type="Sprite2D" parent="DealDamageArea"]
+[node name="Sprite2D2" type="Sprite2D" parent="DealDamageArea"]
 position = Vector2(32, 0)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("14_4yo34")
@@ -184,3 +186,7 @@ amount = 10
 texture = ExtResource("14_ftwfq")
 lifetime = 0.2
 process_material = SubResource("ParticleProcessMaterial_ftwfq")
+
+[node name="UI" parent="." instance=ExtResource("16_smtlo")]
+
+[editable path="UI"]

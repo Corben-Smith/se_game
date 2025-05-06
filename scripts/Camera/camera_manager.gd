@@ -61,6 +61,7 @@ func _handle_entry(zone: CameraZone):
 func _handle_exit(zone: CameraZone):
 	if tween:
 		tween.stop()
+
 	following_player = true 
 	tween = self.create_tween()
 	# tween.set_trans(Tween.TRANS_SINE)

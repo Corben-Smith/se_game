@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+func _ready() -> void:
+	visible = false 
+
 func _on_close_pressed() -> void:
 	$Anim.play("TransOut")
 

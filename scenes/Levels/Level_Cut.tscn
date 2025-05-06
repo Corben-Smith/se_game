@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/Enemies/bug_guy.tscn" id="10_u4ox6"]
 [ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="12_nu2g1"]
 [ext_resource type="PackedScene" uid="uid://b6ybupb06dlsw" path="res://scenes/Camera/camera_zone.tscn" id="13_5mhgh"]
-[ext_resource type="PackedScene" uid="uid://boqw4pqjdolkc" path="res://scenes/Levels/level_2.tscn" id="14_kjfgi"]
+[ext_resource type="PackedScene" uid="uid://boqw4pqjdolkc" path="res://scenes/Levels/level_1.tscn" id="14_kjfgi"]
 [ext_resource type="Texture2D" uid="uid://dn5r4c70p8odj" path="res://assets/sprites/BG_GreenHill_Before.jpg" id="15_jng41"]
 [ext_resource type="Script" uid="uid://capu3jb6wgtpd" path="res://scripts/Objects/Elevator.gd" id="16_yclo3"]
 [ext_resource type="Texture2D" uid="uid://cwktmp0nqs867" path="res://assets/sprites/Elevator.png" id="18_84hcr"]

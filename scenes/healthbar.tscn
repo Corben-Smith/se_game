@@ -1,24 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxlfqpeka26tt"]
+[gd_scene load_steps=3 format=3 uid="uid://bbuat5athyyak"]
 
-[ext_resource type="Script" uid="uid://cp6641qybnicx" path="res://scripts/Health/healthbar.gd" id="1_iywrq"]
+[ext_resource type="Script" uid="uid://0l1jqwbysrm2" path="res://scenes/ui.gd" id="1_u7us0"]
+[ext_resource type="PackedScene" uid="uid://bm8w2bh468hgy" path="res://heart.tscn" id="2_myxc3"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vii3e"]
-bg_color = Color(0, 0, 0, 1)
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_u7us0")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq16f"]
-bg_color = Color(0.808974, 0.0864988, 0.0156673, 1)
+[node name="Hearts" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Healthbar" type="ProgressBar"]
-anchors_preset = -1
-anchor_left = 0.469
-anchor_top = 0.194
-anchor_right = 0.469
-anchor_bottom = 0.194
-offset_left = -138.288
-offset_top = 7.28799
-offset_right = 141.712
-offset_bottom = 45.288
-theme_override_styles/background = SubResource("StyleBoxFlat_vii3e")
-theme_override_styles/fill = SubResource("StyleBoxFlat_bq16f")
-show_percentage = false
-script = ExtResource("1_iywrq")
+[node name="Heart" parent="Hearts" instance=ExtResource("2_myxc3")]
+
+[node name="Heart2" parent="Hearts" instance=ExtResource("2_myxc3")]
+position = Vector2(41, 0)
+
+[node name="Heart3" parent="Hearts" instance=ExtResource("2_myxc3")]
+position = Vector2(82, 0)

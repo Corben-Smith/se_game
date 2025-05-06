@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://64vs17cy3mk0" path="res://scripts/Enemies/bug_guy.gd" id="1_gd7oa"]
 [ext_resource type="Texture2D" uid="uid://br5ubtrgbtww7" path="res://assets/sprites/Spritesheet.png" id="1_v6hos"]
 [ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="3_48etn"]
-[ext_resource type="Script" path="res://scenes/hurtbox.gd" id="4_chcdh"]
+[ext_resource type="Script" uid="uid://duux6qjtycoih" path="res://scenes/hurtbox.gd" id="4_chcdh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gd7oa"]
 atlas = ExtResource("1_v6hos")
@@ -85,6 +85,7 @@ target_position = Vector2(16, 0)
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_48etn")
+max_health = 81
 metadata/_custom_type_script = "uid://lbreutrqdu6t"
 
 [node name="Damagebox" type="Area2D" parent="."]
