@@ -140,7 +140,7 @@ spawn_point = NodePath("SpawnPoint")
 camera_manager = NodePath("CameraManager")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_jkyfg")]
-position = Vector2(3472, -1792)
+position = Vector2(867, 828)
 stats = SubResource("Resource_dfih8")
 attack_damage = 50
 

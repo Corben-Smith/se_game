@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cok6gvdxjgywq"]
+[gd_scene load_steps=23 format=3 uid="uid://cok6gvdxjgywq"]
 
 [ext_resource type="Script" uid="uid://bfu4xs3tyne55" path="res://scripts/Character/Character.gd" id="1_7ig0a"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="2_dfeyu"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://bqsmytqu18wwi" path="res://scripts/States/Attack_Script.gd" id="9_r68wp"]
 [ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="9_r87yu"]
 [ext_resource type="Script" uid="uid://c3bek453g0h67" path="res://scripts/States/Gliding_State.gd" id="10_lkiy7"]
+[ext_resource type="Script" uid="uid://dkqvnjbhyafhg" path="res://scripts/shooting_state.gd" id="12_356g5"]
+[ext_resource type="PackedScene" uid="uid://3ixrip08xoeh" path="res://fairy_bullet.tscn" id="13_356g5"]
 [ext_resource type="Texture2D" uid="uid://be4vuo0hak4m" path="res://assets/placeholder128.png" id="14_4yo34"]
 [ext_resource type="Texture2D" uid="uid://d1bsqlqgynylv" path="res://assets/pixie_dust.png" id="14_ftwfq"]
 
@@ -68,6 +70,7 @@ stats = SubResource("Resource_r68wp")
 state_machine = NodePath("StateMachine")
 status_manager = NodePath("StatusEffectManager")
 health_component = NodePath("Health")
+metadata/_edit_horizontal_guides_ = [-86.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 524288
@@ -119,6 +122,12 @@ script = ExtResource("10_lkiy7")
 player = NodePath("../..")
 particles = NodePath("../../GlideParticles")
 max_fly_timer = 3.0
+
+[node name="Shooting_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "Shooting_Point")]
+script = ExtResource("12_356g5")
+player = NodePath("../..")
+Bullet = ExtResource("13_356g5")
+Shooting_Point = NodePath("../../ShootingPoint")
 
 [node name="StatusEffectManager" type="Node" parent="."]
 script = ExtResource("8_exdhi")
@@ -183,3 +192,6 @@ amount = 10
 texture = ExtResource("14_ftwfq")
 lifetime = 0.2
 process_material = SubResource("ParticleProcessMaterial_ftwfq")
+
+[node name="ShootingPoint" type="Node2D" parent="."]
+position = Vector2(32, 0)

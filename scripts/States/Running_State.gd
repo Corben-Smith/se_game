@@ -23,6 +23,8 @@ func handle_input(event: InputEvent) -> void:
 		emit_signal("transition", self, "Jumping_State", {})
 	elif event.is_action_pressed("Attack"):
 		emit_signal("transition", self, "Attack_State", {})
+	elif event.is_action_pressed("Shoot"):
+		emit_signal("transition", self, "Shooting_State", {})
 
 func update(_delta: float) -> void:
 	pass

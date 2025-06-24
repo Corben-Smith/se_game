@@ -4,8 +4,8 @@ var gold = 1000
 var exp = 100
 
 @export var item_list: Array[Item] = [
-	preload("res://Scripts/Items/HealingPotion.tres"),
-	preload("res://Scripts/Items/LevelUpElixir.tres")
+	preload("res://scripts/Items/HealingPotion.tres"),
+	preload("res://scripts/Items/LevelUpElixir.tres")
 ]
 
 

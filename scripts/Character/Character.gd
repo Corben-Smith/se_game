@@ -9,6 +9,8 @@ var jump_buffer_timer: float = 0.0
 var is_jumping: bool = false
 var is_attacking: bool = false
 
+var direction: Vector2 = Vector2.RIGHT
+
 @export var stats: PlayerStats = null
 @export var state_machine: StateMachine = null
 @export var status_manager: StatusEffectManager = null
@@ -47,6 +49,8 @@ func _physics_process(delta: float) -> void:
 		$Sprite2D.flip_h = false
 
 	move_and_slide()
+	if velocity.x != Vector2.ZERO.x:
+		direction = Vector2(velocity.x, velocity.y).normalized()
 
 func _input(event: InputEvent) -> void:
 	state_machine.handle_input(event)
