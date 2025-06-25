@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=24 format=4 uid="uid://rsat8le877xi"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
 [ext_resource type="Script" uid="uid://b6t4wmcedebjp" path="res://scripts/Attributes/Stat.gd" id="2_7448y"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="10_ar7ra"]
 [ext_resource type="PackedScene" uid="uid://dxs5wr0c5t6t7" path="res://scenes/shop.tscn" id="12_8hcw6"]
 [ext_resource type="Texture2D" uid="uid://dbe7dudlwpghb" path="res://assets/2DGameShopkeepter.png" id="12_mjm4b"]
+[ext_resource type="PackedScene" uid="uid://chq23gml6t02w" path="res://scenes/ElevatorDoor.tscn" id="14_dv75v"]
 
 [sub_resource type="Resource" id="Resource_ixgyf"]
 script = ExtResource("2_7448y")
@@ -157,6 +158,9 @@ shape = SubResource("RectangleShape2D_8hcw6")
 
 [node name="Shop" parent="ShopArea2D" instance=ExtResource("12_8hcw6")]
 visible = false
+
+[node name="Area2D" parent="." instance=ExtResource("14_dv75v")]
+position = Vector2(421, 255)
 
 [connection signal="body_entered" from="FallZone" to="FallZone" method="_on_body_entered"]
 [connection signal="body_entered" from="ShopArea2D" to="ShopArea2D" method="_on_body_entered"]

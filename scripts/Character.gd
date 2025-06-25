@@ -59,6 +59,14 @@ func handle_horizontal_movement():
 				velocity.x = move_toward(velocity.x, direction * stats["max_speed"], stats["in_air_acceleration"])
 		else:
 				velocity.x = move_toward(velocity.x, 0, stats["in_air_deacceleration"])
+	
+	# Animation logic
+	if is_on_floor():
+		if direction != 0:
+			$AnimatedSprite2D.play("WoltyRun")
+			$AnimatedSprite2D.flip_h = direction < 0
+		else:
+			$AnimatedSprite2D.play("WoltyIdle")
 
 func handle_jumping(delta):
 	if Input.is_action_just_pressed("Fire"):

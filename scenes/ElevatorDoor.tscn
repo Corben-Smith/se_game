@@ -1,0 +1,195 @@
+[gd_scene load_steps=23 format=3 uid="uid://chq23gml6t02w"]
+
+[ext_resource type="Script" uid="uid://yh6lxg6n4h02" path="res://scripts/elevator_door.gd" id="1_1cwgg"]
+[ext_resource type="Texture2D" uid="uid://cfw6d1b2r7vdj" path="res://assets/ElevetorOpen.PNG" id="1_05p4n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l2q0"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(2000, 1000, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpegq"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(1000, 1000, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dbx2"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(0, 1000, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1mub"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(3000, 0, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxeec"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(2000, 0, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe7ks"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(1000, 0, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ibis"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(0, 0, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmx2o"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(0, 0, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej8yh"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(2000, 1000, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ekal"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(0, 0, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ku1oc"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(1000, 0, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v62qk"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(2000, 0, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6l4u"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(3000, 0, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y52ab"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(0, 1000, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfr4o"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(1000, 1000, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqmx2"]
+atlas = ExtResource("1_05p4n")
+region = Rect2(2000, 1000, 1000, 1000)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1r7tl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l2q0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpegq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dbx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1mub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxeec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe7ks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ibis")
+}],
+"loop": false,
+"name": &"close",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmx2o")
+}],
+"loop": false,
+"name": &"idle_closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej8yh")
+}],
+"loop": false,
+"name": &"idle_opened",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ekal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ku1oc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v62qk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6l4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y52ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfr4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqmx2")
+}],
+"loop": false,
+"name": &"open",
+"speed": 10.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7i0h"]
+bg_color = Color(1.74474e-07, 0.122646, 0.213272, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7i0h"]
+size = Vector2(80, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_205tq"]
+size = Vector2(549.125, 308.25)
+
+[node name="ElevatorDoor" type="Area2D"]
+script = ExtResource("1_1cwgg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -64)
+scale = Vector2(0.13, 0.13)
+sprite_frames = SubResource("SpriteFrames_1r7tl")
+animation = &"close"
+
+[node name="Popup" type="Panel" parent="."]
+visible = false
+offset_left = -72.0
+offset_top = -152.0
+offset_right = 80.0
+offset_bottom = -128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n7i0h")
+
+[node name="Label" type="Label" parent="Popup"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 143.0
+offset_bottom = 23.0
+text = "Press \"E\" to enter"
+
+[node name="EnterZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2DEnter" type="CollisionShape2D" parent="EnterZone"]
+position = Vector2(0, -56)
+shape = SubResource("RectangleShape2D_n7i0h")
+
+[node name="TriggerZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2DAnim" type="CollisionShape2D" parent="TriggerZone"]
+position = Vector2(0, -152)
+shape = SubResource("RectangleShape2D_205tq")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="EnterZone" to="." method="_on_enter_zone_body_entered"]
+[connection signal="body_exited" from="EnterZone" to="." method="_on_enter_zone_body_exited"]
+[connection signal="body_entered" from="TriggerZone" to="." method="_on_trigger_zone_body_entered"]
+[connection signal="body_exited" from="TriggerZone" to="." method="_on_trigger_zone_body_exited"]
