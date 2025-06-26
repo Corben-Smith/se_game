@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3so12qlk0ppf"]
+
+[ext_resource type="Script" uid="uid://di8y0nhgbbqps" path="res://character_selection.gd" id="1_ysev7"]
+[ext_resource type="Texture2D" uid="uid://enqrwe8403g3" path="res://assets/icon.svg" id="2_i640r"]
+[ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="3_ve3h0"]
+[ext_resource type="Texture2D" uid="uid://be4vuo0hak4m" path="res://assets/placeholder128.png" id="4_i640r"]
+
+[node name="CharacterSelection" type="Node2D" node_paths=PackedStringArray("characters", "arrow")]
+script = ExtResource("1_ysev7")
+characters = [NodePath("Characters/Kenley\'s Character"), NodePath("Characters/Isaiah\'s Character"), NodePath("Kenley\'s Character_2")]
+arrow = NodePath("Selection Arrow")
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="Kenley\'s Character" type="Node2D" parent="Characters"]
+position = Vector2(363, 430)
+
+[node name="Icon" type="Sprite2D" parent="Characters/Kenley\'s Character"]
+texture = ExtResource("2_i640r")
+
+[node name="Isaiah\'s Character" type="Node2D" parent="Characters"]
+position = Vector2(541, 429)
+
+[node name="PlaceholderCharacter" type="Sprite2D" parent="Characters/Isaiah\'s Character"]
+texture = ExtResource("3_ve3h0")
+
+[node name="Left" type="Button" parent="."]
+offset_left = 230.0
+offset_top = 417.0
+offset_right = 268.0
+offset_bottom = 448.0
+text = "Left"
+metadata/_edit_use_anchors_ = true
+
+[node name="Right" type="Button" parent="."]
+offset_left = 869.0
+offset_top = 406.0
+offset_right = 918.0
+offset_bottom = 437.0
+text = "Right
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Select" type="Button" parent="."]
+offset_left = 505.0
+offset_top = 535.0
+offset_right = 559.0
+offset_bottom = 566.0
+text = "Select"
+metadata/_edit_use_anchors_ = true
+
+[node name="Selection Arrow" type="Node2D" parent="."]
+
+[node name="Placeholder128" type="Sprite2D" parent="Selection Arrow"]
+position = Vector2(0, -309)
+texture = ExtResource("4_i640r")
+hframes = 14
+vframes = 13
+frame = 12
+
+[node name="Kenley\'s Character_2" type="Node2D" parent="."]
+position = Vector2(752, 429)
+
+[node name="Icon" type="Sprite2D" parent="Kenley\'s Character_2"]
+texture = ExtResource("2_i640r")
+
+[connection signal="pressed" from="Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="Right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="Select" to="." method="_on_select_pressed"]
