@@ -973,6 +973,7 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor"
 terrain_set_0/terrain_0/color = Color(0.951778, 0.781874, 0.478168, 1)
+terrain_set_1/mode = 0
 custom_data_layer_0/name = "has_collision"
 custom_data_layer_0/type = 0
 sources/1 = SubResource("TileSetAtlasSource_uce1f")

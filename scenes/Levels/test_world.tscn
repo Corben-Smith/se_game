@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=19 format=4 uid="uid://rsat8le877xi"]
 
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_emc6x"]
-[ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/Collectable/collectable.tscn" id="3_umbte"]
+[ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/collectable.tscn" id="3_umbte"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="3_xwrkq"]
 [ext_resource type="Script" uid="uid://ba3whgs6gctxp" path="res://scripts/Collectables/Status_Collectable.gd" id="4_dvny0"]
 [ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
@@ -9,8 +9,8 @@
 [ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_8hcw6"]
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="8_x05cw"]
-[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scripts/Objects/FallZone.gd" id="10_ar7ra"]
-[ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="11_mittc"]
+[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="10_ar7ra"]
+[ext_resource type="Script" uid="uid://cupackbgbenrr" path="res://camera_manager.gd" id="11_mittc"]
 
 [sub_resource type="Resource" id="Resource_3xk6l"]
 script = ExtResource("8_x05cw")
@@ -26,16 +26,16 @@ modifier_type = 1
 modifier_value = 0.1
 metadata/_custom_type_script = "uid://cuntujpetedjt"
 
-[sub_resource type="Resource" id="Resource_mittc"]
-script = ExtResource("8_x05cw")
-stat_name = "max_speed"
-modifier_type = 1
-modifier_value = 10.0
-metadata/_custom_type_script = "uid://cuntujpetedjt"
-
 [sub_resource type="Resource" id="Resource_nrstc"]
 script = ExtResource("7_xwrkq")
-modifier_entry = SubResource("Resource_mittc")
+metadata/_custom_type_script = "uid://de7t5vkp8wkks"
+
+[sub_resource type="Resource" id="Resource_xwrkq"]
+script = ExtResource("7_xwrkq")
+metadata/_custom_type_script = "uid://de7t5vkp8wkks"
+
+[sub_resource type="Resource" id="Resource_7448y"]
+script = ExtResource("7_xwrkq")
 metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dvny0"]
@@ -43,10 +43,9 @@ size = Vector2(128, 128)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ixgyf"]
 
-[node name="TestWorld" type="Node2D" node_paths=PackedStringArray("spawn_point", "camera_manager")]
+[node name="TestWorld" type="Node2D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_emc6x")
 spawn_point = NodePath("SpawnPoint")
-camera_manager = NodePath("CameraManager")
 
 [node name="LayerHolder" type="Node2D" parent="."]
 
@@ -69,7 +68,7 @@ metadata/_custom_type_script = "uid://blvvq3mqfjsmr"
 position = Vector2(224, 224)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("4_dvny0")
-statuses = Array[ExtResource("5_xwrkq")]([SubResource("Resource_nrstc")])
+statuses = Array[ExtResource("5_xwrkq")]([SubResource("Resource_nrstc"), SubResource("Resource_xwrkq"), SubResource("Resource_7448y")])
 
 [node name="Sprite2D" parent="Status_Collectable" index="0"]
 texture = ExtResource("4_ynswa")
@@ -90,9 +89,10 @@ shape = SubResource("WorldBoundaryShape2D_ixgyf")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 
-[node name="CameraManager" parent="." instance=ExtResource("11_mittc")]
+[node name="CameraManager" type="Node2D" parent="."]
+script = ExtResource("11_mittc")
+metadata/_custom_type_script = "uid://cupackbgbenrr"
 
 [connection signal="body_entered" from="FallZone" to="FallZone" method="_on_body_entered"]
 
 [editable path="Status_Collectable"]
-[editable path="CameraManager"]
