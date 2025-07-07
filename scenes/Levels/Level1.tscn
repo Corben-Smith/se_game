@@ -345,12 +345,6 @@ texture = ExtResource("20_tf0rn")
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_coqn3")
 
-[node name="DialogueBox" parent="NPC" index="2"]
-offset_left = -32.0
-offset_top = -80.0
-offset_right = -32.0
-offset_bottom = -80.0
-
 [node name="NPC2" parent="." node_paths=PackedStringArray("camera_manager") instance=ExtResource("19_sq7sj")]
 light_mask = 524288
 position = Vector2(1296, -1712)
@@ -366,12 +360,6 @@ texture = ExtResource("20_tf0rn")
 [node name="CollisionShape2D" parent="NPC2" index="1"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_coqn3")
-
-[node name="DialogueBox" parent="NPC2" index="2"]
-offset_left = -32.0
-offset_top = -80.0
-offset_right = -32.0
-offset_bottom = -80.0
 
 [connection signal="body_entered" from="Objects/Elevator" to="Objects/Elevator" method="_on_body_entered"]
 [connection signal="body_entered" from="Objects/FallZone" to="Objects/FallZone" method="_on_body_entered"]

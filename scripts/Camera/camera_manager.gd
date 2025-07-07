@@ -45,7 +45,10 @@ func _ready() -> void:
 var refollow: bool = false
 
 func _physics_process(delta: float) -> void:
-	if following_player:
+	if refollow && (camera.global_position - player.global_position).abs() < Vector2(50,50):
+		smooth_refollow(player.global_position, delta)
+	elif following_player:
+		refollow = false
 		smooth_follow(player.global_position, delta)
 
 func _handle_entry(zone: CameraZone):
@@ -162,11 +165,25 @@ func smooth_follow(target_position: Vector2, delta: float):
 	var new_y = lerp(camera_pos.y, bounded_target.y, follow_speed_y * delta)
 
 	camera.position = Vector2(new_x, new_y)
+
+func smooth_refollow(target_position: Vector2, delta: float):
+	var camera_pos = camera.position
+
+	# Get the bounded target position
+	var bounded_target = bound_position(target_position + offset)
+
+	# Snap to X quickly
+	var new_x = lerp(camera_pos.x, bounded_target.x, follow_speed_y * delta)
+
+	# Smooth/damped Y
+	var new_y = lerp(camera_pos.y, bounded_target.y, follow_speed_y * delta)
+
+	camera.position = Vector2(new_x, new_y)
 	
 func set_camera(pos: Vector2, set_zoom: Vector2):
 	following_player = false
 
-	var tween := create_tween()
+	tween = create_tween()
 	# tween.set_trans(Tween.TRANS_SINE)
 	
 	tween.tween_method(camera.set_zoom, camera.zoom, set_zoom, 0.75) # Smoothly move the camera to the zone's position
@@ -177,16 +194,17 @@ func set_camera(pos: Vector2, set_zoom: Vector2):
 
 func reset_camera():
 	following_player = true 
-	var tween = self.create_tween()
+	refollow = true
+	tween = self.create_tween()
 
-	tween.tween_method(camera.set_zoom, camera.zoom, zoom, 0.75)
+	tween.tween_method(camera.set_zoom, camera.zoom, zoom, 0.25)
 	tween.finished.connect(_on_exit_tween_finished)
 
 # Detect when player enters a bounds area
 func _on_player_entered_bounds(bounds: CameraBounds) -> void:
 	print("entering bounds")
 	set_camera_bounds(bounds)
-	
+
 # Detect when player exits a bounds area
 func _on_player_exited_bounds(bounds: CameraBounds) -> void:
 	if active_bounds == bounds:

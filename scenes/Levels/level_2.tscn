@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://boqw4pqjdolkc"]
+[gd_scene load_steps=36 format=4 uid="uid://boqw4pqjdolkc"]
 
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_rbuvs"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="2_452xl"]
@@ -11,12 +11,14 @@
 [ext_resource type="Script" uid="uid://capu3jb6wgtpd" path="res://scripts/Objects/Elevator.gd" id="13_04xhx"]
 [ext_resource type="PackedScene" uid="uid://rsat8le877xi" path="res://scenes/Levels/test_world.tscn" id="14_y6tmf"]
 [ext_resource type="Texture2D" uid="uid://cwktmp0nqs867" path="res://assets/sprites/Elevator.png" id="15_r0w8p"]
+[ext_resource type="AudioStream" uid="uid://6ndvu3hywicm" path="res://assets/blip.wav" id="16_4i6gi"]
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scripts/Objects/FallZone.gd" id="17_gv2sh"]
 [ext_resource type="Texture2D" uid="uid://cvedbwidwdwl6" path="res://assets/sprites/really_cool_fire.png" id="18_410d2"]
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/Enemies/bug_guy.tscn" id="19_6qxha"]
 [ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="19_40h3w"]
 [ext_resource type="PackedScene" uid="uid://4wdajkbawuj7" path="res://scenes/NPC/npc.tscn" id="20_yd0ew"]
 [ext_resource type="Script" uid="uid://d1wqqcb5sju38" path="res://scripts/NPC/LineEntry.gd" id="21_tbcna"]
+[ext_resource type="Script" uid="uid://b7vaelrjkxb47" path="res://Debug.gd" id="21_xi46r"]
 [ext_resource type="Shader" uid="uid://ye4utbyoye7n" path="res://scripts/Outline.gdshader" id="22_pv7xf"]
 [ext_resource type="Texture2D" uid="uid://2xi7n5glsxfv" path="res://assets/sprites/cat.png" id="23_n24u3"]
 
@@ -99,7 +101,7 @@ camera_manager = NodePath("CameraManager")
 metadata/_custom_type_script = "uid://dndkk0j5v0b4h"
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_452xl")]
-position = Vector2(1563, -747)
+position = Vector2(-865, -176)
 stats = SubResource("Resource_b5w1l")
 
 [node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("4_ki2ik")]
@@ -173,6 +175,7 @@ position = Vector2(925, -186)
 position = Vector2(1665, -698)
 
 [node name="CameraManager" parent="." node_paths=PackedStringArray("player", "default_bounds") instance=ExtResource("19_40h3w")]
+visible = false
 follow_speed_y = 10.0
 player = NodePath("../CharacterBody2D")
 default_bounds = NodePath("Bounds/Default")
@@ -219,8 +222,10 @@ position = Vector2(-368, 48)
 [node name="NPC" parent="." node_paths=PackedStringArray("camera_manager") instance=ExtResource("20_yd0ew")]
 light_mask = 524288
 position = Vector2(-672, -144)
+npc_name = "Cat"
 camera_manager = NodePath("../CameraManager")
 zoom = Vector2(2.5, 2.5)
+blip = ExtResource("16_4i6gi")
 lines = Array[ExtResource("21_tbcna")]([SubResource("Resource_410d2"), SubResource("Resource_6qxha")])
 
 [node name="Sprite2D" parent="NPC" index="0"]
@@ -231,16 +236,18 @@ texture = ExtResource("23_n24u3")
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_xlxpm")
 
-[node name="DialogueBox" parent="NPC" index="2"]
-offset_left = -144.0
-offset_top = -80.0
-offset_right = -144.0
-offset_bottom = -80.0
+[node name="Persistent_Object" parent="NPC" index="2"]
+uid = "37379ace-f2c1-4929-8827-060620cd7857"
 
 [node name="Sprite2D2" type="Sprite2D" parent="NPC"]
 position = Vector2(64, 32)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("18_410d2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("21_xi46r")
 
 [connection signal="body_entered" from="Objects/Elevator" to="Objects/Elevator" method="_on_body_entered"]
 [connection signal="body_entered" from="Objects/FallZone" to="Objects/FallZone" method="_on_body_entered"]

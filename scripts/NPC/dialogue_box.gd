@@ -1,59 +1,63 @@
 extends Control
 class_name DialogueBox
 
-@onready var dialogue_label = $Label
+@export var dialogue_text: Label
+@export var dialogue_name: Label
+@export var stream_player: AudioStreamPlayer
+
+@export var arrow: TextureRect
+
+var blip: AudioStream
 
 signal finished_dialogue
 
-var lines: Array = []
-var current_line := 0
+# var lines: Array = []
+# var current_line := 0
 var is_active := false
 var is_typing := false
 var full_text := ""
-var type_speed := 0.03  # seconds between letters
+var type_speed := 0.05  # seconds between letters
+var prepared: bool = false 
+
+func setup(speaker: String, set_blip: AudioStream = null) -> void:
+	is_active = true
+	dialogue_name.text = speaker
+	blip = set_blip
+	stream_player.stream = blip
 
 func _ready():
-	dialogue_label.connect("resized", Callable(self, "_on_label_resized"))
-	visible = false
-	var margin_size = 30.0
-	dialogue_label.anchor_left = 0.5
-	dialogue_label.anchor_right = 0.5
-	dialogue_label.anchor_top = 1.0
-	dialogue_label.anchor_bottom = 1.0
-	dialogue_label.pivot_offset = Vector2(dialogue_label.size.x / 2, dialogue_label.size.y)
-	dialogue_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	arrow.visible = false
+	pass
 
-func start_dialogue(new_lines: Array, speaker: String = ""):
-	lines = new_lines
-	current_line = 0
-	is_active = true
-	visible = true
-	_show_line()
+func feed(line):
+	_show_line(line)
 
-func _show_line():
-	if current_line < lines.size():
-		full_text = lines[current_line]
-		dialogue_label.text = ""
-		is_typing = true
-		_type_text()
-	else:
-		end_dialogue()
+func _show_line(line):
+	dialogue_text.text = ""
+	is_typing = true
+	prepared = false
+	_type_text(line)
 
-func _type_text():
-	for i in full_text.length():
-		dialogue_label.text += full_text[i]
+func _type_text(line: String):
+	for i in line.length():
+		if blip && line[i] != " ":
+			print("blip")
+			print(stream_player.stream)
+			stream_player.play()
+		dialogue_text.text += line[i]
 		await get_tree().create_timer(type_speed).timeout
 		if not is_typing:
-			dialogue_label.text = full_text
+			dialogue_text.text = line
 			break
 	is_typing = false
+	prepared = true
 
 func _on_next_pressed():
 	if is_typing:
 		is_typing = false  # Fast-forward typing
-	else:
-		current_line += 1
-		_show_line()
+	# else:
+	#     current_line += 1
+	#     _show_line()
 
 func _input(event):
 	if is_active and event.is_action_pressed("interact"):
@@ -61,14 +65,13 @@ func _input(event):
 
 func end_dialogue():
 	is_active = false
-	visible = false
 	emit_signal("finished_dialogue")
 
 func reset_dialogue():
-	current_line = 0
 	is_active = false
-	visible = false
 
-func _on_label_resized():
-	print("resize")
-	dialogue_label.pivot_offset = Vector2(dialogue_label.size.x / 2, dialogue_label.size.y)
+func _process(delta: float) -> void:
+	if prepared:
+		arrow.visible = true
+	else:
+		arrow.visible = false 
