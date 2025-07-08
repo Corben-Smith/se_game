@@ -41,8 +41,6 @@ func _show_line(line):
 func _type_text(line: String):
 	for i in line.length():
 		if blip && line[i] != " ":
-			print("blip")
-			print(stream_player.stream)
 			stream_player.play()
 		dialogue_text.text += line[i]
 		await get_tree().create_timer(type_speed).timeout

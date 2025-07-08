@@ -75,11 +75,7 @@ func _on_player_exited():
 		box.reset_dialogue()
 		_destroy_box()
 
-func _physics_process(delta: float) -> void:
-	print(current_verse_index)
-
 func _interact():
-	print("toching me")
 	if interactable && !interaction_timeout && !interacting:
 		interacting = true
 		if move_cam:

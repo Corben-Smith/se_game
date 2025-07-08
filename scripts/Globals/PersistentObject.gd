@@ -50,31 +50,23 @@ func saving():
 	PersistentManager.persistent_object[self.uid] = save_data()
 
 func loading():
-	print("pobjload")
 	var data = PersistentManager.get_object(self.uid)
-	print(data)
 	load_data(data)
 
 
 func save_data(destroyed = false):
 	if len(keys_to_save) <= 0:
-		print("auto")
 		return _save_data_auto(destroyed)
 
 	var data = {
 		"destroyed": destroyed
 	}
 
-	print(keys_to_save)
 	for key in keys_to_save:
-		print(key)
-		print(target.get_property_list())
 		for idek in target.get_property_list():
 			if key == idek["name"]:
-				print("putting datakey " + str(target.get(key)))
 				data[key] = target.get(key)
 
-	print(data)
 	return data
 
 func _save_data_auto(destroyed = false):
@@ -96,21 +88,14 @@ func _save_data_auto(destroyed = false):
 
 func load_data(data):
 	for key in data.keys():
-		print("load for data in keys")
 		if key == "destroyed":
 			continue
 
-		print(data)
-		print(key)
 		for thing in target.get_property_list():
 			if key == thing["name"]:
-				print("mah SETTIGNIT")
 				var value = data[key]
 				var t = typeof(value)
 				if t in [TYPE_BOOL, TYPE_INT, TYPE_FLOAT, TYPE_STRING, TYPE_VECTOR2, TYPE_VECTOR3]:
-					print("SETTIGNIT")
-					print(key)
-					print(value)
 					target.set(key, value)
 
 # # Contact with the manager

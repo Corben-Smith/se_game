@@ -8,6 +8,7 @@ signal saving
 signal loading
 
 var persistent_object : Dictionary = {};
+var save_num: int
 
 # Return if a data with specifie UID exist
 func has(uid : String) -> bool:
@@ -26,20 +27,17 @@ func save(uid : String, data : Dictionary) -> void:
 # You can use it as it is or change it to include data in your own save system
 # Load data before loading a scene containing a persistent object as it load data on ready.
 
-func load_data(file_name: String) -> void:
-	var access: FileAccess = FileAccess.open("user://" + file_name, FileAccess.READ)
+func load_data() -> void:
+	var access: FileAccess = FileAccess.open("user://" + "savefile" + str(save_num) + ".png", FileAccess.READ)
 	var json: String = access.get_as_text()
 	persistent_object = JSON.parse_string(json)
 	access.close()
-	print("loading")
 	loading.emit()
 
-func save_data(file_name: String) -> void:
+func save_data() -> void:
 	saving.emit()
 	await get_tree().create_timer(1).timeout
-	print("savign")
 	var json: String = JSON.stringify(persistent_object)
-	var access: FileAccess = FileAccess.open("user://" + file_name, FileAccess.WRITE)
-	print(json)
+	var access: FileAccess = FileAccess.open("user://" + "savefile" + str(save_num) + ".png" , FileAccess.WRITE)
 	access.store_string(json)
 	access.close()

@@ -9,7 +9,6 @@ func on_apply(target) -> void:
 	modifier = modifier_entry.get_modifier()
 	if target.has_method("add_modifier"):
 		target.add_modifier(modifier_entry.stat_name, modifier)
-	print("applying")
 		
 
 # Override remove_effect to remove modifiers from the target
