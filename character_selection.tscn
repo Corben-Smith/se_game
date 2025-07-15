@@ -1,14 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccp6yhbqalwnv"]
+[gd_scene load_steps=4 format=3 uid="uid://ccp6yhbqalwnv"]
 
-[ext_resource type="Script" path="res://character_selection.gd" id="1_ysev7"]
 [ext_resource type="Texture2D" uid="uid://enqrwe8403g3" path="res://assets/icon.svg" id="2_i640r"]
 [ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="3_ve3h0"]
 [ext_resource type="Texture2D" uid="uid://be4vuo0hak4m" path="res://assets/placeholder128.png" id="4_i640r"]
 
-[node name="CharacterSelection" type="Node2D" node_paths=PackedStringArray("characters", "arrow")]
-script = ExtResource("1_ysev7")
-characters = [NodePath("Characters/Kenley\'s Character"), NodePath("Characters/Isaiah\'s Character"), NodePath("Kenley\'s Character_2")]
-arrow = NodePath("Selection Arrow")
+[node name="CharacterSelection" type="Node2D"]
 
 [node name="Characters" type="Node" parent="."]
 
@@ -50,6 +46,7 @@ text = "Select"
 metadata/_edit_use_anchors_ = true
 
 [node name="Selection Arrow" type="Node2D" parent="."]
+position = Vector2(542, 441)
 
 [node name="Placeholder128" type="Sprite2D" parent="Selection Arrow"]
 position = Vector2(0, -309)

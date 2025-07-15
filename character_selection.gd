@@ -28,4 +28,3 @@ func _on_select_pressed() -> void:
 
 func _arrow_position():
 	arrow.global_position = characters[index].global_position
-

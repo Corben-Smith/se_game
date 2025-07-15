@@ -14,4 +14,6 @@ func _ready():
 		if child is CanvasLayer:
 			canvas_layer = child
 			# You can now work with the first_canvas_layer node
-			break  # Exit the loop once the first CanvasLayer is found
+		if child is Player:
+			player = child
+			# You can now work with the first_canvas_layer node
