@@ -16,6 +16,15 @@
 [ext_resource type="PackedScene" uid="uid://bm8w2bh468hgy" path="res://heart.tscn" id="13_mjm4b"]
 [ext_resource type="PackedScene" uid="uid://dshfr8k7r2766" path="res://health_collectable.tscn" id="15_x05cw"]
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/bug_guy.tscn" id="16_bn472"]
+[ext_resource type="PackedScene" uid="uid://dxs5wr0c5t6t7" path="res://scenes/shop.tscn" id="12_8hcw6"]
+[ext_resource type="Texture2D" uid="uid://dbe7dudlwpghb" path="res://assets/2DGameShopkeepter.png" id="12_mjm4b"]
+[ext_resource type="PackedScene" uid="uid://chq23gml6t02w" path="res://scenes/ElevatorDoor.tscn" id="14_dv75v"]
+
+[sub_resource type="Resource" id="Resource_ixgyf"]
+script = ExtResource("2_7448y")
+base_value = 0.5
+modifiers = []
+metadata/_custom_type_script = "uid://b6t4wmcedebjp"
 
 [sub_resource type="Resource" id="Resource_8hcw6"]
 script = ExtResource("3_ar7ra")
@@ -136,6 +145,9 @@ position = Vector2(-399, 72)
 
 [node name="BugGuy" parent="." instance=ExtResource("16_bn472")]
 position = Vector2(-75, 227)
+
+[node name="Area2D" parent="." instance=ExtResource("14_dv75v")]
+position = Vector2(421, 255)
 
 [connection signal="body_entered" from="FallZone" to="FallZone" method="_on_body_entered"]
 
