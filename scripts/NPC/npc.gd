@@ -38,7 +38,7 @@ func _ready() -> void:
 func _create_box() -> DialogueBox:
 	box = box_scene.instantiate()
 	box.setup(npc_name, blip)
-	GlobalReferences.canvas_layer.add_child(box)
+	UI_Manager.canvas_layer.add_child(box)
 	box.finished_dialogue.connect(_handle_dialogue_end)
 	return box
 

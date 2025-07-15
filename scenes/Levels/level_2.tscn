@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://boqw4pqjdolkc"]
+[gd_scene load_steps=36 format=4 uid="uid://boqw4pqjdolkc"]
 
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_rbuvs"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="2_452xl"]
@@ -7,30 +7,31 @@
 [ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_godws"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="7_5crkq"]
 [ext_resource type="PackedScene" uid="uid://dafm2cr8rs7ts" path="res://scenes/Camera/camera_bounds.tscn" id="13_0lf7e"]
-[ext_resource type="Script" uid="uid://capu3jb6wgtpd" path="res://scripts/Objects/Elevator.gd" id="13_04xhx"]
+[ext_resource type="Script" path="res://scripts/Objects/Elevator.gd" id="13_04xhx"]
 [ext_resource type="PackedScene" uid="uid://rsat8le877xi" path="res://scenes/Levels/test_world.tscn" id="14_y6tmf"]
 [ext_resource type="Texture2D" uid="uid://cwktmp0nqs867" path="res://assets/sprites/Elevator.png" id="15_r0w8p"]
 [ext_resource type="AudioStream" uid="uid://6ndvu3hywicm" path="res://assets/blip.wav" id="16_4i6gi"]
-[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scripts/Objects/FallZone.gd" id="17_gv2sh"]
+[ext_resource type="Script" path="res://scripts/Objects/FallZone.gd" id="17_gv2sh"]
 [ext_resource type="Texture2D" uid="uid://cvedbwidwdwl6" path="res://assets/sprites/really_cool_fire.png" id="18_410d2"]
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/Enemies/bug_guy.tscn" id="19_6qxha"]
 [ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="19_40h3w"]
 [ext_resource type="PackedScene" uid="uid://4wdajkbawuj7" path="res://scenes/NPC/npc.tscn" id="20_yd0ew"]
-[ext_resource type="Script" uid="uid://d1wqqcb5sju38" path="res://scripts/NPC/LineEntry.gd" id="21_tbcna"]
-[ext_resource type="Script" path="res://Debug.gd" id="21_xi46r"]
+[ext_resource type="Script" path="res://scripts/NPC/LineEntry.gd" id="21_tbcna"]
+[ext_resource type="PackedScene" uid="uid://b4f1ms2kagji" path="res://scenes/Inventory.tscn" id="21_ttcij"]
+[ext_resource type="Script" uid="uid://b7vaelrjkxb47" path="res://Debug.gd" id="21_xi46r"]
 [ext_resource type="Shader" path="res://scripts/Outline.gdshader" id="22_pv7xf"]
 [ext_resource type="Texture2D" uid="uid://2xi7n5glsxfv" path="res://assets/sprites/cat.png" id="23_n24u3"]
 
 [sub_resource type="Resource" id="Resource_b5w1l"]
 script = ExtResource("3_f2tki")
-_acceleration = 50.0
+_acceleration = 25.0
 _deacceleration = 100.0
 max_speed = 300.0
 in_air_acceleration = 20.0
 in_air_deacceleration = 20.0
-jump_force = -500.0
-_gravity = 1000.0
-falling_gravity = 2000.0
+jump_force = -450.0
+_gravity = 950.0
+falling_gravity = 1900.0
 coyote_time = 0.1
 jump_buffer_time = 0.1
 variable_jump_multiplier = 0.5
@@ -144,7 +145,6 @@ position = Vector2(3616, -1728)
 script = ExtResource("13_04xhx")
 target_scene_path = ExtResource("14_y6tmf")
 character_scene_path = ExtResource("2_452xl")
-metadata/_custom_type_script = "uid://capu3jb6wgtpd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Elevator"]
 position = Vector2(0, 16)
@@ -244,6 +244,8 @@ texture = ExtResource("18_410d2")
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("21_xi46r")
+
+[node name="Inventory" parent="." instance=ExtResource("21_ttcij")]
 
 [connection signal="body_entered" from="Objects/Elevator" to="Objects/Elevator" method="_on_body_entered"]
 [connection signal="body_entered" from="Objects/FallZone" to="Objects/FallZone" method="_on_body_entered"]

@@ -1,7 +1,13 @@
 extends CanvasLayer
 
+var inv_open = false
+func _ready() -> void:
+	self.visible = false
+
 func _on_close_pressed() -> void:
-	$Anim.play("TransOut")
+	if inv_open:
+		$Anim.play("TransOut")
+	
 
 func _on_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "TransOut":
