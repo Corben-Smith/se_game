@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://crscxwl8dfqg"]
+
+[ext_resource type="Script" uid="uid://cupackbgbenrr" path="res://scripts/Camera/camera_manager.gd" id="1_obm8q"]
+
+[node name="CameraManager" type="Node2D"]
+script = ExtResource("1_obm8q")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Areas" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Bounds" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
