@@ -1,9 +1,8 @@
-[gd_scene load_steps=36 format=4 uid="uid://boqw4pqjdolkc"]
+[gd_scene load_steps=35 format=4 uid="uid://boqw4pqjdolkc"]
 
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_rbuvs"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="2_452xl"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_f2tki"]
-[ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://scenes/pause_menu.tscn" id="4_ki2ik"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="5_u84qy"]
 [ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_godws"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="7_5crkq"]
@@ -18,8 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="19_40h3w"]
 [ext_resource type="PackedScene" uid="uid://4wdajkbawuj7" path="res://scenes/NPC/npc.tscn" id="20_yd0ew"]
 [ext_resource type="Script" uid="uid://d1wqqcb5sju38" path="res://scripts/NPC/LineEntry.gd" id="21_tbcna"]
-[ext_resource type="Script" uid="uid://b7vaelrjkxb47" path="res://Debug.gd" id="21_xi46r"]
-[ext_resource type="Shader" uid="uid://ye4utbyoye7n" path="res://scripts/Outline.gdshader" id="22_pv7xf"]
+[ext_resource type="Script" path="res://Debug.gd" id="21_xi46r"]
+[ext_resource type="Shader" path="res://scripts/Outline.gdshader" id="22_pv7xf"]
 [ext_resource type="Texture2D" uid="uid://2xi7n5glsxfv" path="res://assets/sprites/cat.png" id="23_n24u3"]
 
 [sub_resource type="Resource" id="Resource_b5w1l"]
@@ -100,12 +99,11 @@ spawn_point = NodePath("SpawnPoint")
 camera_manager = NodePath("CameraManager")
 metadata/_custom_type_script = "uid://dndkk0j5v0b4h"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_452xl")]
 position = Vector2(-865, -176)
 stats = SubResource("Resource_b5w1l")
-
-[node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("4_ki2ik")]
-metadata/_edit_use_anchors_ = true
 
 [node name="LayerHolder" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -243,8 +241,6 @@ uid = "37379ace-f2c1-4929-8827-060620cd7857"
 position = Vector2(64, 32)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("18_410d2")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("21_xi46r")

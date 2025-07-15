@@ -2,52 +2,56 @@
 
 [ext_resource type="Script" uid="uid://cjltddqc1gchs" path="res://game_over.gd" id="1_y26ei"]
 
-[node name="game_over" type="CanvasLayer"]
+[node name="game_over" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_y26ei")
 
-[node name="Label" type="Label" parent="."]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 527.0
-offset_top = 266.0
-offset_right = -520.0
-offset_bottom = -359.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="PanelContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -64.0
+offset_right = 52.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/PanelContainer"]
+texture_filter = 1
+layout_mode = 2
 text = "GAME OVER !!"
 
-[node name="respawn" type="Button" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 534.0
-offset_top = 406.0
-offset_right = -540.0
-offset_bottom = -211.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="respawn" type="Button" parent="Panel/PanelContainer"]
+layout_mode = 2
 text = "Respawn"
 
-[node name="quit" type="Button" parent="."]
-offset_left = 554.0
-offset_top = 358.0
-offset_right = 596.0
-offset_bottom = 389.0
-text = "Quit"
-
-[node name="Main Menu" type="Button" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 525.0
-offset_top = 308.0
-offset_right = -531.0
-offset_bottom = -309.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Main Menu" type="Button" parent="Panel/PanelContainer"]
+layout_mode = 2
 text = "Main Menu"
 
-[connection signal="pressed" from="respawn" to="." method="_on_respawn_pressed"]
-[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]
+[node name="quit" type="Button" parent="Panel/PanelContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="Panel/PanelContainer/respawn" to="." method="_on_respawn_pressed"]
+[connection signal="pressed" from="Panel/PanelContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Panel/PanelContainer/quit" to="." method="_on_quit_pressed"]

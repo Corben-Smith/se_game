@@ -1,9 +1,6 @@
 extends CharacterBody2D
-class_name Player
 
 @onready var deal_damage_area = $DealDamageArea
-
-signal died
 
 # Internal variables
 var coyote_timer: float = 0.0
@@ -36,12 +33,6 @@ func _ready() -> void:
 	
 	# Connect damage signal
 	deal_damage_area.connect("body_entered", _on_deal_damage_area_body_entered)
-
-	health_component.health_depleted.connect(handle_death)
-
-func handle_death():
-	died.emit()
-
 
 func _physics_process(delta: float) -> void:
 	if label:

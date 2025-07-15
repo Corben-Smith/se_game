@@ -5,12 +5,14 @@ class_name Level
 @export var camera_manager: CameraManager = null
 
 func _ready() -> void:
-    if !camera_manager:
-        camera_manager = $CameraManager
+	if !camera_manager:
+		camera_manager = $CameraManager
+	
+	UI_Manager.setup_level_ui()
 
 func get_spawn_point():
-    return spawn_point 
+	return spawn_point 
 
 func get_camera_manager():
-    return camera_manager
+	return camera_manager
 
