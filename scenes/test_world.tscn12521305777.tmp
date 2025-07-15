@@ -1,16 +1,36 @@
-[gd_scene load_steps=19 format=4 uid="uid://rsat8le877xi"]
+[gd_scene load_steps=24 format=4 uid="uid://jrhqt0q5ybbi"]
 
-[ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_emc6x"]
+[ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
+[ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://pause_menu.tscn" id="1_ar7ra"]
+[ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_ar7ra"]
 [ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/collectable.tscn" id="3_umbte"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="3_xwrkq"]
 [ext_resource type="Script" uid="uid://ba3whgs6gctxp" path="res://scripts/Collectables/Status_Collectable.gd" id="4_dvny0"]
+[ext_resource type="PackedScene" uid="uid://bbuat5athyyak" path="res://Healthbar.tscn" id="4_x05cw"]
 [ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
 [ext_resource type="Script" uid="uid://cuw8fedllxgs4" path="res://scripts/StatusEffects/Status_Effect.gd" id="5_xwrkq"]
 [ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_8hcw6"]
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="8_x05cw"]
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="10_ar7ra"]
-[ext_resource type="Script" uid="uid://cupackbgbenrr" path="res://camera_manager.gd" id="11_mittc"]
+[ext_resource type="PackedScene" uid="uid://dkl8m3ohlvc3i" path="res://health_collectable.tscn" id="15_x05cw"]
+[ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/bug_guy.tscn" id="16_bn472"]
+
+[sub_resource type="Resource" id="Resource_8hcw6"]
+script = ExtResource("3_ar7ra")
+_acceleration = 50.0
+_deacceleration = 100.0
+max_speed = 300.0
+in_air_acceleration = 20.0
+in_air_deacceleration = 20.0
+jump_force = -500.0
+_gravity = 1000.0
+falling_gravity = 2000.0
+coyote_time = 0.1
+jump_buffer_time = 0.1
+variable_jump_multiplier = 0.5
+max_falling_speed = 50.0
+metadata/_custom_type_script = "uid://byikc5yvpboxi"
 
 [sub_resource type="Resource" id="Resource_3xk6l"]
 script = ExtResource("8_x05cw")
@@ -43,11 +63,19 @@ size = Vector2(128, 128)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ixgyf"]
 
-[node name="TestWorld" type="Node2D" node_paths=PackedStringArray("spawn_point")]
-script = ExtResource("1_emc6x")
-spawn_point = NodePath("SpawnPoint")
+[node name="TestWorld" type="Node2D"]
+position = Vector2(81, 0)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_amxg5")]
+position = Vector2(-7, 224)
+stats = SubResource("Resource_8hcw6")
+
+[node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("1_ar7ra")]
+
+[node name="UI" parent="CharacterBody2D" instance=ExtResource("4_x05cw")]
 
 [node name="LayerHolder" type="Node2D" parent="."]
+position = Vector2(6, 0)
 
 [node name="GroundLayer" type="TileMapLayer" parent="LayerHolder"]
 position = Vector2(1, 0)
@@ -87,11 +115,11 @@ script = ExtResource("10_ar7ra")
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_ixgyf")
 
-[node name="SpawnPoint" type="Node2D" parent="."]
+[node name="HealthCollectable" parent="." instance=ExtResource("15_x05cw")]
+position = Vector2(-399, 72)
 
-[node name="CameraManager" type="Node2D" parent="."]
-script = ExtResource("11_mittc")
-metadata/_custom_type_script = "uid://cupackbgbenrr"
+[node name="BugGuy" parent="." instance=ExtResource("16_bn472")]
+position = Vector2(-75, 227)
 
 [connection signal="body_entered" from="FallZone" to="FallZone" method="_on_body_entered"]
 

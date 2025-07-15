@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://c23nvoxivqffl"]
+[gd_scene load_steps=24 format=4 uid="uid://jrhqt0q5ybbi"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_amxg5"]
 [ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://pause_menu.tscn" id="1_ar7ra"]
@@ -6,15 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/collectable.tscn" id="3_umbte"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="3_xwrkq"]
 [ext_resource type="Script" uid="uid://ba3whgs6gctxp" path="res://scripts/Collectables/Status_Collectable.gd" id="4_dvny0"]
+[ext_resource type="PackedScene" uid="uid://bbuat5athyyak" path="res://Healthbar.tscn" id="4_x05cw"]
 [ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="4_ynswa"]
 [ext_resource type="Script" uid="uid://cuw8fedllxgs4" path="res://scripts/StatusEffects/Status_Effect.gd" id="5_xwrkq"]
 [ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_8hcw6"]
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="7_xwrkq"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="8_x05cw"]
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="10_ar7ra"]
-[ext_resource type="Script" uid="uid://0l1jqwbysrm2" path="res://scenes/ui.gd" id="13_dv75v"]
-[ext_resource type="PackedScene" uid="uid://bm8w2bh468hgy" path="res://heart.tscn" id="13_mjm4b"]
-[ext_resource type="PackedScene" uid="uid://dshfr8k7r2766" path="res://health_collectable.tscn" id="15_x05cw"]
+[ext_resource type="PackedScene" uid="uid://dkl8m3ohlvc3i" path="res://health_collectable.tscn" id="15_x05cw"]
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/bug_guy.tscn" id="16_bn472"]
 [ext_resource type="PackedScene" uid="uid://dxs5wr0c5t6t7" path="res://scenes/shop.tscn" id="12_8hcw6"]
 [ext_resource type="Texture2D" uid="uid://dbe7dudlwpghb" path="res://assets/2DGameShopkeepter.png" id="12_mjm4b"]
@@ -82,22 +81,7 @@ stats = SubResource("Resource_8hcw6")
 
 [node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("1_ar7ra")]
 
-[node name="UI" type="CanvasLayer" parent="CharacterBody2D" node_paths=PackedStringArray("player")]
-script = ExtResource("13_dv75v")
-player = NodePath("..")
-
-[node name="Hearts" type="HBoxContainer" parent="CharacterBody2D/UI"]
-offset_left = 1.0
-offset_right = 41.0
-offset_bottom = 40.0
-
-[node name="Heart" parent="CharacterBody2D/UI/Hearts" instance=ExtResource("13_mjm4b")]
-
-[node name="Heart2" parent="CharacterBody2D/UI/Hearts" instance=ExtResource("13_mjm4b")]
-position = Vector2(41, 0)
-
-[node name="Heart3" parent="CharacterBody2D/UI/Hearts" instance=ExtResource("13_mjm4b")]
-position = Vector2(82, 0)
+[node name="UI" parent="CharacterBody2D" instance=ExtResource("4_x05cw")]
 
 [node name="LayerHolder" type="Node2D" parent="."]
 position = Vector2(6, 0)

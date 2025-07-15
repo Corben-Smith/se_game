@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=4 uid="uid://by32pmgg5ihv6"]
+
+[ext_resource type="Script" uid="uid://bfu4xs3tyne55" path="res://scripts/Character.gd" id="1_yge7i"]
+[ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="2_fsk44"]
+[ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="3_cnaw2"]
+[ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="3_ns1xd"]
+[ext_resource type="PackedScene" uid="uid://c6mossxsl0anr" path="res://scenes/player.tscn" id="4_dsnr4"]
+[ext_resource type="Script" uid="uid://cp6641qybnicx" path="res://scripts/Health/healthbar.gd" id="5_cnaw2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmjn"]
+size = Vector2(32, 64)
+
+[node name="TestWorld" type="Node2D"]
+
+[node name="Meow" type="Node" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(320, 192)
+script = ExtResource("1_yge7i")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(-385, 58)
+texture = ExtResource("2_fsk44")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-386, 58)
+scale = Vector2(0.99, 0.99)
+shape = SubResource("RectangleShape2D_ksmjn")
+
+[node name="health" type="Node" parent="CharacterBody2D"]
+script = ExtResource("3_cnaw2")
+
+[node name="LayerHolder" type="Node2D" parent="."]
+position = Vector2(-509, 35)
+
+[node name="ForegroundLayer" type="TileMapLayer" parent="LayerHolder"]
+modulate = Color(1, 0.56, 0.56, 1)
+z_index = 1
+tile_map_data = PackedByteArray("AAANAAUAAQABAAMAAAAOAAUAAQAWAAEAAAAPAAUAAQAVAAEAAAAQAAUAAQADAAMAAAAOAAYAAQALAAIAAAAPAAYAAQANAAIAAAAPAAcAAQANAAIAAAAPAAgAAQANAAMAAAAOAAgAAQALAAMAAAAOAAcAAQALAAIAAAA=")
+tile_set = ExtResource("3_ns1xd")
+collision_enabled = false
+use_kinematic_bodies = true
+
+[node name="GroundLayer" type="TileMapLayer" parent="LayerHolder"]
+position = Vector2(57, -1)
+tile_map_data = PackedByteArray("AAACAAgAAQACAAMAAAAFAAgAAQACAAMAAAAEAAgAAQACAAMAAAADAAgAAQACAAMAAAARAAoAAQAPAAEAAAARAAsAAQAFAAIAAAARAAwAAQAPAAIAAAASAAwAAQACAAMAAAATAAsAAQAFAAIAAAATAAoAAQAQAAEAAAASAAoAAQACAAMAAAATAAwAAQAQAAIAAAAKAAgAAQACAAMAAAALAAgAAQACAAMAAAAMAAgAAQACAAMAAAANAAgAAQACAAMAAAAOAAgAAQACAAMAAAAPAAgAAQACAAMAAAAQAAgAAQACAAMAAAAHAAkAAQALAAMAAAAIAAkAAQANAAMAAAANAAUAAQABAAMAAAAOAAUAAQACAAMAAAAPAAUAAQACAAMAAAAQAAUAAQADAAMAAAARAAgAAQACAAMAAAASAAgAAQAWAAIAAAASAAcAAQALAAEAAAATAAcAAQAGAAYAAAATAAgAAQAMAAMAAAATAAYAAQALAAEAAAAUAAYAAQAGAAYAAAAUAAcAAQAHAAMAAAAVAAYAAQANAAIAAAAVAAUAAQANAAEAAAAVAAcAAQANAAIAAAAUAAgAAQAMAAMAAAAUAAUAAQALAAEAAAAVAAgAAQANAAMAAAAPAAoAAQADAAEAAAANAAoAAQAFAAEAAAANAAsAAQAFAAIAAAANAAwAAQAFAAMAAAALAAsAAQADAAMAAAAKAAsAAQACAAMAAAAJAAsAAQABAAMAAAAGAAoAAQADAAMAAAAFAAoAAQAVAAEAAAAFAAsAAQANAAIAAAAFAAwAAQAVAAIAAAAGAAwAAQADAAMAAAAEAAoAAQALAAEAAAAEAAsAAQALAAIAAAAEAAwAAQALAAMAAAAKAA4AAQARAAUAAAAKAA0AAQAPAAEAAAALAA0AAQADAAMAAAAJAA4AAQABAAMAAAALAA8AAQADAAMAAAAKAA8AAQAPAAIAAAAUAA0AAQAiAAsAAAAJAAgAAQACAAMAAAAIAAgAAQAVAAEAAAAGAAgAAQACAAMAAAAHAAgAAQAWAAEAAAABAAgAAQAMAAEAAAAAAAgAAQAMAAEAAAD//wgAAQALAAEAAAAWAAgAAQAiAAsAAAAXAAgAAQAiAAsAAAAYAAgAAQAiAAsAAAAaAAgAAQAiAAsAAAAcAAgAAQAiAAsAAAAfAAgAAQAiAAsAAAAeAAgAAQAiAAsAAAAdAAgAAQAiAAsAAAAbAAgAAQAiAAsAAAAZAAgAAQAiAAsAAAD//wcAAQABAAMAAAD+/wYAAQAMAAEAAAD9/wUAAQAMAAEAAAD5/wUAAQAMAAEAAAD4/wUAAQAMAAEAAAD2/wUAAQACAAMAAAD3/wUAAQAMAAEAAAD1/wUAAQACAAMAAAD0/wUAAQACAAMAAADz/wUAAQACAAMAAADy/wUAAQACAAMAAADw/wUAAQACAAMAAADx/wUAAQACAAMAAADv/wUAAQABAAMAAADw/wYAAQACAAMAAADx/wYAAQACAAMAAADv/wYAAQAMAAEAAADy/wYAAQAMAAEAAAD0/wYAAQAMAAEAAAA=")
+tile_set = ExtResource("3_ns1xd")
+use_kinematic_bodies = true
+
+[node name="BackgroundLayer" type="TileMapLayer" parent="LayerHolder"]
+modulate = Color(0.187176, 0.187176, 0.187176, 1)
+z_index = -1
+tile_map_data = PackedByteArray("AAANAAUAAQANAAEAAAAMAAUAAQAMAAEAAAALAAUAAQAMAAEAAAAKAAYAAQALAAIAAAAKAAcAAQALAAIAAAALAAcAAQABAAEAAAAMAAcAAQAHAAMAAAAMAAYAAQAHAAMAAAALAAYAAQABAAEAAAANAAcAAQAMAAIAAAANAAYAAQAFAAYAAAAOAAYAAQAMAAEAAAAPAAYAAQAMAAEAAAAQAAYAAQAGAAYAAAAQAAcAAQAMAAIAAAAPAAcAAQAHAAMAAAARAAcAAQABAAEAAAASAAcAAQAFAAYAAAAOAAcAAQAMAAIAAAARAAYAAQABAAEAAAASAAYAAQANAAIAAAARAAUAAQAMAAEAAAAQAAUAAQALAAEAAAASAAUAAQAVAAEAAAATAAUAAQACAAMAAAAUAAUAAQAQAAEAAAAUAAYAAQAPAAUAAAAVAAYAAQADAAMAAAAUAAcAAQATAAIAAAAUAAgAAQANAAMAAAATAAgAAQAMAAMAAAASAAgAAQAMAAMAAAATAAcAAQAMAAEAAAARAAgAAQAMAAMAAAAQAAgAAQAMAAMAAAAPAAgAAQAMAAMAAAAOAAgAAQAMAAMAAAANAAgAAQAMAAMAAAAMAAgAAQAMAAMAAAALAAgAAQAMAAMAAAAKAAgAAQALAAMAAAAKAAUAAQALAAEAAAA=")
+tile_set = ExtResource("3_ns1xd")
+collision_enabled = false
+use_kinematic_bodies = true
+
+[node name="player" parent="." instance=ExtResource("4_dsnr4")]
+position = Vector2(-403, 26)
+
+[node name="AnimatedSprite2D" parent="player" index="0"]
+animation = &"weapon_idle"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchor_left = 0.18
+anchor_top = 0.076
+anchor_right = 0.18
+anchor_bottom = 0.076
+offset_left = -41.36
+offset_top = -0.248005
+offset_right = 40.64
+offset_bottom = 39.752
+
+[node name="healthbar" type="ProgressBar" parent="UI/Control" node_paths=PackedStringArray("health_component")]
+layout_mode = 0
+offset_right = 179.0
+offset_bottom = 27.0
+script = ExtResource("5_cnaw2")
+health_component = NodePath("../../../player/health")
+
+[editable path="player"]

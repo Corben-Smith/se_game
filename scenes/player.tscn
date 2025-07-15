@@ -1,7 +1,7 @@
 [gd_scene load_steps=64 format=3 uid="uid://c6mossxsl0anr"]
 
 [ext_resource type="Texture2D" uid="uid://dyr6t3a2njf2u" path="res://assets/Dacian Warrior Animated Pixel-Art 2D/Attack/50x50/Attack 0-1 Sprite Sheet.png" id="1_2fvbb"]
-[ext_resource type="Script" uid="uid://c0t0d40ewkgow" path="res://scripts/Character/player.gd" id="1_ml7e8"]
+[ext_resource type="Script" uid="uid://c0t0d40ewkgow" path="res://scripts/player.gd" id="1_ml7e8"]
 [ext_resource type="Texture2D" uid="uid://c8c2afp7at0jh" path="res://assets/Dacian Warrior Animated Pixel-Art 2D/Dead/50x50/Dead 1 Sprite Sheet.png" id="2_ml7e8"]
 [ext_resource type="Texture2D" uid="uid://brd0bibveanir" path="res://assets/Dacian Warrior Animated Pixel-Art 2D/Fall/50x50/Fall 0 Sprite Sheet.png" id="3_ihjo1"]
 [ext_resource type="Texture2D" uid="uid://wm3i5ncfvcf4" path="res://assets/Dacian Warrior Animated Pixel-Art 2D/Idle/50x50/Idle Sprite 1.png" id="4_dk1vr"]
