@@ -43,6 +43,8 @@ func physics_update(delta: float) -> void:
 		emit_signal("transition", self, "Falling_State", {})
 		return
 
+	print(fly_timer/max_fly_timer)
+
 
 func handle_horizontal_movement():
 	var direction := Input.get_axis("Left", "Right")
@@ -62,4 +64,6 @@ func enter(previous_state_path: String, data := {}) -> void:
 func exit() -> void:
 	if particles:
 		particles.emitting = false
+
+	fly_timer  = max_fly_timer
 	pass

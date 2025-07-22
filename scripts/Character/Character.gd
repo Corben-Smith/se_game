@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @onready var deal_damage_area = $DealDamageArea
+@onready var sprite: AnimatedSprite2D = $Sprite2D  
 
 signal died
 
@@ -19,6 +20,10 @@ var direction: Vector2 = Vector2.RIGHT
 @export var health_component: HealthComponent = null
 @export var attack_damage: int = 10
 @onready var label: Label = $Label
+
+var base_scale 
+var left_scale
+var right_scale
 
 func _ready() -> void:
 	add_to_group("player")
@@ -39,6 +44,10 @@ func _ready() -> void:
 
 	health_component.health_depleted.connect(handle_death)
 
+	base_scale = abs(self.scale.x)
+	left_scale = -base_scale
+	right_scale = base_scale
+
 func handle_death():
 	died.emit()
 
@@ -50,11 +59,6 @@ func _physics_process(delta: float) -> void:
 		coyote_timer = stats["coyote_time"]
 	else:
 		coyote_timer -= delta
-
-	if velocity.x < 0:
-		$Sprite2D.flip_h = true
-	elif velocity.x > 0:
-		$Sprite2D.flip_h = false
 
 	move_and_slide()
 	if velocity.x != Vector2.ZERO.x:
@@ -79,20 +83,27 @@ func apply_gravity(delta):
 	else:
 		velocity.y = 0
 
-func handle_horizontal_movement():
-	var direction := Input.get_axis("Left", "Right")
 
-	if direction != 0:
-		toggle_flip_damage(direction)
+func handle_horizontal_movement():
+	var input_direction := Input.get_axis("Left", "Right")
+
+	if input_direction < 0:
+		sprite.flip_h = true
+		# Also flip damage area
+		deal_damage_area.scale.x = -1
+	elif input_direction > 0:
+		sprite.flip_h = false
+		# Also flip damage area
+		deal_damage_area.scale.x = 1
 
 	if is_on_floor():
-		if direction != 0:
-			velocity.x = move_toward(velocity.x, direction * stats["max_speed"], stats["acceleration"])
+		if input_direction != 0:
+			velocity.x = move_toward(velocity.x, input_direction * stats["max_speed"], stats["acceleration"])
 		else:
 			velocity.x = move_toward(velocity.x, 0, stats["deacceleration"])
 	else:
-		if direction != 0:
-			velocity.x = move_toward(velocity.x, direction * stats["max_speed"], stats["in_air_acceleration"])
+		if input_direction != 0:
+			velocity.x = move_toward(velocity.x, input_direction * stats["max_speed"], stats["in_air_acceleration"])
 		else:
 			velocity.x = move_toward(velocity.x, 0, stats["in_air_deacceleration"])
 
@@ -112,9 +123,9 @@ func handle_jumping(delta):
 		is_jumping = false
 
 func toggle_flip_damage(dir):
-	if dir == 1:
+	if dir > 1:
 		deal_damage_area.scale.x = 1
-	elif dir == -1:
+	elif dir < -1:
 		deal_damage_area.scale.x = -1
 
 func _on_deal_damage_area_body_entered(body):

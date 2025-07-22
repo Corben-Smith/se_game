@@ -38,7 +38,7 @@ func _on_resume_pressed():
 
 func _on_restart_pressed():
 	resume()
-	get_tree().reload_current_scene()
+	PersistentManager.load_checkpoint()
 
 func _on_quit_pressed():
 	get_tree().quit()

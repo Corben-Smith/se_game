@@ -1,4 +1,4 @@
-extends Sprite2D
+extends AnimatedSprite2D
 
 @onready var tween = create_tween()
 
@@ -8,11 +8,11 @@ extends Sprite2D
 @export var delay := 0.0           # Optional delay between bobs
 
 func _ready():
-    start_bobbing()
+	start_bobbing()
 
 func start_bobbing():
-    var original_y = position.y
-    # Create an infinite bobbing loop
-    tween.set_loops()  # Infinite loop
-    tween.tween_property(self, "position:y", original_y - bob_height, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-    tween.tween_property(self, "position:y", original_y, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	var original_y = position.y
+	# Create an infinite bobbing loop
+	tween.set_loops()  # Infinite loop
+	tween.tween_property(self, "position:y", original_y - bob_height, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "position:y", original_y, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

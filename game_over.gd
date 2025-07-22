@@ -11,7 +11,7 @@ func hide_self():
 	self.visible = false
 
 func _on_respawn_pressed() -> void:
-	GlobalReferences.player.position.y = 9999
+	PersistentManager.load_checkpoint()
 	hide_self()
 
 func _on_quit_pressed() -> void:

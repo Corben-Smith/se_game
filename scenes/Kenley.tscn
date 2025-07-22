@@ -1,38 +1,37 @@
-[gd_scene load_steps=23 format=3 uid="uid://cok6gvdxjgywq"]
+[gd_scene load_steps=24 format=3 uid="uid://cok6gvdxjgywq"]
 
-[ext_resource type="Script" uid="uid://bfu4xs3tyne55" path="res://scripts/Character/Character.gd" id="1_7ig0a"]
-[ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="2_dfeyu"]
+[ext_resource type="Script" uid="uid://dsbmrtptr08ap" path="res://scripts/Character/Kenley_Character.gd" id="1_21ah3"]
+[ext_resource type="Resource" uid="uid://cv82ew5ji8w54" path="res://scenes/Base_Player_Stats.tres" id="2_duim7"]
 [ext_resource type="Texture2D" uid="uid://cgxsuej7wcvqt" path="res://assets/Kenley_Sprite.png" id="3_r68wp"]
 [ext_resource type="Script" uid="uid://c1fthtfbmc1rp" path="res://scripts/States/StateMachine.gd" id="3_rguqb"]
-[ext_resource type="Script" uid="uid://b584csyxnnyk8" path="res://scripts/States/Idle_State.gd" id="4_fwsyb"]
-[ext_resource type="Script" path="res://scenes/kenly_sprite.gd" id="4_q6urs"]
-[ext_resource type="Script" uid="uid://dnvtpbhkddiyk" path="res://scripts/States/Running_State.gd" id="5_25pii"]
-[ext_resource type="Script" uid="uid://4g2vde2305m7" path="res://scripts/States/Jumping_State.gd" id="6_exdhi"]
-[ext_resource type="Script" uid="uid://cjyq8fcyxoh4v" path="res://scripts/States/Falling_State.gd" id="7_25pii"]
+[ext_resource type="Script" uid="uid://b6ynhdemjpa87" path="res://scripts/States/Kenly_States/Idle_State.gd" id="4_fwsyb"]
+[ext_resource type="Script" uid="uid://cmrhlb4i788gc" path="res://scenes/kenly_sprite.gd" id="4_q6urs"]
+[ext_resource type="Script" uid="uid://mkhmgpa3km1l" path="res://scripts/States/Kenly_States/Running_State.gd" id="5_25pii"]
+[ext_resource type="Script" uid="uid://tsgrb0oq1b3x" path="res://scripts/States/Kenly_States/Jumping_State.gd" id="6_exdhi"]
+[ext_resource type="Script" uid="uid://bg7f1iwwnnk6l" path="res://scripts/States/Kenly_States/Falling_State.gd" id="7_25pii"]
 [ext_resource type="Script" uid="uid://dp74djouk71ts" path="res://scripts/StatusEffects/Status_Effect_Manager.gd" id="8_exdhi"]
-[ext_resource type="Script" uid="uid://bqsmytqu18wwi" path="res://scripts/States/Attack_Script.gd" id="9_r68wp"]
+[ext_resource type="Script" uid="uid://cc8rhy5ppo4nm" path="res://scripts/States/Kenly_States/Basic_Attack_Script.gd" id="9_r68wp"]
 [ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="9_r87yu"]
-[ext_resource type="Script" path="res://scripts/States/Gliding_State.gd" id="10_lkiy7"]
+[ext_resource type="Script" uid="uid://c6kmqf1lqoc6x" path="res://scripts/States/Kenly_States/Gliding_State.gd" id="10_lkiy7"]
 [ext_resource type="Script" path="res://scripts/shooting_state.gd" id="12_356g5"]
 [ext_resource type="PackedScene" uid="uid://3ixrip08xoeh" path="res://fairy_bullet.tscn" id="13_356g5"]
 [ext_resource type="Texture2D" uid="uid://be4vuo0hak4m" path="res://assets/placeholder128.png" id="14_4yo34"]
 [ext_resource type="Texture2D" uid="uid://d1bsqlqgynylv" path="res://assets/pixie_dust.png" id="14_ftwfq"]
 
-[sub_resource type="Resource" id="Resource_r68wp"]
-script = ExtResource("2_dfeyu")
-_acceleration = 50.0
-_deacceleration = 100.0
-max_speed = 250.0
-in_air_acceleration = 20.0
-in_air_deacceleration = 20.0
-jump_force = -450.0
-_gravity = 1000.0
-falling_gravity = 2000.0
-coyote_time = 0.1
-jump_buffer_time = 0.1
-variable_jump_multiplier = 0.5
-max_falling_speed = 50.0
-metadata/_custom_type_script = "uid://byikc5yvpboxi"
+[sub_resource type="AtlasTexture" id="AtlasTexture_duim7"]
+atlas = ExtResource("3_r68wp")
+region = Rect2(0, 0, 312, 309)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jp3po"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duim7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksmjn"]
 size = Vector2(24, 56)
@@ -65,18 +64,18 @@ scale_max = 0.05
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "status_manager", "health_component") groups=["player"]]
 light_mask = 524288
-script = ExtResource("1_7ig0a")
-stats = SubResource("Resource_r68wp")
+script = ExtResource("1_21ah3")
+stats = ExtResource("2_duim7")
 state_machine = NodePath("StateMachine")
 status_manager = NodePath("StatusEffectManager")
 health_component = NodePath("Health")
 metadata/_edit_horizontal_guides_ = [-86.0]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 524288
 texture_filter = 1
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_r68wp")
+sprite_frames = SubResource("SpriteFrames_jp3po")
 script = ExtResource("4_q6urs")
 bob_height = 4.0
 duration = 2.0
@@ -93,24 +92,20 @@ metadata/_custom_type_script = "uid://c1fthtfbmc1rp"
 [node name="Idle_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("4_fwsyb")
 player = NodePath("../..")
-metadata/_custom_type_script = "uid://b584csyxnnyk8"
 
 [node name="Running_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "particles")]
 script = ExtResource("5_25pii")
 player = NodePath("../..")
 particles = NodePath("../../DirectionChangeParticles")
-metadata/_custom_type_script = "uid://dnvtpbhkddiyk"
 
 [node name="Jumping_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "particles")]
 script = ExtResource("6_exdhi")
 player = NodePath("../..")
 particles = NodePath("../../JumpParticles")
-metadata/_custom_type_script = "uid://4g2vde2305m7"
 
 [node name="Falling_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("7_25pii")
 player = NodePath("../..")
-metadata/_custom_type_script = "uid://cjyq8fcyxoh4v"
 
 [node name="Attack_State" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "debug")]
 script = ExtResource("9_r68wp")

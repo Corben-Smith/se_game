@@ -41,20 +41,31 @@ func physics_update(_delta: float) -> void:
 	if player.velocity.x == 0:
 		emit_signal("transition", self, "Idle_State", {})
 
+
 func handle_horizontal_movement():
 	var direction := Input.get_axis("Left", "Right")
+	
+	if direction < 0:
+		player.sprite.flip_h = true
+		# Also flip damage area
+		player.deal_damage_area.scale.x = -1
+	elif direction > 0:
+		player.sprite.flip_h = false
+		# Also flip damage area
+		player.deal_damage_area.scale.x = 1
 
-
+	# Handle boost particles and velocity boost
 	if direction != 0:
 		if sign(direction) != sign(player.velocity.x):
 			if particles:
 				particles.restart()
-
 			# Apply boost
 			player.velocity.x += boost_amount * direction 
-
+		
+		# Apply normal movement
 		player.velocity.x = move_toward(player.velocity.x, direction * player.stats["max_speed"], player.stats["acceleration"])
 	else:
+		# Decelerate when no input
 		player.velocity.x = move_toward(player.velocity.x, 0, player.stats["deacceleration"])
 
 func exit() -> void:

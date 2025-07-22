@@ -10,6 +10,8 @@ signal loading
 var persistent_object : Dictionary = {};
 var save_num: int
 
+var checkpoint = null
+
 # Return if a data with specifie UID exist
 func has(uid : String) -> bool:
 	return (uid in persistent_object.keys())
@@ -41,3 +43,8 @@ func save_data() -> void:
 	var access: FileAccess = FileAccess.open("user://" + "savefile" + str(save_num) + ".png" , FileAccess.WRITE)
 	access.store_string(json)
 	access.close()
+
+
+func load_checkpoint():
+	load_data()
+	GlobalReferences.player.position = checkpoint.position
