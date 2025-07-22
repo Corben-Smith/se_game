@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_tk007"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Kenley.tscn" id="2_wiwjy"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_rlwvl"]
+
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="5_t3ybq"]
 [ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_lfmxj"]
 [ext_resource type="Script" uid="uid://cuntujpetedjt" path="res://scripts/Attributes/ModifierEntry.gd" id="7_f5xba"]
@@ -142,6 +143,8 @@ position = Vector2(867, 828)
 stats = SubResource("Resource_dfih8")
 attack_damage = 50
 
+[node name="PauseMenu" parent="CharacterBody2D" instance=ExtResource("4_duqx6")]
+
 [node name="Label2" type="Label" parent="CharacterBody2D"]
 offset_left = -21.3335
 offset_top = -64.0
@@ -253,6 +256,7 @@ position = Vector2(7464, -736)
 script = ExtResource("13_xtmat")
 target_scene_path = ExtResource("14_j83sj")
 character_scene_path = ExtResource("2_wiwjy")
+metadata/_custom_type_script = "uid://capu3jb6wgtpd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Elevator"]
 position = Vector2(0, 16)
@@ -308,6 +312,12 @@ texture = ExtResource("24_pqrtk")
 position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_coqn3")
 
+[node name="DialogueBox" parent="NPC" index="2"]
+offset_left = -32.0
+offset_top = -80.0
+offset_right = -32.0
+offset_bottom = -80.0
+
 [node name="NPC2" parent="." node_paths=PackedStringArray("camera_manager") instance=ExtResource("21_csty5")]
 light_mask = 524288
 position = Vector2(662, -1114)
@@ -323,6 +333,12 @@ texture = ExtResource("24_pqrtk")
 [node name="CollisionShape2D" parent="NPC2" index="1"]
 position = Vector2(2, 6)
 shape = SubResource("RectangleShape2D_coqn3")
+
+[node name="DialogueBox" parent="NPC2" index="2"]
+offset_left = -32.0
+offset_top = -80.0
+offset_right = -32.0
+offset_bottom = -80.0
 
 [node name="IntructionLabels" type="Control" parent="."]
 layout_mode = 3
