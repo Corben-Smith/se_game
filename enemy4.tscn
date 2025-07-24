@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://dd4e7o5wpo0w5"]
+[gd_scene load_steps=11 format=3 uid="uid://ceeaek4khlm1s"]
 
-[ext_resource type="Script" uid="uid://cmmnhxytk107h" path="res://enemy4.gd" id="1_nfnpf"]
+[ext_resource type="Script" path="res://enemy4.gd" id="1_nfnpf"]
 [ext_resource type="Texture2D" uid="uid://br5ubtrgbtww7" path="res://assets/sprites/Spritesheet.png" id="2_gbotl"]
 [ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="3_ag805"]
 
@@ -48,11 +48,6 @@ radius = 38.0132
 
 [node name="Enemy4" type="CharacterBody2D"]
 script = ExtResource("1_nfnpf")
-
-[node name="Enemy2" type="CharacterBody2D"]
-scale = Vector2(0.75, 0.75)
-script = ExtResource("1_vfv5t")
-follow_distance = 150.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

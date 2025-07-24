@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://4e2skcrqapjk"]
+[gd_scene load_steps=47 format=4 uid="uid://4e2skcrqapjk"]
 
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_e8xcp"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Kenley.tscn" id="2_m13k2"]
@@ -17,10 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://cwktmp0nqs867" path="res://assets/sprites/Elevator.png" id="15_46t34"]
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scripts/Objects/FallZone.gd" id="16_yicf8"]
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/Enemies/bug_guy.tscn" id="17_lbnqm"]
-[ext_resource type="PackedScene" path="res://scenes/Collectable/Key.tscn" id="17_m13k2"]
+[ext_resource type="PackedScene" uid="uid://dtojoyqjdpmwf" path="res://scenes/Collectable/Key.tscn" id="17_m13k2"]
 [ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="18_kmqw7"]
 [ext_resource type="PackedScene" uid="uid://4wdajkbawuj7" path="res://scenes/NPC/npc.tscn" id="19_7vb3w"]
-[ext_resource type="PackedScene" path="res://scenes/Objects/Door.tscn" id="19_s73ov"]
+[ext_resource type="PackedScene" uid="uid://ck8rmou1tvhjo" path="res://scenes/Objects/Door.tscn" id="19_s73ov"]
 [ext_resource type="Script" path="res://scripts/NPC/LineEntry.gd" id="20_43688"]
 [ext_resource type="Shader" path="res://scripts/Outline.gdshader" id="21_kh2g2"]
 [ext_resource type="PackedScene" uid="uid://dafm2cr8rs7ts" path="res://scenes/Camera/camera_bounds.tscn" id="21_s73ov"]
@@ -89,21 +89,6 @@ size = Vector2(64, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nuyiy"]
 size = Vector2(2904, 800)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qtwx"]
-size = Vector2(1392, 576)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gt05m"]
-size = Vector2(928, 736)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr118"]
-size = Vector2(897, 992)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wt1rd"]
-size = Vector2(352, 608)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gpf3"]
-size = Vector2(1064, 800)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s73ov"]
 size = Vector2(5304, 2912)
@@ -347,37 +332,17 @@ position = Vector2(1424, -368)
 [node name="camera_bounds3" parent="CameraManager/Bounds" index="2" instance=ExtResource("21_s73ov")]
 position = Vector2(1296, 528)
 
-[node name="CollisionShape2D2" parent="CameraManager/Bounds/camera_bounds3" index="1"]
-position = Vector2(-104, 144)
-shape = SubResource("RectangleShape2D_6qtwx")
-
 [node name="camera_bounds4" parent="CameraManager/Bounds" index="3" instance=ExtResource("21_s73ov")]
 position = Vector2(2408, 544)
-
-[node name="CollisionShape2D2" parent="CameraManager/Bounds/camera_bounds4" index="1"]
-position = Vector2(-56, 48)
-shape = SubResource("RectangleShape2D_gt05m")
 
 [node name="camera_bounds5" parent="CameraManager/Bounds" index="4" instance=ExtResource("21_s73ov")]
 position = Vector2(3152, 552)
 
-[node name="CollisionShape2D2" parent="CameraManager/Bounds/camera_bounds5" index="1"]
-position = Vector2(111.5, -88)
-shape = SubResource("RectangleShape2D_pr118")
-
 [node name="camera_bounds6" parent="CameraManager/Bounds" index="5" instance=ExtResource("21_s73ov")]
 position = Vector2(2776, -112)
 
-[node name="CollisionShape2D2" parent="CameraManager/Bounds/camera_bounds6" index="1"]
-position = Vector2(-16, 0)
-shape = SubResource("RectangleShape2D_wt1rd")
-
 [node name="camera_bounds7" parent="CameraManager/Bounds" index="6" instance=ExtResource("21_s73ov")]
 position = Vector2(3304, -400)
-
-[node name="CollisionShape2D2" parent="CameraManager/Bounds/camera_bounds7" index="1"]
-position = Vector2(12, 0)
-shape = SubResource("RectangleShape2D_6gpf3")
 
 [node name="default" parent="CameraManager/Bounds" index="7" instance=ExtResource("21_s73ov")]
 visible = false
