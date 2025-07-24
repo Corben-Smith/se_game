@@ -33,9 +33,9 @@ func get_bounds_rect() -> Rect2:
 	)
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body.is_in_group("player"):
 		emit_signal("player_entered", self)
 
 func _on_body_exited(body: Node2D) -> void:
-	if body is Player:
+	if body.is_in_group("player"):
 		emit_signal("player_exited", self)
