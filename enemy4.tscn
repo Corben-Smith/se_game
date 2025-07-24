@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://dd4e7o5wpo0w5"]
+
+[ext_resource type="Script" uid="uid://cmmnhxytk107h" path="res://enemy4.gd" id="1_nfnpf"]
+[ext_resource type="Texture2D" uid="uid://br5ubtrgbtww7" path="res://assets/sprites/Spritesheet.png" id="2_gbotl"]
+[ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="3_ag805"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd7oa"]
+atlas = ExtResource("2_gbotl")
+region = Rect2(159, 0, 159, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48etn"]
+atlas = ExtResource("2_gbotl")
+region = Rect2(318, 0, 159, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chcdh"]
+atlas = ExtResource("2_gbotl")
+region = Rect2(0, 93, 159, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eodsp"]
+atlas = ExtResource("2_gbotl")
+region = Rect2(159, 93, 159, 93)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lbsx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd7oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48etn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chcdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eodsp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bedv3"]
+radius = 44.1022
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_frljp"]
+radius = 38.0132
+
+[node name="Enemy4" type="CharacterBody2D"]
+script = ExtResource("1_nfnpf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 4)
+scale = Vector2(1, 1.026)
+sprite_frames = SubResource("SpriteFrames_lbsx0")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 1)
+shape = SubResource("CircleShape2D_bedv3")
+
+[node name="DirectionTimer" type="Timer" parent="."]
+
+[node name="Enemy2Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2Hitbox"]
+position = Vector2(-6, -3)
+shape = SubResource("CircleShape2D_frljp")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_ag805")
+metadata/_custom_type_script = "uid://lbreutrqdu6t"
