@@ -1,4 +1,5 @@
-[gd_scene load_steps=37 format=4 uid="uid://boqw4pqjdolkc"]
+[gd_scene load_steps=39 format=4 uid="uid://boqw4pqjdolkc"]
+
 
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_rbuvs"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="2_452xl"]
@@ -22,6 +23,8 @@
 [ext_resource type="Shader" path="res://scripts/Outline.gdshader" id="22_pv7xf"]
 [ext_resource type="PackedScene" uid="uid://hgpdevjt2gs4" path="res://enemy_2.tscn" id="22_ttcij"]
 [ext_resource type="Texture2D" uid="uid://2xi7n5glsxfv" path="res://assets/sprites/cat.png" id="23_n24u3"]
+[ext_resource type="PackedScene" uid="uid://dd8mwer0petef" path="res://enemy_3.tscn" id="23_rbuvs"]
+[ext_resource type="PackedScene" uid="uid://dd4e7o5wpo0w5" path="res://enemy4.tscn" id="24_452xl"]
 
 [sub_resource type="Resource" id="Resource_b5w1l"]
 script = ExtResource("3_f2tki")
@@ -250,8 +253,18 @@ texture = ExtResource("18_410d2")
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("21_xi46r")
 
+
+[node name="Inventory" parent="." instance=ExtResource("21_ttcij")]
+
 [node name="Enemy2" parent="." instance=ExtResource("22_ttcij")]
-position = Vector2(-1582, 42)
+position = Vector2(-1581, 42)
+follow_distance = 200.0
+
+[node name="Enemy3" parent="." instance=ExtResource("23_rbuvs")]
+position = Vector2(-962, -319)
+
+[node name="Enemy4" parent="." instance=ExtResource("24_452xl")]
+position = Vector2(775, -627)
 
 [connection signal="body_entered" from="Objects/Elevator" to="Objects/Elevator" method="_on_body_entered"]
 [connection signal="body_entered" from="Objects/FallZone" to="Objects/FallZone" method="_on_body_entered"]

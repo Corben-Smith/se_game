@@ -47,7 +47,10 @@ radius = 44.1022
 radius = 38.0132
 
 [node name="Enemy2" type="CharacterBody2D"]
+
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_vfv5t")
+follow_distance = 150.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
