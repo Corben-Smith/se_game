@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://c63g2tcpo53w3"]
+[gd_scene load_steps=47 format=4 uid="uid://c63g2tcpo53w3"]
 
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_e8xcp"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="2_m13k2"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://4wdajkbawuj7" path="res://scenes/NPC/npc.tscn" id="19_7vb3w"]
 [ext_resource type="PackedScene" uid="uid://ck8rmou1tvhjo" path="res://scenes/Objects/Door.tscn" id="19_s73ov"]
 [ext_resource type="Script" uid="uid://d1wqqcb5sju38" path="res://scripts/NPC/LineEntry.gd" id="20_43688"]
+[ext_resource type="Script" uid="uid://3anmtgwaw0o" path="res://scripts/Objects/lvl1_lava_area.gd" id="20_nuyiy"]
 [ext_resource type="Shader" uid="uid://ye4utbyoye7n" path="res://scripts/Outline.gdshader" id="21_kh2g2"]
 [ext_resource type="Texture2D" uid="uid://2xi7n5glsxfv" path="res://assets/sprites/cat.png" id="22_odspj"]
 
@@ -86,6 +87,9 @@ size = Vector2(224, 64)
 size = Vector2(64, 96)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n31k3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s73ov"]
+size = Vector2(832, 49.125)
 
 [sub_resource type="Resource" id="Resource_k70aa"]
 script = ExtResource("20_43688")
@@ -300,6 +304,22 @@ position = Vector2(1950, 329)
 [node name="Door" parent="Objects" instance=ExtResource("19_s73ov")]
 position = Vector2(2802, 848)
 
+[node name="LavaArea" type="Area2D" parent="Objects"]
+position = Vector2(3392, -57)
+script = ExtResource("20_nuyiy")
+respawn_position = Vector2(2816, -320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/LavaArea"]
+position = Vector2(0, 0.4375)
+shape = SubResource("RectangleShape2D_s73ov")
+
+[node name="ColorRect" type="ColorRect" parent="Objects/LavaArea"]
+offset_left = -416.0
+offset_top = -23.0
+offset_right = 416.0
+offset_bottom = 25.0
+color = Color(0.811765, 0.0627451, 0.12549, 1)
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="BugGuy" parent="Enemies" instance=ExtResource("17_lbnqm")]
@@ -367,6 +387,7 @@ offset_bottom = -80.0
 
 [connection signal="body_entered" from="Objects/Elevator" to="Objects/Elevator" method="_on_body_entered"]
 [connection signal="body_entered" from="Objects/FallZone" to="Objects/FallZone" method="_on_body_entered"]
+[connection signal="body_entered" from="Objects/LavaArea" to="Objects/LavaArea" method="_on_body_entered"]
 
 [editable path="LayerHolder/OneWayPlatform"]
 [editable path="LayerHolder/OneWayPlatform2"]
