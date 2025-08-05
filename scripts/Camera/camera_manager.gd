@@ -23,10 +23,9 @@ var tween: Tween
 
 
 func _ready() -> void:
-
 	camera.set_zoom(zoom)
 	if !player:
-		player = GlobalReferences.player
+		push_error("PLAYER NOT SET ON CAM MANAGER")
 
 	for child in bounds_container.get_children():
 		if child is CameraBounds:

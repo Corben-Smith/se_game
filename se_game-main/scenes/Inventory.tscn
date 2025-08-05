@@ -1,0 +1,139 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4f1ms2kagji"]
+
+[ext_resource type="Script" uid="uid://ctoqrynafuafi" path="res://scripts/Inventory/inventory.gd" id="1_elp5n"]
+[ext_resource type="Texture2D" uid="uid://ttgelhmqn57h" path="res://assets/inventoryBackgroundSprite.png" id="2_elp5n"]
+[ext_resource type="Script" uid="uid://mfl0b1gblw0s" path="res://scripts/Inventory/invContainer.gd" id="3_brmsw"]
+[ext_resource type="PackedScene" uid="uid://xxt0ky2rli02" path="res://scenes/ItemInfo.tscn" id="4_njucy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elp5n"]
+bg_color = Color(0.164706, 0.176471, 0.196078, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_xfvoa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bdmwb"]
+resource_name = "TransIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -600), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lx5au"]
+resource_name = "TransOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 600)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1l46r"]
+_data = {
+&"RESET": SubResource("Animation_xfvoa"),
+&"TransIn": SubResource("Animation_bdmwb"),
+&"TransOut": SubResource("Animation_lx5au")
+}
+
+[sub_resource type="GDScript" id="GDScript_xfvoa"]
+resource_name = "GoldLabel"
+script/source = "extends Label
+
+func _process(delta):
+	text = \"Gold \" + str(ShopManager.gold)
+"
+
+[node name="Inventory" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_elp5n")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 1056.0
+offset_bottom = 560.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_elp5n")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 952.0
+offset_bottom = 472.0
+texture = ExtResource("2_elp5n")
+expand_mode = 1
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Panel")
+libraries = {
+&"": SubResource("AnimationLibrary_1l46r")
+}
+
+[node name="Close" type="Button" parent="."]
+offset_left = 944.0
+offset_top = 96.0
+offset_right = 1040.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 24
+text = "Close"
+
+[node name="Gold" type="Label" parent="."]
+offset_left = 112.0
+offset_top = 112.0
+offset_right = 336.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 24
+script = SubResource("GDScript_xfvoa")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 512.0
+offset_top = 120.0
+offset_right = 639.0
+offset_bottom = 154.0
+theme_override_font_sizes/font_size = 24
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="InvContainer" type="GridContainer" parent="."]
+offset_left = 224.0
+offset_top = 192.0
+offset_right = 832.0
+offset_bottom = 440.0
+columns = 5
+script = ExtResource("3_brmsw")
+
+[node name="ItemInfo" parent="." instance=ExtResource("4_njucy")]
+layer = 10
+visible = false
+
+[connection signal="animation_finished" from="Anim" to="." method="_on_anim_animation_finished"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

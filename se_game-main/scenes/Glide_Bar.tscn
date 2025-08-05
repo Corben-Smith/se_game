@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5od5a54uc6l0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m82gx"]
+bg_color = Color(0.629294, 0.552492, 0.791094, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.414088, 0.3233, 0.61, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t6b2"]
+bg_color = Color(0.878431, 0.486275, 0.67451, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_qouwt"]
+Panel/styles/panel = null
+ProgressBar/styles/background = SubResource("StyleBoxFlat_m82gx")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_5t6b2")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 320.0
+offset_bottom = 64.0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+texture_filter = 1
+layout_mode = 2
+offset_right = 304.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_qouwt")
+theme_type_variation = &"glidebar"

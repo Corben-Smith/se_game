@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ModifierStatusEffect" load_steps=2 format=3 uid="uid://b8pno262gp0sp"]
+
+[ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="2_3a4pe"]
+
+[resource]
+script = ExtResource("2_3a4pe")
+modifier_type = 1
+modifer_value = 2.0
+stat_name = "max_speed"
+duration = 5.0
+metadata/_custom_type_script = "uid://de7t5vkp8wkks"
