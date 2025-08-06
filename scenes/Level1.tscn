@@ -1,53 +1,44 @@
-[gd_scene load_steps=25 format=4 uid="uid://cp2mmc751x360"]
+[gd_scene load_steps=22 format=4 uid="uid://ct3a6fnhfm5k7"]
 
-[ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="1_2meft"]
-[ext_resource type="Script" uid="uid://b6t4wmcedebjp" path="res://scripts/Attributes/Stat.gd" id="2_0xqs2"]
+[ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Kenley.tscn" id="1_2meft"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_ipmer"]
 [ext_resource type="PackedScene" uid="uid://b4f1ms2kagji" path="res://scenes/Inventory.tscn" id="4_av1gt"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="5_r7dij"]
-[ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/collectable.tscn" id="6_2ouud"]
+[ext_resource type="PackedScene" uid="uid://d0oqjb0bdhld4" path="res://scenes/Collectable/collectable.tscn" id="6_2ouud"]
 [ext_resource type="Script" uid="uid://ba3whgs6gctxp" path="res://scripts/Collectables/Status_Collectable.gd" id="7_i2gr7"]
 [ext_resource type="Script" uid="uid://cuw8fedllxgs4" path="res://scripts/StatusEffects/Status_Effect.gd" id="8_t46sy"]
 [ext_resource type="Script" uid="uid://de7t5vkp8wkks" path="res://scripts/StatusEffects/ModifierStatusEffect.gd" id="9_thv4y"]
 [ext_resource type="Texture2D" uid="uid://cisfdy475chke" path="res://assets/ColorPlaceHolderAtlas.tres" id="10_u4kti"]
-[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scenes/FallZone.gd" id="11_0ybwg"]
+[ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scripts/Objects/FallZone.gd" id="11_0ybwg"]
 [ext_resource type="Texture2D" uid="uid://dbe7dudlwpghb" path="res://assets/2DGameShopkeepter.png" id="12_xgw5r"]
-[ext_resource type="PackedScene" uid="uid://dxs5wr0c5t6t7" path="res://scenes/shop.tscn" id="13_ntbnh"]
-[ext_resource type="Texture2D" uid="uid://dbsdfte6iw310" path="res://assets/EwokDog.png" id="14_0xqs2"]
-
-[sub_resource type="Resource" id="Resource_ixgyf"]
-script = ExtResource("2_0xqs2")
-base_value = 0.5
-modifiers = []
-metadata/_custom_type_script = "uid://b6t4wmcedebjp"
+[ext_resource type="PackedScene" uid="uid://b5k71jys0pd2j" path="res://scenes/shop.tscn" id="13_ntbnh"]
 
 [sub_resource type="Resource" id="Resource_8hcw6"]
 script = ExtResource("3_ipmer")
-_variable_jump_multiplier = SubResource("Resource_ixgyf")
+_acceleration = 50.0
+_deacceleration = 100.0
+max_speed = 300.0
+in_air_acceleration = 20.0
+in_air_deacceleration = 20.0
+jump_force = -450.0
+_gravity = 1000.0
+falling_gravity = 2000.0
+coyote_time = 0.1
+jump_buffer_time = 0.1
+variable_jump_multiplier = 0.5
+max_falling_speed = 50.0
 metadata/_custom_type_script = "uid://byikc5yvpboxi"
 
 [sub_resource type="Resource" id="Resource_nrstc"]
 script = ExtResource("9_thv4y")
-modifier_type = 1
-modifer_value = 2.0
-stat_name = "max_speed"
-duration = 15.0
 metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [sub_resource type="Resource" id="Resource_xwrkq"]
 script = ExtResource("9_thv4y")
-modifier_type = 1
-modifer_value = 2.0
-stat_name = "acceleration"
-duration = 15.0
 metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [sub_resource type="Resource" id="Resource_7448y"]
 script = ExtResource("9_thv4y")
-modifier_type = 0
-modifer_value = 0.0
-stat_name = ""
-duration = 5.0
 metadata/_custom_type_script = "uid://de7t5vkp8wkks"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dvny0"]
@@ -171,7 +162,6 @@ visible = false
 z_index = -1
 position = Vector2(2697, -26)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("14_0xqs2")
 
 [node name="Panel" type="Panel" parent="BossSprite2D"]
 offset_left = -475.0
