@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://by4e4tb625yge" path="res://scenes/Objects/fallable_platform.tscn" id="12_oj7g1"]
 [ext_resource type="Texture2D" uid="uid://bcp1f3nodbqyl" path="res://assets/sprites/break.png" id="13_dto0l"]
 [ext_resource type="Script" uid="uid://capu3jb6wgtpd" path="res://scripts/Objects/Elevator.gd" id="14_y0fcy"]
-[ext_resource type="PackedScene" uid="uid://boqw4pqjdolkc" path="res://scenes/Levels/level_2.tscn" id="15_76523"]
+[ext_resource type="PackedScene" uid="uid://boqw4pqjdolkc" path="res://scenes/Levels/DebugorScrap/old_level_3.tscn" id="15_76523"]
 [ext_resource type="Texture2D" uid="uid://cwktmp0nqs867" path="res://assets/sprites/Elevator.png" id="16_kbqla"]
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scripts/Objects/FallZone.gd" id="17_mq2q4"]
 [ext_resource type="PackedScene" uid="uid://dtojoyqjdpmwf" path="res://scenes/Collectable/Key.tscn" id="18_u2k2j"]
