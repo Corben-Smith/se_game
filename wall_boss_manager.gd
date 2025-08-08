@@ -117,7 +117,8 @@ func _track_player():
 	
 	# Set starting position
 	if warning_start:
-		warning.global_position = warning_start.global_position
+		warning.global_position.y = warning_start.global_position.y
+		warning.global_position.x = player.global_position.x
 	else:
 		# Fallback to player position if no start point
 		warning.global_position = player.global_position if player else Vector2.ZERO
@@ -135,7 +136,7 @@ func spawn_enemy_tracking():
 
 func select_enemy_spawn():
 	var v = randf()
-	if v < .25:
+	if v < .25 && !tracking:
 		spawn_enemy_tracking()
 	else:
 		spawn_enemy_at_random_point()

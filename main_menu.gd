@@ -1,15 +1,12 @@
 extends Control
 
-func _on_new_game_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/test_world.tscn")
+@export var new_game_button: Button
+@export var settings_button: Button
+@export var load_button: Button
+@export var exit_button: Button
 
-
-func _on_settings_pressed() -> void:
-	get_tree().change_scene_to_file("res://settings.tscn")
-
-func _on_load_previous_games_pressed() -> void:
-	get_tree().change_scene_to_file("res://load_previous_games.tscn")
-
-
-func _on_exit_pressed() -> void:
-	get_tree().quit()
+func _ready() -> void:
+	new_game_button = get_node_or_null("CenterContainer/VBoxContainer/New Game")
+	settings_button = get_node_or_null("CenterContainer/VBoxContainer/Settings")
+	load_button = get_node_or_null("CenterContainer/VBoxContainer/Load Previous Games")
+	exit_button = get_node_or_null("CenterContainer/VBoxContainer/Exit")

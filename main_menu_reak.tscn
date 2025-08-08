@@ -1,22 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3scp24t6ahum"]
+[gd_scene load_steps=2 format=3 uid="uid://dp2dagbk2voxr"]
 
-[ext_resource type="Script" uid="uid://djkeme4kxpfx6" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://dmlkbt53ojsr7" path="res://main_menu_manager.gd" id="1_bhk8y"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("new_game_button", "settings_button", "load_button", "exit_button")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_06t4h")
-new_game_button = NodePath("CenterContainer/VBoxContainer/New Game")
-settings_button = NodePath("CenterContainer/VBoxContainer/Settings")
-load_button = NodePath("CenterContainer/VBoxContainer/Load Previous Games")
-exit_button = NodePath("CenterContainer/VBoxContainer/Exit")
+[node name="MainMenuManager" type="CanvasLayer"]
+script = ExtResource("1_bhk8y")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

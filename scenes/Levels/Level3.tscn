@@ -1,7 +1,7 @@
 [gd_scene load_steps=48 format=4 uid="uid://ds1mnyb37tgof"]
 
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_ujhg8"]
-[ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Character.tscn" id="2_ngho5"]
+[ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Kenley.tscn" id="2_ngho5"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_5ajfq"]
 [ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://scenes/pause_menu.tscn" id="4_1x720"]
 [ext_resource type="PackedScene" uid="uid://b4f1ms2kagji" path="res://scenes/Inventory.tscn" id="5_bodo7"]
@@ -384,12 +384,6 @@ texture = ExtResource("26_weedo")
 position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_coqn3")
 
-[node name="DialogueBox" parent="NPC" index="2"]
-offset_left = -32.0
-offset_top = -80.0
-offset_right = -32.0
-offset_bottom = -80.0
-
 [node name="NPC2" parent="." node_paths=PackedStringArray("camera_manager") instance=ExtResource("23_xt8s5")]
 light_mask = 524288
 position = Vector2(662, -1114)
@@ -405,12 +399,6 @@ texture = ExtResource("26_weedo")
 [node name="CollisionShape2D" parent="NPC2" index="1"]
 position = Vector2(2, 6)
 shape = SubResource("RectangleShape2D_coqn3")
-
-[node name="DialogueBox" parent="NPC2" index="2"]
-offset_left = -32.0
-offset_top = -80.0
-offset_right = -32.0
-offset_bottom = -80.0
 
 [connection signal="body_entered" from="Objects/Elevator" to="Objects/Elevator" method="_on_body_entered"]
 [connection signal="body_entered" from="Objects/FallZone" to="Objects/FallZone" method="_on_body_entered"]

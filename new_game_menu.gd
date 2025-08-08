@@ -1,0 +1,48 @@
+extends Control
+
+var slot_one: Button
+var slot_two: Button
+var slot_three: Button
+
+
+func _ready():
+	slot_one = get_node_or_null("CenterContainer/VBoxContainer/Slot1")
+	slot_two = get_node_or_null("CenterContainer/VBoxContainer/Slot2")
+	slot_three = get_node_or_null("CenterContainer/VBoxContainer/Slot3")
+
+	load_slot_info()
+
+func load_slot_info():
+	var save_num = 0
+	var access: FileAccess = FileAccess.open("user://" + "savefile" + str(save_num) + ".png", FileAccess.READ)
+
+	var json
+	var dict 
+
+	if access == null:
+		slot_one.text = "New Game"
+	else:
+		json = access.get_as_text()
+		dict = JSON.parse_string(json)
+		slot_one.text = dict["name"]
+		access.close()
+
+	save_num += 1
+	access = FileAccess.open("user://" + "savefile" + str(save_num) + ".png", FileAccess.READ)
+	if access == null:
+		slot_two.text = "New Game"
+	else:
+		json = access.get_as_text()
+		dict = JSON.parse_string(json)
+		slot_two.text = dict["slot_name"]
+		access.close()
+
+	save_num += 1
+	access = FileAccess.open("user://" + "savefile" + str(save_num) + ".png", FileAccess.READ)
+	if access == null:
+		slot_three.text = "New Game"
+	else:
+		json = access.get_as_text()
+		dict = JSON.parse_string(json)
+		slot_three.text = dict["slot_name"]
+		access.close()
