@@ -2,7 +2,7 @@ extends Node
 
 var canvas_layer: CanvasLayer
 
-var pause_ui: PackedScene = preload("res://pause_menu.tscn")
+var pause_ui: PackedScene = preload("res://scenes/pause_menu.tscn")
 var death_ui: PackedScene = preload("res://game_over.tscn")
 
 func _ready():
@@ -17,9 +17,15 @@ func _ready():
 			# You can now work with the first_canvas_layer node
 			break  # Exit the loop once the first CanvasLayer is found
 
+	canvas_layer = CanvasLayer.new()
+	root_node.add_child(canvas_layer)
+
 func setup_level_ui():
 	var pause_menu = pause_ui.instantiate()
 	var death_menu = death_ui.instantiate()
 	canvas_layer.add_child(pause_menu)
 	canvas_layer.add_child(death_menu)
 	pass
+
+func add_element(control: Control):
+	canvas_layer.add_child(control)
