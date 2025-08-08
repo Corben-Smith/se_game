@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://cc8rhy5ppo4nm" path="res://scripts/States/Kenly_States/Basic_Attack_Script.gd" id="9_r68wp"]
 [ext_resource type="Script" uid="uid://lbreutrqdu6t" path="res://scripts/Health/health.gd" id="9_r87yu"]
 [ext_resource type="Script" uid="uid://c6kmqf1lqoc6x" path="res://scripts/States/Kenly_States/Gliding_State.gd" id="10_lkiy7"]
-[ext_resource type="Script" path="res://scripts/shooting_state.gd" id="12_356g5"]
+[ext_resource type="Script" uid="uid://dkqvnjbhyafhg" path="res://scripts/shooting_state.gd" id="12_356g5"]
 [ext_resource type="PackedScene" uid="uid://3ixrip08xoeh" path="res://fairy_bullet.tscn" id="13_356g5"]
 [ext_resource type="Texture2D" uid="uid://be4vuo0hak4m" path="res://assets/placeholder128.png" id="14_4yo34"]
 [ext_resource type="Texture2D" uid="uid://d1bsqlqgynylv" path="res://assets/pixie_dust.png" id="14_ftwfq"]

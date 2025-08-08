@@ -20,6 +20,8 @@ var direction: Vector2 = Vector2.RIGHT
 @export var attack_damage: int = 10
 @onready var label: Label = $Label
 
+var sprite
+
 func _ready() -> void:
 	add_to_group("player")
 	if !stats:
@@ -38,6 +40,8 @@ func _ready() -> void:
 	deal_damage_area.connect("body_entered", _on_deal_damage_area_body_entered)
 
 	health_component.health_depleted.connect(handle_death)
+
+	sprite = get_node("Sprite2D")
 
 func handle_death():
 	died.emit()
