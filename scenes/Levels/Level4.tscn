@@ -1,16 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgjyxu8wsf8dx"]
+[gd_scene load_steps=12 format=3 uid="uid://dgjyxu8wsf8dx"]
 
-[ext_resource type="PackedScene" uid="uid://blflfbtss4v4g" path="res://scenes/Objects/SpikeGround.tscn" id="1_q2u00"]
+[ext_resource type="PackedScene" path="res://scenes/Objects/SpikeGround.tscn" id="1_q2u00"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="2_knjyc"]
 [ext_resource type="PackedScene" uid="uid://rd8jyvx57o3u" path="res://scenes/Objects/boost_object.tscn" id="3_f6l0j"]
 [ext_resource type="Script" uid="uid://c47kx8ckq6sc8" path="res://scripts/StatusEffects/Levitate_effect.gd" id="4_s61ou"]
-[ext_resource type="Script" uid="uid://capu3jb6wgtpd" path="res://scripts/Objects/Elevator.gd" id="5_q33eu"]
-[ext_resource type="PackedScene" uid="uid://boqw4pqjdolkc" path="res://scenes/Levels/DebugorScrap/old_level_3.tscn" id="6_m1b0d"]
+[ext_resource type="PackedScene" uid="uid://b2kq32esq6bxm" path="res://elevator.tscn" id="5_6f51q"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Kenley.tscn" id="7_3ivf4"]
-[ext_resource type="Texture2D" uid="uid://cwktmp0nqs867" path="res://assets/sprites/Elevator.png" id="8_3sq67"]
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/Enemies/bug_guy.tscn" id="9_6pssb"]
-[ext_resource type="PackedScene" uid="uid://jovt22wk2b0t" path="res://moveH_platform_1.tscn" id="10_2wvu5"]
-[ext_resource type="PackedScene" uid="uid://couptg0sqapi6" path="res://moveL_platform_2.tscn" id="11_h8vgy"]
+[ext_resource type="PackedScene" path="res://moveH_platform_1.tscn" id="10_2wvu5"]
+[ext_resource type="PackedScene" path="res://moveL_platform_2.tscn" id="11_h8vgy"]
 [ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="12_okxe8"]
 
 [sub_resource type="Resource" id="Resource_tgleg"]
@@ -19,9 +17,6 @@ speed = 800.0
 ending_speed = 100.0
 duration_value = 0.85
 metadata/_custom_type_script = "uid://c47kx8ckq6sc8"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2p08"]
-size = Vector2(64, 96)
 
 [node name="Node2D" type="Node2D"]
 
@@ -56,21 +51,8 @@ position = Vector2(-2, -1)
 position = Vector2(2751, 845)
 status_effect = SubResource("Resource_tgleg")
 
-[node name="Elevator" type="Area2D" parent="Objects"]
+[node name="Elevator" parent="Objects" instance=ExtResource("5_6f51q")]
 position = Vector2(3616, -1728)
-script = ExtResource("5_q33eu")
-target_scene_path = ExtResource("6_m1b0d")
-character_scene_path = ExtResource("7_3ivf4")
-metadata/_custom_type_script = "uid://capu3jb6wgtpd"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Elevator"]
-position = Vector2(-5187, 1836)
-shape = SubResource("RectangleShape2D_x2p08")
-
-[node name="Sprite2D" type="Sprite2D" parent="Objects/Elevator"]
-texture_filter = 1
-position = Vector2(-5188, 1821)
-texture = ExtResource("8_3sq67")
 
 [node name="BugGuy" parent="." instance=ExtResource("9_6pssb")]
 position = Vector2(-260, -284)
@@ -139,5 +121,3 @@ lift_height = 350.0
 player = NodePath("../CharacterBody2D")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("7_3ivf4")]
-
-[connection signal="body_entered" from="Objects/Elevator" to="Objects/Elevator" method="_on_body_entered"]
