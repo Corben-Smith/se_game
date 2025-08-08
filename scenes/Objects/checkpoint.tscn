@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://def40ge3t3dkd"]
+[gd_scene load_steps=8 format=3 uid="uid://dvo604f6g4lf7"]
 
-[ext_resource type="Script" uid="uid://bsyuc80dhie5u" path="res://scenes/Objects/checkpoint.gd" id="1_dty50"]
-[ext_resource type="Texture2D" uid="uid://cfjq0h5kx874n" path="res://assets/sprites/CP_Sprite.png" id="1_oq0qx"]
+[ext_resource type="Texture2D" uid="uid://dtu4bmri20xew" path="res://assets/sprites/CP_Sprite.png" id="1_oq0qx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dty50"]
 atlas = ExtResource("1_oq0qx")
@@ -40,10 +39,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oq0qx"]
-size = Vector2(384, 224)
+size = Vector2(128, 128)
 
 [node name="Checkpoint" type="Area2D"]
-script = ExtResource("1_dty50")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -52,5 +50,4 @@ autoplay = "default"
 frame_progress = 0.459933
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_oq0qx")

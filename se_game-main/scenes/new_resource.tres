@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Modifier" load_steps=2 format=3 uid="uid://cb0xyusyhp0hf"]
+
+[ext_resource type="Script" uid="uid://bdi5its2t413o" path="res://scripts/Attributes/Modifier.gd" id="1_86nej"]
+
+[resource]
+script = ExtResource("1_86nej")
+type = 1
+value = 2.0
+name = "max_speed"
+metadata/_custom_type_script = "uid://bdi5its2t413o"

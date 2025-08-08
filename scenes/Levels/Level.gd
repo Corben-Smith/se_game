@@ -15,3 +15,4 @@ func get_spawn_point():
 
 func get_camera_manager():
 	return camera_manager
+

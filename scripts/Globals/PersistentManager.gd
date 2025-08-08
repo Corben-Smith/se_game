@@ -37,8 +37,3 @@ func save_data() -> void:
 
 	access.store_string(json)
 	access.close()
-
-
-func load_checkpoint():
-	load_data()
-	GlobalReferences.player.position = checkpoint.position
