@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://cdi4b2w12gqcw"]
+[gd_scene load_steps=28 format=4 uid="uid://cdi4b2w12gqcw"]
 
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="1_jjnbj"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Kenley.tscn" id="2_v5wxc"]
@@ -56,6 +56,9 @@ size = Vector2(1168, 984)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dujlr"]
 size = Vector2(1304, 976)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehl3w"]
+size = Vector2(2264, 960)
 
 [node name="Level2" type="Node2D"]
 metadata/_edit_vertical_guides_ = [200.0]
@@ -135,9 +138,6 @@ player = NodePath("../CharacterBody2D")
 offset = Vector2(0, -70)
 zoom = Vector2(1.75, 1.75)
 
-[node name="Bounds" parent="CameraManager" index="2"]
-visible = false
-
 [node name="camera_bounds2" parent="CameraManager/Bounds" index="0" instance=ExtResource("11_v5wxc")]
 position = Vector2(128, 192)
 
@@ -215,6 +215,13 @@ position = Vector2(2760, -536)
 position = Vector2(220, 120)
 shape = SubResource("RectangleShape2D_dujlr")
 
+[node name="camera_bounds13" parent="CameraManager/Bounds" index="11" instance=ExtResource("11_v5wxc")]
+position = Vector2(4120, -432)
+
+[node name="CollisionShape2D" parent="CameraManager/Bounds/camera_bounds13" index="0"]
+position = Vector2(588, 24)
+shape = SubResource("RectangleShape2D_ehl3w")
+
 [node name="EnemyHolder" type="Node2D" parent="."]
 position = Vector2(1762, 1517)
 scale = Vector2(0.5, 0.5)
@@ -274,3 +281,4 @@ scale = Vector2(1, 1)
 [editable path="CameraManager/Bounds/camera_bounds10"]
 [editable path="CameraManager/Bounds/camera_bounds11"]
 [editable path="CameraManager/Bounds/camera_bounds12"]
+[editable path="CameraManager/Bounds/camera_bounds13"]

@@ -37,3 +37,6 @@ func save_data() -> void:
 
 	access.store_string(json)
 	access.close()
+
+func get_level():
+	return preload("res://scenes/Levels/Level1.tscn")

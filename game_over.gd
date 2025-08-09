@@ -2,7 +2,6 @@ extends Control
 
 func _ready() -> void:
 	hide_self()
-	GlobalReferences.player.died.connect(show_self)
 
 func show_self():
 	self.visible = true

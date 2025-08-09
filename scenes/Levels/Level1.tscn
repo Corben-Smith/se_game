@@ -1,8 +1,6 @@
-[gd_scene load_steps=30 format=4 uid="uid://4e2skcrqapjk"]
+[gd_scene load_steps=23 format=4 uid="uid://4e2skcrqapjk"]
 
-[ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Kenley.tscn" id="1_jkyfg"]
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_n31k3"]
-[ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="2_4h7ej"]
 [ext_resource type="Script" uid="uid://bq2fxmnqqcga5" path="res://scripts/Objects/FallZone.gd" id="4_u4ox6"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="5_o8yur"]
 [ext_resource type="Script" uid="uid://blvvq3mqfjsmr" path="res://scripts/StatusTiles/StatusEffectLayer.gd" id="6_nu2g1"]
@@ -11,31 +9,12 @@
 [ext_resource type="Script" uid="uid://c47kx8ckq6sc8" path="res://scripts/StatusEffects/Levitate_effect.gd" id="8_coqn3"]
 [ext_resource type="PackedScene" uid="uid://by4e4tb625yge" path="res://scenes/Objects/fallable_platform.tscn" id="9_7886b"]
 [ext_resource type="Texture2D" uid="uid://bcp1f3nodbqyl" path="res://assets/sprites/break.png" id="10_sfku4"]
-[ext_resource type="Script" uid="uid://capu3jb6wgtpd" path="res://scripts/Objects/Elevator.gd" id="11_kjfgi"]
-[ext_resource type="PackedScene" uid="uid://boqw4pqjdolkc" path="res://scenes/Levels/DebugorScrap/old_level_3.tscn" id="12_k70aa"]
 [ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="12_nu2g1"]
-[ext_resource type="Texture2D" uid="uid://cwktmp0nqs867" path="res://assets/sprites/Elevator.png" id="13_emles"]
 [ext_resource type="PackedScene" uid="uid://dtojoyqjdpmwf" path="res://scenes/Collectable/Key.tscn" id="15_4eo3q"]
 [ext_resource type="PackedScene" uid="uid://ck8rmou1tvhjo" path="res://scenes/Objects/Door.tscn" id="16_wo821"]
 [ext_resource type="Script" uid="uid://3anmtgwaw0o" path="res://scripts/Objects/lvl1_lava_area.gd" id="17_5m1if"]
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/Enemies/bug_guy.tscn" id="18_usag6"]
 [ext_resource type="PackedScene" uid="uid://dafm2cr8rs7ts" path="res://scenes/Camera/camera_bounds.tscn" id="20_ypvy8"]
-
-[sub_resource type="Resource" id="Resource_dfih8"]
-script = ExtResource("2_4h7ej")
-_acceleration = 50.0
-_deacceleration = 100.0
-max_speed = 300.0
-in_air_acceleration = 20.0
-in_air_deacceleration = 20.0
-jump_force = -500.0
-_gravity = 1000.0
-falling_gravity = 2000.0
-coyote_time = 0.1
-jump_buffer_time = 0.1
-variable_jump_multiplier = 0.5
-max_falling_speed = 50.0
-metadata/_custom_type_script = "uid://byikc5yvpboxi"
 
 [sub_resource type="Resource" id="Resource_3xk6l"]
 script = ExtResource("7_5mhgh")
@@ -64,23 +43,15 @@ size = Vector2(224, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kjfgi"]
 size = Vector2(224, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sq7sj"]
-size = Vector2(64, 96)
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n31k3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s73ov"]
 size = Vector2(5304, 2912)
 
-[node name="Level1_V2" type="Node2D" node_paths=PackedStringArray("spawn_point", "camera_manager")]
+[node name="Level1" type="Node2D" node_paths=PackedStringArray("spawn_point", "camera_manager")]
 script = ExtResource("1_n31k3")
 spawn_point = NodePath("SpawnPoint")
 camera_manager = NodePath("CameraManager")
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_jkyfg")]
-position = Vector2(-568, 200)
-stats = SubResource("Resource_dfih8")
-attack_damage = 50
 
 [node name="LayerHolder" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -140,21 +111,6 @@ shape = SubResource("RectangleShape2D_emles")
 position = Vector2(2, 3)
 shape = SubResource("RectangleShape2D_kjfgi")
 
-[node name="Elevator" type="Area2D" parent="Objects"]
-position = Vector2(2416, -1568)
-script = ExtResource("11_kjfgi")
-target_scene_path = ExtResource("12_k70aa")
-character_scene_path = ExtResource("1_jkyfg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Elevator"]
-position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_sq7sj")
-
-[node name="Sprite2D" type="Sprite2D" parent="Objects/Elevator"]
-texture_filter = 1
-position = Vector2(0, -1)
-texture = ExtResource("13_emles")
-
 [node name="FallZone" type="Area2D" parent="Objects"]
 position = Vector2(-183, 3185)
 scale = Vector2(176.68, -1.94997)
@@ -199,7 +155,7 @@ position = Vector2(3424, -1432)
 
 [node name="CameraManager" parent="." node_paths=PackedStringArray("player", "default_bounds") instance=ExtResource("12_nu2g1")]
 follow_speed_y = 10.0
-player = NodePath("../CharacterBody2D")
+player = NodePath("")
 default_bounds = NodePath("Bounds/default")
 zoom = Vector2(2, 2)
 
@@ -240,7 +196,6 @@ shape = SubResource("RectangleShape2D_s73ov")
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(-768, 256)
 
-[connection signal="body_entered" from="Objects/Elevator" to="Objects/Elevator" method="_on_body_entered"]
 [connection signal="body_entered" from="Objects/FallZone" to="Objects/FallZone" method="_on_body_entered"]
 [connection signal="body_entered" from="Objects/LavaArea" to="Objects/LavaArea" method="_on_body_entered"]
 

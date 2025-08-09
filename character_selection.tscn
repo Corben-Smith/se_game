@@ -1,69 +1,118 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccp6yhbqalwnv"]
 
 [ext_resource type="Script" uid="uid://cn8u75ceh3gcu" path="res://character_selection.gd" id="1_ysev7"]
-[ext_resource type="Texture2D" uid="uid://enqrwe8403g3" path="res://assets/icon.svg" id="2_i640r"]
-[ext_resource type="Texture2D" uid="uid://civ78vvr3tkx5" path="res://assets/placeholder_character.jpg" id="3_ve3h0"]
-[ext_resource type="Texture2D" uid="uid://be4vuo0hak4m" path="res://assets/placeholder128.png" id="4_i640r"]
+[ext_resource type="Texture2D" uid="uid://dj5sepfg3gdop" path="res://assets/Paper/selection_clean.jpg" id="2_ysev7"]
+[ext_resource type="Texture2D" uid="uid://bf5yn71yydc26" path="res://assets/Paper/selection_arrow.png" id="3_ysev7"]
+[ext_resource type="Script" uid="uid://c7cyd4d1y6xb8" path="res://arrow_rect_bob.gd" id="4_i640r"]
 
-[node name="CharacterSelection" type="Node2D" node_paths=PackedStringArray("characters", "arrow")]
+[node name="CharacterSelection" type="Node2D" node_paths=PackedStringArray("characters", "arrow", "character_name")]
 script = ExtResource("1_ysev7")
-characters = [NodePath("Characters/Kenley\'s Character"), NodePath("Characters/Isaiah\'s Character"), NodePath("Kenley\'s Character_2")]
-arrow = NodePath("Selection Arrow")
+characters = [NodePath("Characters/Kenley"), NodePath("Characters/Isaiah"), NodePath("Characters/Corben"), NodePath("Characters/Allison"), NodePath("Characters/Gabriel")]
+arrow = NodePath("CanvasLayer/ArrowRect")
+character_name = NodePath("CanvasLayer/Control/Panel/CharacterName")
 
 [node name="Characters" type="Node" parent="."]
 
-[node name="Kenley\'s Character" type="Node2D" parent="Characters"]
-position = Vector2(423, 435)
+[node name="Kenley" type="Node2D" parent="Characters"]
+position = Vector2(192, 64)
 
-[node name="Icon" type="Sprite2D" parent="Characters/Kenley\'s Character"]
-texture = ExtResource("2_i640r")
+[node name="Isaiah" type="Node2D" parent="Characters"]
+position = Vector2(440, 104)
 
-[node name="Isaiah\'s Character" type="Node2D" parent="Characters"]
-position = Vector2(541, 429)
+[node name="Corben" type="Node2D" parent="Characters"]
+position = Vector2(328, 432)
 
-[node name="PlaceholderCharacter" type="Sprite2D" parent="Characters/Isaiah\'s Character"]
-texture = ExtResource("3_ve3h0")
+[node name="Allison" type="Node2D" parent="Characters"]
+position = Vector2(192, 248)
 
-[node name="Left" type="Button" parent="."]
-offset_left = 230.0
-offset_top = 417.0
-offset_right = 268.0
+[node name="Gabriel" type="Node2D" parent="Characters"]
+position = Vector2(72, 224)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_ysev7")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control"]
+layout_mode = 2
+offset_left = 744.0
+offset_right = 1279.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+
+[node name="CharacterName" type="RichTextLabel" parent="CanvasLayer/Control/Panel"]
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 504.0
+offset_bottom = 112.0
+size_flags_vertical = 3
+text = "Character Name"
+
+[node name="CharacterDesc" type="RichTextLabel" parent="CanvasLayer/Control/Panel"]
+layout_mode = 2
+offset_left = 24.0
+offset_top = 128.0
+offset_right = 504.0
 offset_bottom = 448.0
+size_flags_vertical = 3
+text = "Chasdfasdjfnkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Panel"]
+layout_mode = 0
+offset_top = 576.0
+offset_right = 536.0
+offset_bottom = 719.0
+pivot_offset = Vector2(0, 32)
+
+[node name="Left" type="Button" parent="CanvasLayer/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Left"
 metadata/_edit_use_anchors_ = true
 
-[node name="Right" type="Button" parent="."]
-offset_left = 869.0
-offset_top = 406.0
-offset_right = 918.0
-offset_bottom = 437.0
+[node name="Right" type="Button" parent="CanvasLayer/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Right
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="Select" type="Button" parent="."]
-offset_left = 505.0
-offset_top = 535.0
-offset_right = 559.0
-offset_bottom = 566.0
+[node name="Select" type="Button" parent="CanvasLayer/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Select"
 metadata/_edit_use_anchors_ = true
 
-[node name="Selection Arrow" type="Node2D" parent="."]
+[node name="ArrowRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 100.0
+offset_bottom = 56.0
+pivot_offset = Vector2(50, 28)
+texture = ExtResource("3_ysev7")
+expand_mode = 3
+stretch_mode = 5
+script = ExtResource("4_i640r")
+bob_height = 15.0
+duration = 1.0
 
-[node name="Placeholder128" type="Sprite2D" parent="Selection Arrow"]
-position = Vector2(0, -309)
-texture = ExtResource("4_i640r")
-hframes = 14
-vframes = 13
-frame = 12
-
-[node name="Kenley\'s Character_2" type="Node2D" parent="."]
-position = Vector2(752, 429)
-
-[node name="Icon" type="Sprite2D" parent="Kenley\'s Character_2"]
-texture = ExtResource("2_i640r")
-
-[connection signal="pressed" from="Left" to="." method="_on_left_pressed"]
-[connection signal="pressed" from="Right" to="." method="_on_right_pressed"]
-[connection signal="pressed" from="Select" to="." method="_on_select_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Panel/HBoxContainer/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Panel/HBoxContainer/Right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Panel/HBoxContainer/Select" to="." method="_on_select_pressed"]

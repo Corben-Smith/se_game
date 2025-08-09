@@ -20,6 +20,7 @@ ShopManager="*res://scripts/Shop/ShopManager.gd"
 GlobalReferences="*res://scripts/Globals/GlobalReferences.gd"
 PersistentManager="*res://scripts/Globals/PersistentManager.gd"
 UI_Manager="*res://scripts/Globals/UIManager.gd"
+LevelManager="*res://scripts/Globals/LevelManager.gd"
 
 [debug]
 

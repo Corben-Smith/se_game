@@ -21,6 +21,12 @@ func _ready():
 	root_node.add_child(canvas_layer)
 
 func setup_level_ui():
+	var root_node = get_tree().get_root().get_child(get_tree().get_root().get_child_count() - 1)
+	var new_canvas_layer = CanvasLayer.new()
+	root_node.add_child(new_canvas_layer)
+	canvas_layer = new_canvas_layer
+	
+
 	var pause_menu = pause_ui.instantiate()
 	var death_menu = death_ui.instantiate()
 	canvas_layer.add_child(pause_menu)

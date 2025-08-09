@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://ct3a6fnhfm5k7"]
+[gd_scene load_steps=22 format=4 uid="uid://dr1nqttqikjtt"]
 
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Kenley.tscn" id="1_2meft"]
 [ext_resource type="Script" uid="uid://byikc5yvpboxi" path="res://scripts/Attributes/PlayerStats.gd" id="3_ipmer"]
