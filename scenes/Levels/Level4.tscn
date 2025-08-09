@@ -128,10 +128,6 @@ player = NodePath("../CharacterBody2D")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("7_3ivf4")]
 
-[node name="flood" parent="." instance=ExtResource("11_knjyc")]
-position = Vector2(-757, 212)
-script = null
-
 [node name="Checkpoint" parent="." instance=ExtResource("12_f6l0j")]
 position = Vector2(949, -1924)
 
@@ -144,3 +140,11 @@ script = ExtResource("13_s61ou")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ResetZone"]
 position = Vector2(8176, 53)
 shape = SubResource("RectangleShape2D_q33eu")
+
+[node name="flood2" parent="." node_paths=PackedStringArray("stop_y") instance=ExtResource("11_knjyc")]
+rise_speed = 30.0
+stop_y = NodePath("Node2D")
+delay_before_rising = 0.0
+
+[node name="Node2D" type="Node2D" parent="flood2"]
+position = Vector2(-174, -2062)
