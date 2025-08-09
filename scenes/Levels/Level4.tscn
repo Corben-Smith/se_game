@@ -1,15 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgjyxu8wsf8dx"]
+[gd_scene load_steps=16 format=3 uid="uid://dgjyxu8wsf8dx"]
 
-[ext_resource type="PackedScene" path="res://scenes/Objects/SpikeGround.tscn" id="1_q2u00"]
+[ext_resource type="PackedScene" uid="uid://blflfbtss4v4g" path="res://scenes/Objects/SpikeGround.tscn" id="1_q2u00"]
 [ext_resource type="TileSet" uid="uid://c4j5ldm462u81" path="res://assets/PlaceHolderTileSet.tres" id="2_knjyc"]
 [ext_resource type="PackedScene" uid="uid://rd8jyvx57o3u" path="res://scenes/Objects/boost_object.tscn" id="3_f6l0j"]
 [ext_resource type="Script" uid="uid://c47kx8ckq6sc8" path="res://scripts/StatusEffects/Levitate_effect.gd" id="4_s61ou"]
 [ext_resource type="PackedScene" uid="uid://b2kq32esq6bxm" path="res://elevator.tscn" id="5_6f51q"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Kenley.tscn" id="7_3ivf4"]
 [ext_resource type="PackedScene" uid="uid://b67fcta555xpq" path="res://scenes/Enemies/bug_guy.tscn" id="9_6pssb"]
-[ext_resource type="PackedScene" path="res://moveH_platform_1.tscn" id="10_2wvu5"]
-[ext_resource type="PackedScene" path="res://moveL_platform_2.tscn" id="11_h8vgy"]
+[ext_resource type="PackedScene" uid="uid://jovt22wk2b0t" path="res://moveH_platform_1.tscn" id="10_2wvu5"]
+[ext_resource type="PackedScene" uid="uid://couptg0sqapi6" path="res://moveL_platform_2.tscn" id="11_h8vgy"]
+[ext_resource type="PackedScene" uid="uid://d4kb6be0s7qkf" path="res://scenes/flood.tscn" id="11_knjyc"]
+[ext_resource type="PackedScene" uid="uid://dvo604f6g4lf7" path="res://scenes/Objects/checkpoint.tscn" id="12_f6l0j"]
 [ext_resource type="PackedScene" uid="uid://crscxwl8dfqg" path="res://scenes/Camera/camera_manager.tscn" id="12_okxe8"]
+[ext_resource type="Script" uid="uid://bk6ujnuij0u3y" path="res://scenes/reset_zone.gd" id="13_s61ou"]
 
 [sub_resource type="Resource" id="Resource_tgleg"]
 script = ExtResource("4_s61ou")
@@ -17,6 +20,9 @@ speed = 800.0
 ending_speed = 100.0
 duration_value = 0.85
 metadata/_custom_type_script = "uid://c47kx8ckq6sc8"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q33eu"]
+size = Vector2(98, 22)
 
 [node name="Node2D" type="Node2D"]
 
@@ -121,3 +127,20 @@ lift_height = 350.0
 player = NodePath("../CharacterBody2D")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("7_3ivf4")]
+
+[node name="flood" parent="." instance=ExtResource("11_knjyc")]
+position = Vector2(-757, 212)
+script = null
+
+[node name="Checkpoint" parent="." instance=ExtResource("12_f6l0j")]
+position = Vector2(949, -1924)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("12_f6l0j")]
+position = Vector2(8660, -102)
+
+[node name="ResetZone" type="Area2D" parent="."]
+script = ExtResource("13_s61ou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ResetZone"]
+position = Vector2(8176, 53)
+shape = SubResource("RectangleShape2D_q33eu")
