@@ -1,21 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4kb6be0s7qkf"]
+[gd_scene load_steps=6 format=3 uid="uid://d4kb6be0s7qkf"]
 
 [ext_resource type="Texture2D" uid="uid://cxvj60fplcn6w" path="res://scenes/water.png" id="1_8hpub"]
 [ext_resource type="Script" uid="uid://dpeegklchc0um" path="res://scenes/flood.gd" id="1_v6spv"]
+[ext_resource type="Shader" uid="uid://d1flq032cxrcd" path="res://scenes/flood.gdshader" id="2_5whog"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvyf6"]
+shader = ExtResource("2_5whog")
+shader_parameter/wave_strength = 0.02
+shader_parameter/wave_speed = 2.0
+shader_parameter/wave_frequency = 8.0
+shader_parameter/water_tint = Color(0.1, 0.4, 0.7, 1)
+shader_parameter/tint_strength = 0.15
+shader_parameter/edge_color = Color(0.5, 0.8, 1, 1)
+shader_parameter/edge_height = 0.05
+shader_parameter/crest_amplitude = 0.03
+shader_parameter/crest_frequency = 8.0
+shader_parameter/crest_speed = 1.5
+shader_parameter/crest_base = 0.1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hpub"]
-size = Vector2(486.551, 110.455)
+size = Vector2(3125, 471.227)
 
 [node name="flood" type="Area2D"]
 script = ExtResource("1_v6spv")
 rise_speed = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(399, 1392)
-scale = Vector2(5.44239, 20.0625)
+material = SubResource("ShaderMaterial_nvyf6")
 texture = ExtResource("1_8hpub")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(397, 1379)
-scale = Vector2(5.44239, 20.0625)
 shape = SubResource("RectangleShape2D_8hpub")
