@@ -966,10 +966,22 @@ texture_region_size = Vector2i(32, 32)
 58:25/0 = 0
 59:25/0 = 0
 33:8/0 = 0
+13:11/0 = 0
+13:12/0 = 0
+10:2/0 = 0
+9:0/0 = 0
+6:1/0 = 0
+6:2/0 = 0
+6:3/0 = 0
+20:15/0 = 0
+19:13/0 = 0
+18:12/0 = 0
+16:12/0 = 0
 
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor"
 terrain_set_0/terrain_0/color = Color(0.951778, 0.781874, 0.478168, 1)

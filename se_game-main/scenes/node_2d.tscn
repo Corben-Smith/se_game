@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg1ap81sr0j3w"]
+
+[ext_resource type="PackedScene" uid="uid://cwy3717alh0du" path="res://scenes/pause_menu.tscn" id="1_wtcfe"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="PauseMenu" parent="." instance=ExtResource("1_wtcfe")]
+offset_left = 112.0
+offset_top = 130.0
+offset_right = 238.0
+offset_bottom = 130.0

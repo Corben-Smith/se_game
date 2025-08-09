@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://vvlkyf76h1tm"]
+
+[ext_resource type="Script" uid="uid://nla2xrhyf804" path="res://fallingspike.gd" id="1_3hksa"]
+[ext_resource type="Texture2D" uid="uid://ba877op0vrbrl" path="res://assets/sprites/FallingSpike.png" id="2_iwocx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p83d"]
+size = Vector2(81, 182)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa48d"]
+size = Vector2(45, 68.75)
+
+[node name="fallingspike" type="Node2D"]
+script = ExtResource("1_3hksa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(353, 33)
+scale = Vector2(0.489583, 0.445455)
+texture = ExtResource("2_iwocx")
+
+[node name="detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect"]
+position = Vector2(241, 655)
+shape = SubResource("RectangleShape2D_5p83d")
+
+[node name="damage" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage"]
+position = Vector2(351, 34)
+shape = SubResource("RectangleShape2D_pa48d")
+debug_color = Color(0.960271, 0.17456, 0.255979, 0.42)

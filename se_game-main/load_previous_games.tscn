@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmm8mg830kx2o"]
+
+[ext_resource type="Script" uid="uid://u6hp6gr7j0h0" path="res://load_previous_games.gd" id="1_sg0kl"]
+
+[node name="Load_Previous_Games" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sg0kl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Saved Game 1" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Saved Game 1"
+
+[node name="BuSaved Game 2" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Saved Game 2"
+
+[node name="Saved Game 3" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Saved Game 3"
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
