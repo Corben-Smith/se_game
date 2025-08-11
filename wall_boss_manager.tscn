@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3qcyawotx62j"]
+[gd_scene load_steps=4 format=3 uid="uid://c0bqmfu0jqpll"]
 
-[ext_resource type="Script" uid="uid://cfjby2glufiyi" path="res://wall_boss_manager.gd" id="1_sahsc"]
-[ext_resource type="PackedScene" uid="uid://ce5ipbmog4280" path="res://boss.tscn" id="2_sahsc"]
+[ext_resource type="Script" path="res://wall_boss_manager.gd" id="1_sahsc"]
+[ext_resource type="PackedScene" uid="uid://dh7q86rklofb1" path="res://boss.tscn" id="2_sahsc"]
 [ext_resource type="PackedScene" uid="uid://c52vyw67pjbv" path="res://wall_boss_warning.tscn" id="3_52lxy"]
 
 [node name="WallBossManager" type="Node2D"]

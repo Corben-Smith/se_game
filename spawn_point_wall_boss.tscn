@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://du2b11kest5ar"]
+[gd_scene load_steps=4 format=3 uid="uid://l074b1k1lk2y"]
 
-[ext_resource type="Script" uid="uid://ntx7wy7nc3cm" path="res://wall_boss_warning.gd" id="1_8c8kc"]
+[ext_resource type="Script" path="res://wall_boss_warning.gd" id="1_8c8kc"]
 [ext_resource type="Texture2D" uid="uid://d1bsqlqgynylv" path="res://assets/pixie_dust.png" id="2_d7qah"]
-[ext_resource type="Material" uid="uid://duuewj0s4peai" path="res://spawn_point_wall_boss.tres" id="3_qyd12"]
+[ext_resource type="Material" uid="uid://druogvtan23qj" path="res://spawn_point_wall_boss.tres" id="3_qyd12"]
 
 [node name="SpawnPointWallBoss" type="Node2D"]
 script = ExtResource("1_8c8kc")

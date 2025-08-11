@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce5ipbmog4280"]
+[gd_scene load_steps=4 format=3 uid="uid://dh7q86rklofb1"]
 
-[ext_resource type="Script" uid="uid://doj4q4didn18g" path="res://boss.gd" id="1_6xxrv"]
+[ext_resource type="Script" path="res://boss.gd" id="1_6xxrv"]
 [ext_resource type="Texture2D" uid="uid://cgjnnmy00yhq8" path="res://assets/shapes/Arrow (14).png" id="2_skx2t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fbx4h"]

@@ -3,13 +3,12 @@
 [ext_resource type="Script" uid="uid://cn8u75ceh3gcu" path="res://character_selection.gd" id="1_ysev7"]
 [ext_resource type="Texture2D" uid="uid://dj5sepfg3gdop" path="res://assets/Paper/selection_clean.jpg" id="2_ysev7"]
 [ext_resource type="Texture2D" uid="uid://bf5yn71yydc26" path="res://assets/Paper/selection_arrow.png" id="3_ysev7"]
-[ext_resource type="Script" uid="uid://c7cyd4d1y6xb8" path="res://arrow_rect_bob.gd" id="4_i640r"]
+[ext_resource type="Script" path="res://arrow_rect_bob.gd" id="4_i640r"]
 
-[node name="CharacterSelection" type="Node2D" node_paths=PackedStringArray("characters", "arrow", "character_name")]
+[node name="CharacterSelection" type="Node2D" node_paths=PackedStringArray("characters", "arrow")]
 script = ExtResource("1_ysev7")
 characters = [NodePath("Characters/Kenley"), NodePath("Characters/Isaiah"), NodePath("Characters/Corben"), NodePath("Characters/Allison"), NodePath("Characters/Gabriel")]
 arrow = NodePath("CanvasLayer/ArrowRect")
-character_name = NodePath("CanvasLayer/Control/Panel/CharacterName")
 
 [node name="Characters" type="Node" parent="."]
 
@@ -60,6 +59,7 @@ offset_bottom = 720.0
 size_flags_horizontal = 3
 
 [node name="CharacterName" type="RichTextLabel" parent="CanvasLayer/Control/Panel"]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 64.0
 offset_right = 504.0
