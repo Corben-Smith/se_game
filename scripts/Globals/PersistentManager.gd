@@ -39,4 +39,18 @@ func save_data() -> void:
 	access.close()
 
 func get_level():
-	return preload("res://scenes/Levels/Level1.tscn")
+	return preload("res://scenes/Levels/Level4.tscn")
+
+func respawn():
+	print("no checpitn")
+	if checkpoint:
+		print("checpitn")
+		UI_Manager.dim_screen(0.55)
+		await create_timer_and_wait(0.5)
+		GlobalReferences.player.global_position = checkpoint.global_position
+		await create_timer_and_wait(0.25)
+		UI_Manager.remove_dim(0.25)
+		
+func create_timer_and_wait(seconds: float) -> void:
+	var timer = get_tree().create_timer(seconds)
+	await timer.timeout

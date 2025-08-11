@@ -1,7 +1,7 @@
 extends StatSet 
 class_name PlayerStats
 
-@export var _acceleration: float = 50.0
+@export var _acceleration: float = 25.0
 @export var _deacceleration: float = 100.0
 @export var max_speed: float = 300.0
 @export var in_air_acceleration: float = 20.0

@@ -58,6 +58,3 @@ func _select_character():
 			character_scene = preload("res://scenes/Kenley.tscn")
 
 	LevelManager.transition_to_level(PersistentManager.get_level(),character_scene)
-
-
-

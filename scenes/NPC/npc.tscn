@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://4wdajkbawuj7"]
+[gd_scene load_steps=4 format=3 uid="uid://4wdajkbawuj7"]
 
 [ext_resource type="Script" uid="uid://7ouglv283sj" path="res://scripts/NPC/npc.gd" id="1_abqhh"]
 [ext_resource type="Script" uid="uid://dxw8nymcxiv0c" path="res://scripts/Globals/PersistentObject.gd" id="2_0c0is"]
+[ext_resource type="Material" uid="uid://cjaobt63qd7qx" path="res://scenes/Outline.tres" id="2_lwet7"]
 
 [node name="NPC" type="Area2D"]
 script = ExtResource("1_abqhh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+material = ExtResource("2_lwet7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

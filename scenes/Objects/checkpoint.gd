@@ -6,7 +6,9 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D):
+	print("mewo")
 	if body.is_in_group("player"):
+		print("mewo")
 		PersistentManager.save_data()
 		PersistentManager.checkpoint = self
 
@@ -26,6 +28,6 @@ func indicate() -> void:
 
 
 # Customize these
-@export var bob_height := 10.0     # How far to move up/down
+@export var bob_height := 20.0     # How far to move up/down
 @export var duration := 1.5        # Duration for one direction (up or down)
 @export var delay := 0.0           # Optional delay between bobs

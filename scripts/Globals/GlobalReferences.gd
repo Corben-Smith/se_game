@@ -1,7 +1,11 @@
 extends Node
 
+
+
 @export var camera_manager: CameraManager
 var player: Player
+
+var current_level: Level = null
 
 func _ready() -> void:
 	find_player_alternative()

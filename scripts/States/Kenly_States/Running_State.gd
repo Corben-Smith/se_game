@@ -60,8 +60,8 @@ func handle_horizontal_movement():
 			if particles:
 				particles.restart()
 			# Apply boost
-			player.velocity.x += boost_amount * direction 
-		
+			player.velocity.x += boost_amount * direction
+
 		# Apply normal movement
 		player.velocity.x = move_toward(player.velocity.x, direction * player.stats["max_speed"], player.stats["acceleration"])
 	else:

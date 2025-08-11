@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://boqw4pqjdolkc"]
+[gd_scene load_steps=34 format=4 uid="uid://boqw4pqjdolkc"]
 
 [ext_resource type="Script" uid="uid://dndkk0j5v0b4h" path="res://scenes/Levels/Level.gd" id="1_fbdf5"]
 [ext_resource type="PackedScene" uid="uid://cok6gvdxjgywq" path="res://scenes/Kenley.tscn" id="2_pjsr4"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://4wdajkbawuj7" path="res://scenes/NPC/npc.tscn" id="14_f8rpa"]
 [ext_resource type="AudioStream" uid="uid://6ndvu3hywicm" path="res://assets/blip.wav" id="15_4p3pc"]
 [ext_resource type="Script" uid="uid://d1wqqcb5sju38" path="res://scripts/NPC/LineEntry.gd" id="16_dcpmq"]
-[ext_resource type="Shader" uid="uid://ye4utbyoye7n" path="res://scripts/Outline.gdshader" id="17_xvj5i"]
 [ext_resource type="Texture2D" uid="uid://2xi7n5glsxfv" path="res://assets/sprites/cat.png" id="18_xxbev"]
 [ext_resource type="Texture2D" uid="uid://cvedbwidwdwl6" path="res://assets/sprites/really_cool_fire.png" id="19_emxe8"]
 [ext_resource type="Script" uid="uid://b7vaelrjkxb47" path="res://Debug.gd" id="20_ootei"]
@@ -81,15 +80,6 @@ metadata/_custom_type_script = "uid://d1wqqcb5sju38"
 script = ExtResource("16_dcpmq")
 lines = Array[String](["..."])
 metadata/_custom_type_script = "uid://d1wqqcb5sju38"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4x7gr"]
-shader = ExtResource("17_xvj5i")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/width = 1.0
-shader_parameter/pattern = 0
-shader_parameter/inside = false
-shader_parameter/add_margins = true
-shader_parameter/show_outline = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlxpm"]
 size = Vector2(160, 80)
@@ -227,7 +217,6 @@ blip = ExtResource("15_4p3pc")
 lines = Array[ExtResource("16_dcpmq")]([SubResource("Resource_410d2"), SubResource("Resource_6qxha")])
 
 [node name="Sprite2D" parent="NPC" index="0"]
-material = SubResource("ShaderMaterial_4x7gr")
 texture = ExtResource("18_xxbev")
 
 [node name="CollisionShape2D" parent="NPC" index="1"]

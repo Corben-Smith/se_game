@@ -16,14 +16,18 @@ signal finished_dialogue
 var is_active := false
 var is_typing := false
 var full_text := ""
-var type_speed := 0.05  # seconds between letters
+var type_speed := 0.05 # seconds between letters
 var prepared: bool = false 
 
-func setup(speaker: String, set_blip: AudioStream = null) -> void:
+func setup(speaker: String, set_blip: AudioStream = null, portrait: Texture = null) -> void:
 	is_active = true
 	dialogue_name.text = speaker
 	blip = set_blip
 	stream_player.stream = blip
+
+	if portrait:
+		$Panel/MarginContainer/HBoxContainer3/NPCIcon.texture = portrait
+
 
 func _ready():
 	arrow.visible = false
@@ -41,7 +45,7 @@ func _show_line(line):
 func _type_text(line: String):
 	for i in line.length():
 		if blip && line[i] != " ":
-			stream_player.play()
+			play_sound_with_random_pitch()
 		dialogue_text.text += line[i]
 		await get_tree().create_timer(type_speed).timeout
 		if not is_typing:
@@ -73,3 +77,9 @@ func _process(delta: float) -> void:
 		arrow.visible = true
 	else:
 		arrow.visible = false 
+
+func play_sound_with_random_pitch():
+	var min_pitch = 0.90
+	var max_pitch = 1.1
+	stream_player.pitch_scale = randf_range(min_pitch, max_pitch)
+	stream_player.play()

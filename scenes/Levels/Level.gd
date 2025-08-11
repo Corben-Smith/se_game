@@ -36,6 +36,9 @@ func prepare(player: PackedScene) -> void:
 	
 	add_child(player_inst)
 
+	# Wait a frame to ensure the player is fully added to the scene tree
+	await get_tree().process_frame
+
 	if not camera_manager:
 		camera_manager = find_child("CameraManager") as CameraManager
 		if not camera_manager:
@@ -43,10 +46,30 @@ func prepare(player: PackedScene) -> void:
 
 	if camera_manager:
 		camera_manager.player = player_inst
+		# Make sure to call setup or initialization method on camera manager
+		# This should apply bounds and configure the camera properly
+		if camera_manager.has_method("setup"):
+			camera_manager.setup()
+		elif camera_manager.has_method("initialize"):
+			camera_manager.initialize()
+		elif camera_manager.has_method("apply_bounds"):
+			camera_manager.apply_bounds()
+		else:
+			print("Warning: CameraManager may need manual setup - no setup method found")
 	else:
 		print("Warning: No camera manager available for player setup")
 
-	
-
 func get_camera_manager() -> CameraManager:
 	return camera_manager
+
+func get_player():
+	if not GlobalReferences.player:
+		var root_node = get_tree().get_root().get_child(get_tree().get_root().get_child_count() - 1)
+		# Loop through the children of the root node
+		for child in root_node.get_children():
+			# Check if the child is a CanvasLayer
+			if child.is_in_group("player"):
+				GlobalReferences.player = child
+				return child
+
+	return null

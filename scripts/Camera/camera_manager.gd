@@ -21,6 +21,8 @@ var active_bounds: CameraBounds = null
 @export var zoom: Vector2 = Vector2(1.5, 1.5)
 var tween: Tween
 
+var checking: bool = false
+
 func _ready() -> void:
 	print("=== CAMERA MANAGER DEBUG ===")
 	print("Camera zoom set to: ", zoom)
@@ -31,11 +33,14 @@ func _ready() -> void:
 	if !player:
 		push_error("PLAYER NOT SET ON CAM MANAGER")
 		print("ERROR: No player assigned!")
-		return
+		checking = true
+		return 
+	else:
+		_setup()
 	
-	print("Player position: ", player.global_position)
-	print("Camera position: ", camera.global_position)
 	
+
+func _setup():
 	# Make camera current if it isn't already
 	if not camera.is_current():
 		camera.make_current()
@@ -67,6 +72,18 @@ var refollow: bool = false
 
 func _physics_process(delta: float) -> void:
 	if not player:
+		print("trying to find player")
+		var players = get_tree().get_nodes_in_group("player")
+		if players.size() == 0:
+			push_warning("No nodes found in group 'player'")
+			return
+
+		var mewo = get_tree().get_nodes_in_group("player")[0]
+		if mewo:
+			GlobalReferences.player = mewo
+			player = GlobalReferences.player
+			print("trying to set player")
+			_setup()
 		return
 		
 	if refollow && (camera.global_position - player.global_position).abs() < Vector2(50,50):
@@ -82,6 +99,7 @@ func _handle_entry(zone: CameraZone):
 	tween = create_tween()
 	tween.tween_method(camera.set_zoom, camera.zoom, zone.zoom, 0.75)
 	tween.parallel().tween_property(camera, "position", zone.pos.global_position, 0.75)
+
 
 func _handle_exit(zone: CameraZone):
 	print("Exiting camera zone: ", zone.name)

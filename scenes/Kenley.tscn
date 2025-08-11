@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://cok6gvdxjgywq"]
 
-[ext_resource type="Script" uid="uid://dsbmrtptr08ap" path="res://scripts/Character/Kenley_Character.gd" id="1_21ah3"]
+[ext_resource type="Script" path="res://scripts/Character/Kenley_Character.gd" id="1_21ah3"]
 [ext_resource type="Resource" uid="uid://cv82ew5ji8w54" path="res://scenes/Base_Player_Stats.tres" id="2_duim7"]
 [ext_resource type="Texture2D" uid="uid://cgxsuej7wcvqt" path="res://assets/Kenley_Sprite.png" id="3_r68wp"]
 [ext_resource type="Script" uid="uid://c1fthtfbmc1rp" path="res://scripts/States/StateMachine.gd" id="3_rguqb"]

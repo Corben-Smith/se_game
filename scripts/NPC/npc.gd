@@ -9,6 +9,7 @@ var box: DialogueBox
 @onready var shader_mat = $Sprite2D.material
 
 @export var npc_name: String = "Unset"
+@export var npc_portrait: Texture2D
 
 @export var move_cam: bool = true
 @export var camera_manager: CameraManager
@@ -37,7 +38,7 @@ func _ready() -> void:
 
 func _create_box() -> DialogueBox:
 	box = box_scene.instantiate()
-	box.setup(npc_name, blip)
+	box.setup(npc_name, blip, npc_portrait)
 	UI_Manager.canvas_layer.add_child(box)
 	box.finished_dialogue.connect(_handle_dialogue_end)
 	return box

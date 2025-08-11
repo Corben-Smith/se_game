@@ -1,14 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccp6yhbqalwnv"]
 
 [ext_resource type="Script" uid="uid://cn8u75ceh3gcu" path="res://character_selection.gd" id="1_ysev7"]
-[ext_resource type="Texture2D" uid="uid://dj5sepfg3gdop" path="res://assets/Paper/selection_clean.jpg" id="2_ysev7"]
-[ext_resource type="Texture2D" uid="uid://bf5yn71yydc26" path="res://assets/Paper/selection_arrow.png" id="3_ysev7"]
+[ext_resource type="Texture2D" uid="uid://n3fwkkgy34hi" path="res://assets/Paper/selection_cleaner.png" id="2_i640r"]
+[ext_resource type="Texture2D" uid="uid://cdpd0uvqyo1ot" path="res://assets/Paper/Y_arrow.png" id="3_i640r"]
 [ext_resource type="Script" path="res://arrow_rect_bob.gd" id="4_i640r"]
 
-[node name="CharacterSelection" type="Node2D" node_paths=PackedStringArray("characters", "arrow")]
+[node name="CharacterSelection" type="Node2D" node_paths=PackedStringArray("characters", "arrow", "character_name")]
 script = ExtResource("1_ysev7")
 characters = [NodePath("Characters/Kenley"), NodePath("Characters/Isaiah"), NodePath("Characters/Corben"), NodePath("Characters/Allison"), NodePath("Characters/Gabriel")]
 arrow = NodePath("CanvasLayer/ArrowRect")
+character_name = NodePath("CanvasLayer/Control/Panel/CharacterName")
 
 [node name="Characters" type="Node" parent="."]
 
@@ -47,7 +48,7 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_ysev7")
+texture = ExtResource("2_i640r")
 expand_mode = 3
 stretch_mode = 4
 
@@ -103,14 +104,15 @@ text = "Select"
 metadata/_edit_use_anchors_ = true
 
 [node name="ArrowRect" type="TextureRect" parent="CanvasLayer"]
+texture_filter = 1
 offset_right = 100.0
 offset_bottom = 56.0
 pivot_offset = Vector2(50, 28)
-texture = ExtResource("3_ysev7")
+texture = ExtResource("3_i640r")
 expand_mode = 3
 stretch_mode = 5
 script = ExtResource("4_i640r")
-bob_height = 15.0
+bob_height = 20.0
 duration = 1.0
 
 [connection signal="pressed" from="CanvasLayer/Control/Panel/HBoxContainer/Left" to="." method="_on_left_pressed"]
