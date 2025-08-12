@@ -4,6 +4,8 @@ class_name Level
 @export var spawn_point: Node2D 
 @export var camera_manager: CameraManager
 
+@export var next_level: PackedScene
+
 func _ready() -> void:
 	pass
 
@@ -14,11 +16,14 @@ func get_spawn_point() -> Node2D:
 	return spawn_point 
 
 func prepare(player: PackedScene) -> void:
+	print("prepare is beng called")
+
 	if UI_Manager:
 		UI_Manager.setup_level_ui()
 	else:
 		print("Warning: UI_Manager not found")
 
+	UI_Manager.dim_screen(0)
 	if not player:
 		print("Error: Player PackedScene is null")
 		return
@@ -58,6 +63,9 @@ func prepare(player: PackedScene) -> void:
 			print("Warning: CameraManager may need manual setup - no setup method found")
 	else:
 		print("Warning: No camera manager available for player setup")
+	
+	await get_tree().create_timer(1).timeout
+	UI_Manager.remove_dim(1)
 
 func get_camera_manager() -> CameraManager:
 	return camera_manager

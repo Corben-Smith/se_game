@@ -130,6 +130,7 @@ metadata/_custom_type_script = "uid://dp74djouk71ts"
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("9_r87yu")
+max_health = 10
 
 [node name="DealDamageArea" type="Area2D" parent="."]
 
@@ -143,12 +144,6 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("14_4yo34")
 hframes = 14
 vframes = 16
-
-[node name="Label" type="Label" parent="."]
-offset_left = -21.3335
-offset_top = -64.0
-offset_right = 18.6665
-offset_bottom = -41.0
 
 [node name="DirectionChangeParticles" type="GPUParticles2D" parent="."]
 position = Vector2(0, 32)

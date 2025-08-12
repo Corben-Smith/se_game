@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ty5wqrvfwqnd"]
+
+[ext_resource type="Script" uid="uid://1sirfdhrkl8k" path="res://scripts/NPC/shop_npc.gd" id="1_uvn17"]
+[ext_resource type="Texture2D" uid="uid://bj3db1jon0ape" path="res://assets/Paper/goat.png" id="2_iq160"]
+[ext_resource type="Material" uid="uid://cjaobt63qd7qx" path="res://scenes/Outline.tres" id="2_nsn8v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsn8v"]
+size = Vector2(384, 322)
+
+[node name="ShopNPC" type="Area2D"]
+script = ExtResource("1_uvn17")
+metadata/_custom_type_script = "uid://1sirfdhrkl8k"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = ExtResource("2_nsn8v")
+position = Vector2(0, -160)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_iq160")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -151)
+shape = SubResource("RectangleShape2D_nsn8v")

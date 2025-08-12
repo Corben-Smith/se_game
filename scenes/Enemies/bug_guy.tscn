@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b67fcta555xpq"]
+[gd_scene load_steps=12 format=3 uid="uid://b67fcta555xpq"]
 
 [ext_resource type="Script" uid="uid://64vs17cy3mk0" path="res://scripts/Enemies/bug_guy.gd" id="1_gd7oa"]
 [ext_resource type="Texture2D" uid="uid://br5ubtrgbtww7" path="res://assets/sprites/Spritesheet.png" id="1_v6hos"]
@@ -43,13 +43,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kos47"]
 size = Vector2(56, 31.1891)
 
-[node name="BugGuy" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48etn"]
+size = Vector2(134, 68.2261)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eodsp"]
+size = Vector2(133, 65)
+
+[node name="BugGuy" type="Node2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_gd7oa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(0, 4)
 scale = Vector2(1, 1.026)
 sprite_frames = SubResource("SpriteFrames_lwnnh")
 autoplay = "default"
@@ -69,15 +73,37 @@ position = Vector2(64, 0)
 target_position = Vector2(0, 64)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-64, -12)
-scale = Vector2(1, 5)
+position = Vector2(-64, 0)
 target_position = Vector2(-16, 0)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(48, -12)
-scale = Vector2(1, 5)
+position = Vector2(48, 0)
 target_position = Vector2(16, 0)
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_48etn")
+max_health = 30
 metadata/_custom_type_script = "uid://lbreutrqdu6t"
+
+[node name="Damagebox" type="Area2D" parent="."]
+scale = Vector2(1, 1.026)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damagebox"]
+position = Vector2(-8, -5.84795)
+shape = SubResource("RectangleShape2D_48etn")
+debug_color = Color(0.831223, 0.370783, 0.348072, 0.42)
+
+[node name="DamageTimer" type="Timer" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-24, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(17.5, -101.5)
+shape = SubResource("RectangleShape2D_eodsp")
+debug_color = Color(0.499645, 0.428474, 1, 0.42)
+
+[connection signal="body_entered" from="Damagebox" to="." method="_on_damagebox_body_entered"]
+[connection signal="body_exited" from="Damagebox" to="." method="_on_damagebox_body_exited"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

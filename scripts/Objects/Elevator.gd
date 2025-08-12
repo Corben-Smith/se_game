@@ -43,25 +43,4 @@ func _on_body_exited(body):
 		anim_sprite.play("Closing")
 
 func _change_scene():
-	if not (target_scene_path and character_scene_path):
-		return
-
-	var new_scene = target_scene_path.instantiate()
-	if new_scene:
-		get_tree().root.add_child(new_scene)
-
-		var player = character_scene_path.instantiate()
-		get_tree().root.add_child(player)
-
-		if new_scene.has_method("get_spawn_point"):
-			var point: Node2D = new_scene.get_spawn_point()
-			if point:
-				player.global_position = point.global_position
-
-		if new_scene.has_method("get_camera_manager"):
-			var camera_manager = new_scene.get_camera_manager()
-			if camera_manager:
-				camera_manager.player = player
-
-		get_tree().current_scene.queue_free()
-		get_tree().current_scene = new_scene
+	LevelManager.transition_to_level(LevelManager.get_next_level(), character_scene_path)

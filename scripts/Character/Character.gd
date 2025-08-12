@@ -20,6 +20,9 @@ var direction: Vector2 = Vector2.RIGHT
 @export var attack_damage: int = 10
 @onready var label: Label = $Label
 
+func get_attack_damage():
+	return 10
+
 var sprite
 
 func _ready() -> void:

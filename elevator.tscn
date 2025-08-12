@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2kq32esq6bxm"]
+[gd_scene load_steps=15 format=3 uid="uid://c3i58f7xuvygx"]
 
 [ext_resource type="Script" uid="uid://capu3jb6wgtpd" path="res://scripts/Objects/Elevator.gd" id="1_77yi3"]
 [ext_resource type="Texture2D" uid="uid://ba0610qgbkitg" path="res://assets/sprites/ele_animation.png" id="4_77yi3"]
@@ -100,6 +100,7 @@ animations = [{
 size = Vector2(216, 170)
 
 [node name="Elevator" type="Area2D"]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_77yi3")
 metadata/_custom_type_script = "uid://capu3jb6wgtpd"
 
